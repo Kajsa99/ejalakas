@@ -1,0 +1,11 @@
+
+export default function Page() {
+  return (
+    <div className="flex min-h-svh p-6">
+      <div className="flex max-w-md min-w-0 flex-col gap-4 text-sm leading-loose">
+        <h1 className="font-medium">Utställningar</h1>
+        <p>Kommande och avslutade utställningar.</p>
+      </div>
+    </div>
+  )
+}
