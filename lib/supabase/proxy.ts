@@ -55,7 +55,8 @@ export async function updateSession(request: NextRequest) {
   const user = data?.claims;
 
   if (
-    request.nextUrl.pathname !== "/" &&
+    // only login on admin page, only e jalakas should be able to login to the admin page
+    request.nextUrl.pathname == "/admin" &&
     !user &&
     !request.nextUrl.pathname.startsWith("/login") &&
     !request.nextUrl.pathname.startsWith("/auth")
