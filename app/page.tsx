@@ -1,20 +1,22 @@
-import { createClient } from "@/lib/supabase/server";
-import { ThemeSwitcher } from "@/components/theme-switcher";
-import { Suspense } from "react";
+import { createClient } from "@/lib/supabase/server"
+import { ThemeSwitcher } from "@/components/theme-switcher"
+import { Suspense } from "react"
 
 async function getData() {
-  const supabase = await createClient();
-  const { data, error } = await supabase.from("art").select("*").limit(5);
-  return { data, error };
+  const supabase = await createClient()
+  const { data, error } = await supabase.from("art").select("*").limit(5)
+  return { data, error }
 }
 
 async function SupabaseArtSection() {
-  const { data, error } = await getData();
+  const { data, error } = await getData()
 
   if (error) {
     return (
-      <div className="rounded border p-3 text-red-600">Error: {error.message}</div>
-    );
+      <div className="rounded border p-3 text-red-600">
+        Error: {error.message}
+      </div>
+    )
   }
 
   return (
@@ -34,23 +36,26 @@ async function SupabaseArtSection() {
         <p className="mt-2 text-xs opacity-70">No rows found in art.</p>
       )}
     </div>
-  );
+  )
 }
 
 export default function Page() {
   return (
-    <div className="flex min-h-svh p-6">
-      <div className="flex max-w-md min-w-0 flex-col gap-4 text-sm leading-loose">
-        <h1 className="font-medium">E. Jalakas</h1>
-        <p>
+    <div className="flex items-center justify-center p-6">
+      <div className="flex flex-col gap-4 text-sm">
+        <h1 className="text-2xl font-bold">E. Jalakas</h1>
+        <p className="text-sm">
           Spontant och lekfullt skapar Elisabet med collage, akvarell, oljefärg,
           tryck och teckningar
         </p>
-        <Suspense fallback={<div className="rounded border p-3">Loading...</div>}>
+
+        <Suspense
+          fallback={<div className="rounded border p-3">Loading...</div>}
+        >
           <SupabaseArtSection />
         </Suspense>
         <ThemeSwitcher />
       </div>
     </div>
-  );
+  )
 }

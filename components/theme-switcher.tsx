@@ -1,32 +1,32 @@
-"use client";
+"use client"
 
-import { buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { cn } from "@/lib/utils";
-import { Laptop, Moon, Sun } from "lucide-react";
-import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
+} from "@/components/ui/dropdown-menu"
+import { cn } from "@/lib/utils"
+import { Laptop, Moon, Sun } from "lucide-react"
+import { useTheme } from "next-themes"
+import { useEffect, useState } from "react"
 
 const ThemeSwitcher = () => {
-  const [mounted, setMounted] = useState(false);
-  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false)
+  const { theme, setTheme } = useTheme()
 
   // useEffect only runs on the client, so now we can safely show the UI
   useEffect(() => {
-    setMounted(true);
-  }, []);
+    setMounted(true)
+  }, [])
 
   if (!mounted) {
-    return null;
+    return null
   }
 
-  const ICON_SIZE = 16;
+  const ICON_SIZE = 16
 
   return (
     <DropdownMenu>
@@ -34,9 +34,17 @@ const ThemeSwitcher = () => {
         className={cn(buttonVariants({ variant: "ghost", size: "sm" }))}
       >
         {theme === "light" ? (
-          <Sun key="light" size={ICON_SIZE} className={"text-muted-foreground"} />
+          <Sun
+            key="light"
+            size={ICON_SIZE}
+            className={"text-muted-foreground"}
+          />
         ) : theme === "dark" ? (
-          <Moon key="dark" size={ICON_SIZE} className={"text-muted-foreground"} />
+          <Moon
+            key="dark"
+            size={ICON_SIZE}
+            className={"text-muted-foreground"}
+          />
         ) : (
           <Laptop
             key="system"
@@ -65,7 +73,7 @@ const ThemeSwitcher = () => {
         </DropdownMenuRadioGroup>
       </DropdownMenuContent>
     </DropdownMenu>
-  );
-};
+  )
+}
 
-export { ThemeSwitcher };
+export { ThemeSwitcher }
