@@ -4,6 +4,7 @@ import { ThemeProvider } from "next-themes"
 import "./globals.css"
 import { cn } from "@/lib/utils"
 import Navbar from "@/components/navbar"
+import Footer from "@/components/footer"
 
 const figtree = Figtree({ subsets: ["latin"], variable: "--font-sans" })
 
@@ -51,7 +52,9 @@ export default function RootLayout({
         >
           {children}
           <Navbar />
-          <main className="flex flex-col p-6"></main>
+          <main className="flex flex-col p-6">
+            <Footer />
+          </main>
         </ThemeProvider>
       </body>
     </html>
