@@ -1,13 +1,14 @@
 import Link from "next/link"
+import { ThemeSwitcher } from "@/components/theme-switcher"
 
 export default function Navbar() {
   const links = [
-    { href: "/", label: "Home" },
-    { href: "/art", label: "Artwork" },
-    { href: "/exhibitions", label: "Exhibitions" },
-    { href: "/courses", label: "Courses" },
-    { href: "/about", label: "About" },
-    { href: "/contact", label: "Contact" },
+    { href: "/", label: "Hem" },
+    { href: "/art", label: "Konstverk" },
+    { href: "/exhibitions", label: "Utställningar" },
+    { href: "/courses", label: "Kurser" },
+    { href: "/about", label: "Om mig" },
+    { href: "/contact", label: "Kontakt" },
   ]
 
   return (
@@ -21,6 +22,7 @@ export default function Navbar() {
           {link.label}
         </Link>
       ))}
+      <ThemeSwitcher />
     </nav>
   )
 }

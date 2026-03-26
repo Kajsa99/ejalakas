@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import { Geist, Figtree } from "next/font/google"
+import { Geist, Figtree, IM_Fell_English } from "next/font/google"
 import { ThemeProvider } from "next-themes"
 import "./globals.css"
 import { cn } from "@/lib/utils"
@@ -23,6 +23,14 @@ const geistSans = Geist({
   subsets: ["latin"],
 })
 
+const imFellEnglish = IM_Fell_English({
+  variable: "--font-im-fell",
+  weight: "400",
+  style: ["normal", "italic"],
+  subsets: ["latin"],
+  display: "swap",
+})
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -32,20 +40,19 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={cn("font-sans", figtree.variable)}
+      className={cn("font-sans", figtree.variable, imFellEnglish.variable)}
     >
       <body className={`${geistSans.className} antialiased`}>
-        <Navbar />
-        <main className="flex flex-col items-center justify-center p-6">
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            {children}
-          </ThemeProvider>
-        </main>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+          <Navbar />
+          <main className="flex flex-col p-6"></main>
+        </ThemeProvider>
       </body>
     </html>
   )
