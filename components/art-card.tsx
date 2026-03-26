@@ -11,7 +11,6 @@ async function ArtworkSection() {
   return (
     <Card className="shadow-lg">
       <CardContent className="text-center">
-        {data?.[0]?.name ?? "Laddar..."}
         {/* temporär img */}
         <Image
           src={artImage}
@@ -19,9 +18,10 @@ async function ArtworkSection() {
           width={200}
           height={800}
         />
+        {data?.[0]?.name ?? "Laddar..."}
         <CardAction>
           <Link href="/art" className="text-sm text-primary">
-            Till Salu
+            Konstverk till Salu
           </Link>
         </CardAction>
       </CardContent>

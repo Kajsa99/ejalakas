@@ -17,31 +17,23 @@ const imFellEnglish = IM_Fell_English({
 export default async function HomePage() {
   return (
     <div className="flex flex-col items-center gap-4 p-6">
-      <div
-        className={cn(
-          "flex flex-col items-center gap-4 text-sm",
-          imFellEnglish.className
-        )}
-      >
-        <Image
-          src={profileImage}
-          alt="E. Jalakas"
-          width={300}
-          height={800}
-          className=""
-        />
-        <h1 className="-mt-10 -ml-40 text-7xl font-bold text-primary">
+      <div className="flex flex-col items-center gap-4 text-sm">
+        <Image src={profileImage} alt="E. Jalakas" width={300} height={800} />
+        <h1
+          className={cn(
+            "-mt-10 -ml-40 text-7xl font-bold text-primary",
+            imFellEnglish.className
+          )}
+        >
           E. Jalakas
         </h1>
-        <p className="-mr-50 max-w-xl text-lg italic">
+        <p className="text-md -mr-70 max-w-xl">
           För att mina inre bilder ska komma fram målar jag av objekt och de
-          visar sig ofta med mycket energi och färg. Jag inspireras av folk och
-          föremål i vardagen och utforskandet av olika tekniker och material.
-          Målar med energi och färg för att ge liv i mina tolkningar av
-          omvärlden.
+          visar sig ofta med mycket energi och färg. Målar med energi och färg
+          för att ge liv i mina tolkningar av omvärlden
         </p>
       </div>
-      <div className="flex flex-row items-center justify-center gap-4">
+      <div className="flex flex-row items-center justify-center gap-10 p-10">
         <ArtCard />
         <ExhibitionCard />
         <CollectionCard />
