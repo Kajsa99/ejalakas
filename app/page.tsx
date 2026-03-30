@@ -38,10 +38,15 @@ export default async function HomePage() {
         >
           E. Jalakas
         </h1>
-        <p className="text-md -mr-70 max-w-xl">
-          För att mina inre bilder ska komma fram målar jag av objekt och de
-          visar sig ofta med mycket energi och färg. Målar med energi och färg
-          för att ge liv i mina tolkningar av omvärlden
+        <p
+          className={cn(
+            "text-md -mr-70 max-w-lg text-center text-primary",
+            imFellEnglish.className
+          )}
+        >
+          &quot;Målar med energi och färg för att ge liv i mina tolkningar av
+          omvärlden. Jag visar er hur jag ser den och hur färg kan förvandla en
+          bild till en annan.&quot;
         </p>
       </div>
       <div className="flex flex-row items-center justify-center gap-10 p-10">

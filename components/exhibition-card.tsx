@@ -23,7 +23,7 @@ async function ExhibitionSection() {
             src={imageSrc}
             alt={data?.[0]?.name ?? "Laddar..."}
             width={250}
-            height={1000}
+            height={800}
             className="mx-auto h-auto w-[250px]"
             unoptimized
           />

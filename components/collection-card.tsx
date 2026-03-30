@@ -22,9 +22,9 @@ async function CollectionSection() {
           <Image
             src={imageSrc}
             alt={data?.[0]?.name ?? "Laddar..."}
-            width={200}
+            width={250}
             height={800}
-            className="mx-auto h-auto w-[200px]"
+            className="mx-auto h-auto w-[250px]"
             unoptimized
           />
           {data?.[0]?.name ?? "Laddar..."}
