@@ -1,10 +1,10 @@
 import Image from "next/image"
-import profileImage from "./(photos)/image2.jpeg"
 import { IM_Fell_English } from "next/font/google"
 import { cn } from "@/lib/utils"
 import ArtCard from "@/components/art-card"
 import ExhibitionCard from "@/components/exhibition-card"
 import CollectionCard from "@/components/collection-card"
+import { STORAGE_BUCKET, STORAGE_IMAGE_PATHS } from "@/lib/storage-image-paths"
 
 const imFellEnglish = IM_Fell_English({
   variable: "--font-im-fell",
@@ -15,10 +15,21 @@ const imFellEnglish = IM_Fell_English({
 })
 
 export default async function HomePage() {
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL ?? ""
+  const profileImageUrl = `${supabaseUrl}/storage/v1/object/public/${STORAGE_BUCKET}/${STORAGE_IMAGE_PATHS.profile}`
+
   return (
     <div className="flex flex-col items-center gap-4 p-6">
       <div className="flex flex-col items-center gap-4 text-sm">
-        <Image src={profileImage} alt="E. Jalakas" width={300} height={800} />
+        <Image
+          src={profileImageUrl}
+          alt="E. Jalakas"
+          width={300}
+          height={800}
+          className="h-auto w-[300px]"
+          priority
+          unoptimized
+        />
         <h1
           className={cn(
             "-mt-10 -ml-40 text-7xl font-bold text-primary",
