@@ -48,11 +48,11 @@ export default function Artworks() {
 
 function AllArtworks({ artworks }: AllArtworksProps) {
   return (
-    <div className="grid grid-cols-1 justify-items-center gap-4 sm:grid-cols-2 md:justify-items-start lg:grid-cols-4">
+    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
       {artworks.map((art) => (
-        <Card key={art.id} className="h-[460px] w-[320px]">
-          <CardContent className="flex h-full flex-col p-4">
-            <CardHeader className="flex h-full flex-col p-0">
+        <Card key={art.id} className="mt-6 w-full">
+          <CardContent className="flex flex-col p-4">
+            <CardHeader className="flex flex-col">
               <div className="relative">
                 <Image
                   src={art.image}
@@ -68,12 +68,14 @@ function AllArtworks({ artworks }: AllArtworksProps) {
                   {art.status}
                 </Badge>
               </div>
-              <CardTitle>{art.name}</CardTitle>
-              <CardDescription>{art.description}</CardDescription>
-              <CardDescription>{art.year}</CardDescription>
-              <CardDescription>{art.price}kr</CardDescription>
-              <CardFooter className="mt-auto px-0">
-                <Button variant="outline">
+              <div className="flex w-full flex-row items-center justify-between">
+                <CardTitle className="text-lg">{art.name}</CardTitle>
+                <CardDescription className="text-md">
+                  {art.year}
+                </CardDescription>
+              </div>
+              <CardFooter className="flex w-full justify-end">
+                <Button variant="outline" size="lg">
                   <Link href={`/art/${art.id}`}>Se detaljer</Link>
                 </Button>
               </CardFooter>
