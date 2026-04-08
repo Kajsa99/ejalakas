@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils"
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
 import Header from "@/components/header"
+import { Suspense } from "react"
 
 const figtree = Figtree({ subsets: ["latin"], variable: "--font-sans" })
 
@@ -51,13 +52,15 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Header />
-          {children}
-          <Navbar />
+          <Suspense fallback={<div>Loading...</div>}>
+            <Header />
+            {children}
+            <Navbar />
 
-          <main className="flex flex-col p-6">
-            <Footer />
-          </main>
+            <main className="flex flex-col p-6">
+              <Footer />
+            </main>
+          </Suspense>
         </ThemeProvider>
       </body>
     </html>

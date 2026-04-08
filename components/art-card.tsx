@@ -15,7 +15,7 @@ async function ArtworkSection() {
   const imageSrc = supabase.storage.from(STORAGE_BUCKET).getPublicUrl(imagePath)
     .data.publicUrl
   return (
-    <Card className="shadow-lg">
+    <Card className="bg-amber-50 shadow-lg">
       <CardContent className="text-center">
         <Image
           src={imageSrc}

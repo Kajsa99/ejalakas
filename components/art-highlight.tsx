@@ -11,7 +11,7 @@ import Image from "next/image"
 import { STORAGE_BUCKET, STORAGE_IMAGE_PATHS } from "@/lib/storage-image-paths"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import { Badge } from "@/components/ui/badge"
+import { ForSaleBadge } from "@/components/for-sale-badge"
 
 async function ArtHighlightSection() {
   const supabase = await createClient()
@@ -23,22 +23,21 @@ async function ArtHighlightSection() {
   const imageSrc = supabase.storage.from(STORAGE_BUCKET).getPublicUrl(imagePath)
     .data.publicUrl
   return (
-    <Card className="flex flex-row overflow-hidden">
+    <Card className="flex flex-row overflow-hidden bg-amber-50">
       <div className="relative w-2/3 p-6">
-        <Image
-          src={imageSrc}
-          alt={data?.[0]?.name ?? "Laddar..."}
-          width={500}
-          height={500}
-          className="h-[400px] object-cover"
-          unoptimized
-        />
-        <Badge
-          variant="default"
-          className="text-md absolute right-10 bottom-10 z-10"
-        >
-          {data?.[0]?.status ?? "Laddar..."}
-        </Badge>
+        <div className="relative">
+          <Image
+            src={imageSrc}
+            alt={data?.[0]?.name ?? "Laddar..."}
+            width={500}
+            height={500}
+            className="h-[400px] object-cover"
+            unoptimized
+          />
+          <div className="absolute right-2 bottom-2 z-10">
+            <ForSaleBadge sold={data?.[0]?.status ?? false} />
+          </div>
+        </div>
       </div>
 
       <CardContent className="flex w-1/3 flex-col gap-2 p-6 text-left">

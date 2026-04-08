@@ -13,7 +13,7 @@ import {
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import { Badge } from "@/components/ui/badge"
+import { ForSaleBadge } from "@/components/for-sale-badge"
 
 interface Artwork {
   id: number
@@ -21,7 +21,7 @@ interface Artwork {
   image: string
   description: string
   price: number
-  status: string
+  status: boolean
   year: number
 }
 
@@ -50,7 +50,7 @@ function AllArtworks({ artworks }: AllArtworksProps) {
   return (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
       {artworks.map((art) => (
-        <Card key={art.id} className="mt-6 w-full">
+        <Card key={art.id} className="mt-6 w-full max-w-md bg-amber-50">
           <CardContent className="flex flex-col p-4">
             <CardHeader className="flex flex-col">
               <div className="relative">
@@ -61,12 +61,9 @@ function AllArtworks({ artworks }: AllArtworksProps) {
                   height={400}
                   className="h-[240px] object-cover"
                 />
-                <Badge
-                  variant="default"
-                  className="text-md absolute right-2 bottom-2 z-10"
-                >
-                  {art.status}
-                </Badge>
+                <div className="absolute right-2 bottom-2 z-10">
+                  <ForSaleBadge sold={art.status} />
+                </div>
               </div>
               <div className="flex w-full flex-row items-center justify-between">
                 <CardTitle className="text-lg">{art.name}</CardTitle>
