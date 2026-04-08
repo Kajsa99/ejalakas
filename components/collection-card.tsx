@@ -17,7 +17,7 @@ async function CollectionSection() {
 
   return (
     <div>
-      <Card className="shadow-lg">
+      <Card className="bg-amber-50 shadow-lg">
         <CardContent className="text-center">
           <Image
             src={imageSrc}

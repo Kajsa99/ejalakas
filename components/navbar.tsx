@@ -5,6 +5,7 @@ export default function Navbar() {
   const links = [
     { href: "/", label: "Hem" },
     { href: "/art", label: "Konstverk" },
+    { href: "/collections", label: "Kollektioner" },
     { href: "/exhibitions", label: "Utställningar" },
     { href: "/courses", label: "Kurser" },
     { href: "/about", label: "Om mig" },

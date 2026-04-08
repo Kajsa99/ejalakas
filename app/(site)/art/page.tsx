@@ -1,6 +1,6 @@
-import Artworks from "@/components/artworks"
+import Artworks from "@/app/(site)/art/artworks"
 import Link from "next/link"
-import ArtHighlight from "@/components/art-highlight"
+import ArtHighlight from "@/app/(site)/art/art-highlight"
 
 export default function Page() {
   return (

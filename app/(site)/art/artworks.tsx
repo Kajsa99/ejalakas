@@ -11,7 +11,6 @@ import {
   CardFooter,
 } from "@/components/ui/card"
 import Image from "next/image"
-import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { ForSaleBadge } from "@/components/for-sale-badge"
 
@@ -54,13 +53,15 @@ function AllArtworks({ artworks }: AllArtworksProps) {
           <CardContent className="flex flex-col p-4">
             <CardHeader className="flex flex-col">
               <div className="relative">
-                <Image
-                  src={art.image}
-                  alt={art.name}
-                  width={400}
-                  height={400}
-                  className="h-[240px] object-cover"
-                />
+                <Link href={`/art/${art.id}`}>
+                  <Image
+                    src={art.image}
+                    alt={art.name}
+                    width={400}
+                    height={400}
+                    className="h-[240px] object-cover"
+                  />
+                </Link>
                 <div className="absolute right-2 bottom-2 z-10">
                   <ForSaleBadge sold={art.status} />
                 </div>
@@ -72,9 +73,12 @@ function AllArtworks({ artworks }: AllArtworksProps) {
                 </CardDescription>
               </div>
               <CardFooter className="flex w-full justify-end">
-                <Button variant="outline" size="lg">
-                  <Link href={`/art/${art.id}`}>Se detaljer</Link>
-                </Button>
+                <Link
+                  href={`/art/${art.id}`}
+                  className="mt-2 inline-block text-sm underline-offset-4 hover:text-primary hover:underline"
+                >
+                  Se detaljer
+                </Link>
               </CardFooter>
             </CardHeader>
           </CardContent>

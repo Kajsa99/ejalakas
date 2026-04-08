@@ -17,7 +17,7 @@ async function ExhibitionSection() {
 
   return (
     <div>
-      <Card className="w-full shadow-lg">
+      <Card className="w-full bg-amber-50 shadow-lg">
         <CardContent className="text-center">
           <Image
             src={imageSrc}

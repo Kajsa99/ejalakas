@@ -1,9 +1,17 @@
+import CollectionGrid from "@/app/(site)/collections/collection-grid"
+
 export default function Page() {
   return (
-    <div className="flex min-h-svh p-6">
-      <div className="flex max-w-md min-w-0 flex-col gap-4 text-sm leading-loose">
-        <h1 className="font-medium">Samlingar</h1>
-        <p>Urval av verk organiserade i teman och serier.</p>
+    <div className="flex flex-col items-center p-6">
+      <div className="mx-auto flex w-full max-w-6xl min-w-0 flex-col items-center gap-4 text-sm">
+        <h1 className="text-2xl font-medium">Kollektioner</h1>
+        <p className="text-md max-w-2xl text-muted-foreground">
+          Här en alla samlade kollektioner från E. Jalakas, upptäck de som
+          inspirerar dig. Jag målar i kollektioner då jag blir nyfiken och
+          inspierad så att jag vill fånga det på flera olika sätt. Jag byter
+          medium, färger och vinklar tills jag fångat det jag såg.
+        </p>
+        <CollectionGrid />
       </div>
     </div>
   )
