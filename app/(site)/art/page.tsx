@@ -7,15 +7,12 @@ export default function Page() {
     <div className="flex flex-col p-6">
       <div className="flex flex-col items-center justify-center gap-2">
         <h1 className="text-2xl font-medium">Konstverk</h1>
-        <p className="mt-2 text-sm">
-          Urval av konstverk från ateljén. Se även kollektioner och
-          utställningar.
-        </p>
+        <p className="mt-2 text-sm">Urval av konstverk från ateljén.</p>
         <Link
           href="/collections"
           className="text-sm text-primary hover:underline"
         >
-          Kollektioner
+          Se alla kollektioner
         </Link>
       </div>
       <div className="mt-10 flex flex-col items-center justify-center gap-2">

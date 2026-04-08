@@ -29,7 +29,7 @@ async function CollectionSection() {
           />
           {data?.[0]?.name ?? "Laddar..."}
           <CardAction>
-            <Link href="/collection" className="text-sm text-primary">
+            <Link href="/collections" className="text-sm text-primary">
               Kollektioner
             </Link>
           </CardAction>
