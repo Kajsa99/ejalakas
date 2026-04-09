@@ -4,7 +4,7 @@ import ArtHighlight from "@/app/(site)/art/art-highlight"
 
 export default function Page() {
   return (
-    <div className="flex flex-col p-6">
+    <div className="mt-20 flex flex-col p-6">
       <div className="flex flex-col items-center justify-center gap-2">
         <h1 className="text-2xl font-medium">Konstverk</h1>
         <p className="mt-2 text-sm">Urval av konstverk från ateljén.</p>

@@ -29,7 +29,7 @@ async function ExhibitionSection() {
           />
           {data?.[0]?.name ?? "Laddar..."}
           <CardAction>
-            <Link href="/collection" className="text-sm text-primary">
+            <Link href="/exhibitions" className="text-sm text-primary">
               Utställningar
             </Link>
           </CardAction>

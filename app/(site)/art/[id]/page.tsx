@@ -47,7 +47,7 @@ async function ArtDetail({ id }: { id: number }) {
         .publicUrl
 
   return (
-    <div className="mx-auto flex w-full max-w-5xl flex-col gap-6 bg-amber-50 p-6 md:flex-row">
+    <div className="mx-auto mt-20 flex w-full max-w-5xl flex-col gap-6 bg-amber-50 p-6 md:flex-row">
       <div className="relative w-full md:w-1/2">
         <div className="relative">
           <Image
