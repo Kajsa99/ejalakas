@@ -8,5 +8,8 @@ export const STORAGE_IMAGE_PATHS = {
   artFallback: `${STORAGE_BASE_PATH}/krafta1.jpeg`,
   exhibitionFallback: `${STORAGE_BASE_PATH}/tillbergstradgard.jpeg`,
   collectionFallback: `${STORAGE_BASE_PATH}/kraftakollektion1.jpeg`,
+  aboutProfile: `${STORAGE_BASE_PATH}/profilpic1.jpeg`,
+  aboutProfile2: `${STORAGE_BASE_PATH}/kursute1.jpeg`,
+  aboutProfile3: `${STORAGE_BASE_PATH}/kurshav.jpeg`,
 }
 
