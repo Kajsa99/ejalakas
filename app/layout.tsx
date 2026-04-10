@@ -57,7 +57,7 @@ export default function RootLayout({
             {children}
             <Navbar />
 
-            <main className="flex flex-col p-6">
+            <main>
               <Footer />
             </main>
           </Suspense>

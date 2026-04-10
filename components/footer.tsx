@@ -3,9 +3,9 @@ import { Facebook, Instagram, Youtube } from "lucide-react"
 
 export default function Footer() {
   return (
-    <footer className="flex max-w-7xl justify-center bg-amber-200 p-14 sm:mx-4 sm:my-4 md:mx-30 lg:mx-auto lg:my-30">
-      <div className="flex w-full flex-col gap-6 md:flex-row md:justify-between">
-        <div className="flex w-full flex-col gap-2 md:w-1/3">
+    <footer className="flex w-full justify-center bg-amber-200 p-14">
+      <div className="mt-20 mb-20 flex w-full max-w-7xl flex-col gap-6 md:flex-row md:justify-between">
+        <div className="mx-auto flex w-full max-w-sm flex-col gap-2 md:w-1/3">
           <h2 className="text-xl font-bold">Sociala medier</h2>
           <p className="flex flex-row gap-2">
             <Instagram className="size-4" />{" "}
@@ -36,24 +36,35 @@ export default function Footer() {
           </p>
         </div>
         <div className="flex w-full flex-col gap-2 md:w-1/3">
-          <h2 className="text-xl font-bold">Kontakt</h2>
+          <Link
+            href="/contact"
+            className="text-xl font-bold hover:text-primary hover:underline"
+          >
+            Kontakt
+          </Link>
           <p className="text-sm">
-            Vid frågor kring min konst, samarbeten eller beställningar, kontakta
+            Vid frågor kring min konst, samarbeten eller förfrågningar, kontakta
             mig på{" "}
             <Link
               href="mailto:elisabetsjalakas@gmail.com"
-              className="hover:underline"
+              className="text-primary hover:underline"
             >
               elisabetsjalakas@gmail.com
             </Link>{" "}
-            eller på{" "}
-            <Link href="tel:0707297220" className="hover:underline">
+            eller telefon{" "}
+            <Link
+              href="tel:0707297220"
+              className="text-primary hover:underline"
+            >
               070-729 72 20
             </Link>
           </p>
         </div>
         <div className="flex w-full flex-col gap-2 md:w-1/3">
-          <Link href="/about" className="text-xl font-bold">
+          <Link
+            href="/about"
+            className="text-xl font-bold hover:text-primary hover:underline"
+          >
             Om mig
           </Link>
           <p className="text-sm">

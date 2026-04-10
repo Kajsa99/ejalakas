@@ -5,6 +5,7 @@ import ArtCard from "@/components/art-card"
 import ExhibitionCard from "@/components/exhibition-card"
 import CollectionCard from "@/components/collection-card"
 import { STORAGE_BUCKET, STORAGE_IMAGE_PATHS } from "@/lib/storage-image-paths"
+import Newsletter from "@/components/newletter"
 
 const imFellEnglish = IM_Fell_English({
   variable: "--font-im-fell",
@@ -49,11 +50,12 @@ export default async function HomePage() {
           bild till en annan.&quot;
         </p>
       </div>
-      <div className="flex flex-row items-center justify-center gap-10 p-10">
+      <div className="mb-20 flex flex-row items-center justify-center gap-10 p-10">
         <ArtCard />
         <ExhibitionCard />
         <CollectionCard />
       </div>
+      <Newsletter />
     </div>
   )
 }

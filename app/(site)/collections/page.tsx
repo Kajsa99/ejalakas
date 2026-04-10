@@ -1,4 +1,5 @@
 import CollectionGrid from "@/app/(site)/collections/collection-grid"
+import Newsletter from "@/components/newletter"
 
 export default function Page() {
   return (
@@ -13,6 +14,7 @@ export default function Page() {
         </p>
         <CollectionGrid />
       </div>
+      <Newsletter />
     </div>
   )
 }

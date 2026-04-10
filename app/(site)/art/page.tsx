@@ -1,6 +1,7 @@
 import Artworks from "@/app/(site)/art/artworks"
 import Link from "next/link"
 import ArtHighlight from "@/app/(site)/art/art-highlight"
+import Newsletter from "@/components/newletter"
 
 export default function Page() {
   return (
@@ -21,6 +22,7 @@ export default function Page() {
       <div className="mx-auto mt-10 w-full max-w-7xl">
         <Artworks />
       </div>
+      <Newsletter />
     </div>
   )
 }

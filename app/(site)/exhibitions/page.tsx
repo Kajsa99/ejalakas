@@ -1,4 +1,5 @@
 import ExhibitionsGrid from "@/app/(site)/exhibitions/exhibitions-grid"
+import Newsletter from "@/components/newletter"
 
 export default function Page() {
   return (
@@ -10,6 +11,7 @@ export default function Page() {
         </p>
       </div>
       <ExhibitionsGrid />
+      <Newsletter />
     </div>
   )
 }
