@@ -1,5 +1,6 @@
 import { createServerClient } from "@supabase/ssr"
 import { NextResponse, type NextRequest } from "next/server"
+import { isAdminUser } from "@/lib/admin-auth"
 
 export async function updateSession(request: NextRequest) {
   let supabaseResponse = NextResponse.next({
@@ -44,19 +45,28 @@ export async function updateSession(request: NextRequest) {
 
   // IMPORTANT: If you remove getClaims() and you use server-side rendering
   // with the Supabase client, your users may be randomly logged out.
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
   const { data } = await supabase.auth.getClaims()
-  const user = data?.claims
+  const claims = (data?.claims ?? null) as Record<string, unknown> | null
 
-  if (
-    // only login on admin page, only e jalakas should be able to login to the admin page
-    request.nextUrl.pathname == "/admin" &&
-    !user &&
-    !request.nextUrl.pathname.startsWith("/login") &&
-    !request.nextUrl.pathname.startsWith("/auth")
-  ) {
-    // no user, potentially respond by redirecting the user to the login page
+  const isAdminPath = request.nextUrl.pathname.startsWith("/admin")
+
+  if (isAdminPath && !user) {
     const url = request.nextUrl.clone()
     url.pathname = "/auth/login"
+    return NextResponse.redirect(url)
+  }
+
+  const hasAdminAccess =
+    isAdminPath && user
+      ? await isAdminUser(supabase, user.id, claims, user.email)
+      : false
+
+  if (isAdminPath && !hasAdminAccess) {
+    const url = request.nextUrl.clone()
+    url.pathname = "/"
     return NextResponse.redirect(url)
   }
 

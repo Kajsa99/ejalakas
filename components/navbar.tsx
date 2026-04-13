@@ -1,7 +1,16 @@
+"use client"
+
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { ThemeSwitcher } from "@/components/theme-switcher"
 
 export default function Navbar() {
+  // Hide navbar on admin pages
+  const pathname = usePathname()
+  if (pathname.startsWith("/admin")) {
+    return null
+  }
+
   const links = [
     { href: "/", label: "Hem" },
     { href: "/art", label: "Konstverk" },
@@ -10,6 +19,7 @@ export default function Navbar() {
     { href: "/courses", label: "Kurser" },
     { href: "/about", label: "Om mig" },
     { href: "/contact", label: "Kontakt" },
+    { href: "/admin", label: "Login" },
   ]
 
   return (
