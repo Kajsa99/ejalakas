@@ -86,7 +86,7 @@ export function ContentForm({
   }
 
   return (
-    <section className="bg-amber-50 p-4">
+    <section className="p-4">
       <h2 className="text-lg font-semibold">{title}</h2>
       <p className="mb-4 text-sm text-muted-foreground">{description}</p>
       <form onSubmit={onSubmit} className="space-y-4">
@@ -99,6 +99,7 @@ export function ContentForm({
                   id={field.name}
                   name={field.name}
                   required={field.required}
+                  className="h-24 resize-y"
                 />
               </div>
             )

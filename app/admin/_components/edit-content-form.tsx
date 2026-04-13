@@ -33,9 +33,9 @@ export function EditContentForm({
   const [success, setSuccess] = useState<string | null>(null)
   const [items, setItems] = useState<EditableItem[]>([])
   const [selectedId, setSelectedId] = useState("")
-  const [formValues, setFormValues] = useState<Record<string, string | boolean>>(
-    {}
-  )
+  const [formValues, setFormValues] = useState<
+    Record<string, string | boolean>
+  >({})
 
   useEffect(() => {
     const loadItems = async () => {
@@ -58,7 +58,9 @@ export function EditContentForm({
         setSelectedId(loadedItems[0]?.id ?? "")
       } catch (loadError) {
         const message =
-          loadError instanceof Error ? loadError.message : "Could not load items"
+          loadError instanceof Error
+            ? loadError.message
+            : "Could not load items"
         setError(message)
       } finally {
         setIsLoading(false)
@@ -148,7 +150,9 @@ export function EditContentForm({
       const updatedItem = payload.item
       if (updatedItem) {
         setItems((current) =>
-          current.map((item) => (item.id === updatedItem.id ? updatedItem : item))
+          current.map((item) =>
+            item.id === updatedItem.id ? updatedItem : item
+          )
         )
       }
       setSuccess(payload.message ?? "Updated")
@@ -164,7 +168,7 @@ export function EditContentForm({
   }
 
   return (
-    <section className="bg-amber-50 p-4">
+    <section className="p-4">
       <h2 className="text-lg font-semibold">{title}</h2>
       <p className="mb-4 text-sm text-muted-foreground">{description}</p>
 
@@ -177,7 +181,9 @@ export function EditContentForm({
           onChange={(event) => setSelectedId(event.target.value)}
           className="h-7 w-full overflow-y-auto rounded-md border border-input bg-input/20 px-2 outline-none"
         >
-          {items.length === 0 && <option value="">Inga objekt tillgängliga</option>}
+          {items.length === 0 && (
+            <option value="">Inga objekt tillgängliga</option>
+          )}
           {items.map((item) => (
             <option key={item.id} value={item.id}>
               {item.label}
@@ -204,6 +210,7 @@ export function EditContentForm({
                         [field.name]: event.target.value,
                       }))
                     }
+                    className="h-24 resize-y"
                   />
                 </div>
               )
@@ -287,7 +294,9 @@ export function EditContentForm({
       ) : null}
 
       {error ? <p className="mt-4 text-sm text-destructive">{error}</p> : null}
-      {success ? <p className="mt-2 text-sm text-green-700">{success}</p> : null}
+      {success ? (
+        <p className="mt-2 text-sm text-green-700">{success}</p>
+      ) : null}
     </section>
   )
 }

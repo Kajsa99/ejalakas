@@ -27,121 +27,126 @@ export function AdminMenu() {
   const [editOption, setEditOption] = useState<EditOption>("art")
 
   return (
-    <div className="flex items-start gap-6">
-      <Menubar className="flex h-full w-fit flex-col items-start gap-2 border-none p-2">
-        <MenubarMenu>
-          <MenubarTrigger>
-            <PlusIcon className="mr-2 size-4" />
-            Add
-          </MenubarTrigger>
-          <MenubarContent side="right" align="start">
-            <MenubarItem
-              onClick={() => {
-                setSection("add")
-                setAddOption("art")
-              }}
-            >
-              Tavla
-            </MenubarItem>
-            <MenubarItem
-              onClick={() => {
-                setSection("add")
-                setAddOption("collection")
-              }}
-            >
-              Kollektion
-            </MenubarItem>
-            <MenubarItem
-              onClick={() => {
-                setSection("add")
-                setAddOption("exhibition")
-              }}
-            >
-              Utställning
-            </MenubarItem>
-            <MenubarItem
-              onClick={() => {
-                setSection("add")
-                setAddOption("course")
-              }}
-            >
-              Kurs
-            </MenubarItem>
-          </MenubarContent>
-        </MenubarMenu>
+    <div className="flex min-h-screen w-full bg-white">
+      <aside className="w-56 shrink-0 bg-amber-100 p-10 pt-20">
+        <Menubar className="flex h-full w-full flex-col items-start gap-2 rounded-lg border-none bg-transparent p-0">
+          <MenubarMenu>
+            <MenubarTrigger>
+              <PlusIcon className="mr-2 size-4" />
+              Add
+            </MenubarTrigger>
+            <MenubarContent side="right" align="start">
+              <MenubarItem
+                onClick={() => {
+                  setSection("add")
+                  setAddOption("art")
+                }}
+              >
+                Tavla
+              </MenubarItem>
+              <MenubarItem
+                onClick={() => {
+                  setSection("add")
+                  setAddOption("collection")
+                }}
+              >
+                Kollektion
+              </MenubarItem>
+              <MenubarItem
+                onClick={() => {
+                  setSection("add")
+                  setAddOption("exhibition")
+                }}
+              >
+                Utställning
+              </MenubarItem>
+              <MenubarItem
+                onClick={() => {
+                  setSection("add")
+                  setAddOption("course")
+                }}
+              >
+                Kurs
+              </MenubarItem>
+            </MenubarContent>
+          </MenubarMenu>
 
-        <MenubarMenu>
-          <MenubarTrigger>
-            <PencilIcon className="mr-2 size-4" />
-            Edit
-          </MenubarTrigger>
-          <MenubarContent side="right" align="start">
-            <MenubarItem
-              onClick={() => {
-                setSection("edit")
-                setEditOption("art")
-              }}
-            >
-              Tavla
-            </MenubarItem>
-            <MenubarItem
-              onClick={() => {
-                setSection("edit")
-                setEditOption("collection")
-              }}
-            >
-              Kollektion
-            </MenubarItem>
-            <MenubarItem
-              onClick={() => {
-                setSection("edit")
-                setEditOption("exhibition")
-              }}
-            >
-              Utställning
-            </MenubarItem>
-            <MenubarItem
-              onClick={() => {
-                setSection("edit")
-                setEditOption("course")
-              }}
-            >
-              Kurs
-            </MenubarItem>
-          </MenubarContent>
-        </MenubarMenu>
+          <MenubarMenu>
+            <MenubarTrigger>
+              <PencilIcon className="mr-2 size-4" />
+              Edit
+            </MenubarTrigger>
+            <MenubarContent side="right" align="start">
+              <MenubarItem
+                onClick={() => {
+                  setSection("edit")
+                  setEditOption("art")
+                }}
+              >
+                Tavla
+              </MenubarItem>
+              <MenubarItem
+                onClick={() => {
+                  setSection("edit")
+                  setEditOption("collection")
+                }}
+              >
+                Kollektion
+              </MenubarItem>
+              <MenubarItem
+                onClick={() => {
+                  setSection("edit")
+                  setEditOption("exhibition")
+                }}
+              >
+                Utställning
+              </MenubarItem>
+              <MenubarItem
+                onClick={() => {
+                  setSection("edit")
+                  setEditOption("course")
+                }}
+              >
+                Kurs
+              </MenubarItem>
+            </MenubarContent>
+          </MenubarMenu>
 
-        <MenubarMenu>
-          <MenubarTrigger onClick={() => setSection("inbox")}>
-            <InboxIcon className="mr-2 size-4" />
-            Inbox
-          </MenubarTrigger>
-        </MenubarMenu>
-        <MenubarMenu>
-          <LogoutButton />
-        </MenubarMenu>
-      </Menubar>
+          <MenubarMenu>
+            <MenubarTrigger onClick={() => setSection("inbox")}>
+              <InboxIcon className="mr-2 size-4" />
+              Inbox
+            </MenubarTrigger>
+          </MenubarMenu>
+          <MenubarMenu>
+            <LogoutButton />
+          </MenubarMenu>
+        </Menubar>
+      </aside>
 
-      <div className="min-w-0 flex-1">
-        {section === "add" && (
-          <>
-            {addOption === "art" && <ArtForm />}
-            {addOption === "collection" && <CollectionForm />}
-            {addOption === "exhibition" && <ExhibitionForm />}
-            {addOption === "course" && <CourseForm />}
-          </>
-        )}
+      <div className="w-full bg-white p-8">
+        <div className="max-w-3xl space-y-4">
+          <h1 className="text-lg font-semibold">Admin</h1>
+          {section === "add" && (
+            <>
+              {addOption === "art" && <ArtForm />}
+              {addOption === "collection" && <CollectionForm />}
+              {addOption === "exhibition" && <ExhibitionForm />}
+              {addOption === "course" && <CourseForm />}
+            </>
+          )}
 
-        {section === "edit" && (
-          <>
-            {editOption === "art" && <EditArtForm />}
-            {editOption === "collection" && <EditCollectionForm />}
-            {editOption === "exhibition" && <EditExhibitionForm />}
-            {editOption === "course" && <EditCourseForm />}
-          </>
-        )}
+          {section === "edit" && (
+            <>
+              {editOption === "art" && <EditArtForm />}
+              {editOption === "collection" && <EditCollectionForm />}
+              {editOption === "exhibition" && <EditExhibitionForm />}
+              {editOption === "course" && <EditCourseForm />}
+            </>
+          )}
 
-        {section === "inbox" && <InboxMessages />}
+          {section === "inbox" && <InboxMessages />}
+        </div>
       </div>
     </div>
   )

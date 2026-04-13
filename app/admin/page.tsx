@@ -24,8 +24,7 @@ export default async function AdminPage() {
   }
 
   return (
-    <div className="my-8 w-1/2 space-y-6 p-8">
-      <h1 className="text-lg font-semibold">Admin</h1>
+    <div className="w-full bg-white">
       <AdminMenu />
     </div>
   )

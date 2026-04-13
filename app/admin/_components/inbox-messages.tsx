@@ -49,12 +49,10 @@ export function InboxMessages() {
   }, [])
 
   return (
-    <section className="space-y-4 bg-amber-50 p-4">
+    <section className="space-y-4 p-4">
       <div>
         <h2 className="text-lg font-semibold">Inbox</h2>
-        <p className="text-sm text-muted-foreground">
-          Meddelanden från kontaktformuläret.
-        </p>
+        <p className="text-sm text-muted-foreground">Meddelanden</p>
       </div>
 
       {isLoading ? (
@@ -71,15 +69,13 @@ export function InboxMessages() {
           {messages.map((entry) => (
             <article
               key={entry.id}
-              className="space-y-1 rounded-md border bg-background p-3"
+              className="flex flex-col gap-2 rounded-md border bg-white p-3"
             >
-              <p className="text-sm font-medium">{entry.name}</p>
-              <p className="text-xs text-muted-foreground">{entry.email}</p>
-              {entry.phone ? (
-                <p className="text-xs text-muted-foreground">
-                  Telefon: {entry.phone}
-                </p>
-              ) : null}
+              <div className="flex flex-row items-center gap-2">
+                <p className="text-sm font-medium">{entry.name}</p>
+                <p className="text-sm text-muted-foreground">{entry.email}</p>
+                <p className="text-sm text-muted-foreground">{entry.phone}</p>
+              </div>
               <p className="text-sm whitespace-pre-wrap">{entry.message}</p>
               <p className="text-xs text-muted-foreground">
                 {new Date(entry.created_at).toLocaleString("sv-SE")}
