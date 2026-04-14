@@ -27,9 +27,8 @@ async function CollectionSection() {
             className="mx-auto h-auto w-[250px]"
             unoptimized
           />
-          {data?.[0]?.name ?? "Laddar..."}
           <CardAction>
-            <Link href="/collections" className="text-sm text-primary">
+            <Link href="/collections" className="text-lg text-primary">
               Kollektioner
             </Link>
           </CardAction>

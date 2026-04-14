@@ -10,16 +10,22 @@ export async function POST(request: Request) {
   const email = String(formData.get("email") ?? "").trim()
   const phone = String(formData.get("phone") ?? "").trim()
   const message = String(formData.get("message") ?? "").trim()
+  const rawArtId = String(formData.get("art_id") ?? "").trim()
+  const artId =
+    rawArtId !== "" && Number.isFinite(Number(rawArtId))
+      ? Number(rawArtId)
+      : null
 
-  if (!name || !email || !message) {
+  if (!name || !email ) {
     return NextResponse.json({ error: "Fyll i alla obligatoriska fält" }, { status: 400 })
   }
 
   const { error } = await supabase.from("contact_message").insert({
     name,
     email,
-    phone: phone || null,
+    phone,
     message,
+    art_id: artId,
   })
 
   if (error) {

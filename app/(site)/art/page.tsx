@@ -5,7 +5,7 @@ import Newsletter from "@/components/newletter"
 
 export default function Page() {
   return (
-    <div className="mt-20 flex flex-col p-6">
+    <div className="my-20 flex flex-col p-6">
       <div className="flex flex-col items-center justify-center gap-2">
         <h1 className="text-2xl font-medium">Konstverk</h1>
         <p className="mt-2 text-sm">Urval av konstverk från ateljén.</p>

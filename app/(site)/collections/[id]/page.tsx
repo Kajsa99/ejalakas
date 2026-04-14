@@ -38,7 +38,7 @@ export default async function Page({
     .order("name", { ascending: true })
 
   return (
-    <div className="mt-20 flex min-h-svh flex-col items-center p-6">
+    <div className="my-20 flex min-h-svh flex-col items-center p-6">
       <div className="flex max-w-4xl flex-row gap-4">
         <Image
           src={collection.image}

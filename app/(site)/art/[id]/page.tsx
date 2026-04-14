@@ -5,6 +5,8 @@ import { ForSaleBadge } from "@/components/for-sale-badge"
 import { STORAGE_BUCKET, STORAGE_IMAGE_PATHS } from "@/lib/storage-image-paths"
 import { Badge } from "@/components/ui/badge"
 import { Suspense } from "react"
+import Link from "next/link"
+import { Button } from "@/components/ui/button"
 
 export default async function ArtIdPage({
   params,
@@ -33,6 +35,16 @@ async function ArtDetail({ id }: { id: number }) {
     notFound()
   }
 
+  let collection: { id: number; name: string } | null = null
+  if (artwork.collection_id !== null && artwork.collection_id !== undefined) {
+    const { data } = await supabase
+      .from("collection")
+      .select("id, name")
+      .eq("id", Number(artwork.collection_id))
+      .maybeSingle()
+    collection = data
+  }
+
   const dbImagePath = String(artwork.image ?? "").trim()
   const isAbsoluteUrl =
     dbImagePath.startsWith("http://") || dbImagePath.startsWith("https://")
@@ -47,7 +59,7 @@ async function ArtDetail({ id }: { id: number }) {
         .publicUrl
 
   return (
-    <div className="mx-auto mt-20 flex w-full max-w-5xl flex-col gap-6 bg-amber-50 p-6 md:flex-row">
+    <div className="mx-auto my-20 flex w-full max-w-5xl flex-col gap-6 bg-amber-50 p-6 md:flex-row">
       <div className="relative w-full md:w-1/2">
         <div className="relative">
           <Image
@@ -76,7 +88,21 @@ async function ArtDetail({ id }: { id: number }) {
           </Badge>
         </div>
         <p className="text-base">{artwork.description}</p>
+        {collection ? (
+          <Link href={`/collections/${collection.id}`}>
+            <p className="text-md font-medium text-primary hover:underline">
+              Kollektion {collection?.name}
+            </p>
+          </Link>
+        ) : null}
       </div>
+      {artwork.status ? (
+        <p className="text-base">Tavlan är såld</p>
+      ) : (
+        <Link href={`/art/${id}/buy`}>
+          <Button variant={"default"}>Köp tavla</Button>
+        </Link>
+      )}
     </div>
   )
 }

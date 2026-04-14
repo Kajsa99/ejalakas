@@ -4,7 +4,7 @@ import Newsletter from "@/components/newletter"
 
 export default function Page() {
   return (
-    <div className="mt-20 flex min-h-svh flex-col items-center justify-center gap-10 p-6">
+    <div className="my-20 flex min-h-svh flex-col items-center justify-center gap-10 p-6">
       <div className="flex max-w-md min-w-0 flex-col gap-4 text-center">
         <h1 className="text-3xl font-bold">
           För samarbeten, förfrågningar eller beställningar

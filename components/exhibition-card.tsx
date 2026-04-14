@@ -27,9 +27,8 @@ async function ExhibitionSection() {
             className="mx-auto h-auto w-[250px]"
             unoptimized
           />
-          {data?.[0]?.name ?? "Laddar..."}
           <CardAction>
-            <Link href="/exhibitions" className="text-sm text-primary">
+            <Link href="/exhibitions" className="text-lg text-primary">
               Utställningar
             </Link>
           </CardAction>

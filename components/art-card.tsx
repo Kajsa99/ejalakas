@@ -17,20 +17,19 @@ async function ArtworkSection() {
   return (
     <Card className="bg-amber-50 shadow-lg">
       <CardContent className="text-center">
-        <Image
-          src={imageSrc}
-          alt={data?.[0]?.name ?? "Laddar..."}
-          width={250}
-          height={800}
-          className="mx-auto h-auto w-[250px]"
-          unoptimized
-        />
-        {data?.[0]?.name ?? "Laddar..."}
-        <CardAction>
-          <Link href="/art" className="text-sm text-primary">
+        <Link href="/art">
+          <Image
+            src={imageSrc}
+            alt={data?.[0]?.name ?? "Laddar..."}
+            width={250}
+            height={800}
+            className="mx-auto mb-2 h-auto w-[250px]"
+            unoptimized
+          />
+          <CardAction className="text-lg text-primary">
             Konstverk till Salu
-          </Link>
-        </CardAction>
+          </CardAction>
+        </Link>
       </CardContent>
     </Card>
   )

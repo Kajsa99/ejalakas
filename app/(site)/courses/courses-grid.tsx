@@ -20,7 +20,6 @@ import {
 
 export default function CoursesGrid() {
   const [courses, setCourses] = useState<Course[]>([])
-  const supabase = createClient()
   interface Course {
     id: number
     name: string
@@ -50,6 +49,7 @@ export default function CoursesGrid() {
 
   useEffect(() => {
     const fetchCourses = async () => {
+      const supabase = createClient()
       const { data } = await supabase.from("course").select("*")
       setCourses(data ?? [])
       setIsLoading(false)
@@ -86,7 +86,7 @@ export default function CoursesGrid() {
                     className="max-h-80 w-full object-cover"
                   />
                 </div>
-                <div className="text-md">{course.description}</div>
+                <div className="text-md m-4">{course.description}</div>
                 <div className="text-md flex items-center gap-2">
                   <CalendarIcon className="size-4" />
                   {formatCourseDate(course.date)}

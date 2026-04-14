@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import { Geist, Figtree, IM_Fell_English } from "next/font/google"
+import { IM_Fell_English, Merriweather } from "next/font/google"
 import { ThemeProvider } from "next-themes"
 import "./globals.css"
 import { cn } from "@/lib/utils"
@@ -8,7 +8,13 @@ import Footer from "@/components/footer"
 import Header from "@/components/header"
 import { Suspense } from "react"
 
-const figtree = Figtree({ subsets: ["latin"], variable: "--font-sans" })
+const merriweather = Merriweather({
+  subsets: ["latin"],
+  variable: "--font-merriweather",
+  weight: ["300", "400", "700", "900"],
+  style: ["normal", "italic"],
+  display: "swap",
+})
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -19,12 +25,6 @@ export const metadata: Metadata = {
   title: "E. Jalakas",
   description: "Website for E. Jalakas artwork and events",
 }
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  display: "swap",
-  subsets: ["latin"],
-})
 
 const imFellEnglish = IM_Fell_English({
   variable: "--font-im-fell",
@@ -43,9 +43,9 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={cn("font-sans", figtree.variable, imFellEnglish.variable)}
+      className={cn("font-sans", merriweather.variable, imFellEnglish.variable)}
     >
-      <body className={`${geistSans.className} antialiased`}>
+      <body className={`${merriweather.className} antialiased`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

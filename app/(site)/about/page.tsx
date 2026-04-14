@@ -18,7 +18,7 @@ const aboutPaintImage2 = `${supabaseUrl}/storage/v1/object/public/${STORAGE_BUCK
 
 export default function Page() {
   return (
-    <div className="mt-20 flex flex-col items-center p-6">
+    <div className="my-20 flex flex-col items-center p-6">
       <div className="mx-auto flex w-full max-w-6xl min-w-0 flex-col items-center gap-4 text-sm">
         <div className="flex flex-col items-center gap-8 bg-amber-50">
           <h1
@@ -51,12 +51,13 @@ export default function Page() {
                 Jag, E.Jalakas
               </h2>
               <p className="p-4 text-sm leading-loose text-black">
-                Elisabet Jalakas Palmén, uppvuxen och bosatt i Lindome, Västra
-                Götaland. Skapandet alltid varit en stor del av mitt liv.
-                Familjen Jalakas har alltid målat, fotograferat, sytt, virkat,
-                stickat och uppmuntrat till det kreativa skapandet så långt jag
-                kan minnas. Jag själv är därför väldigt bred i min kompetens och
-                har färdigheter inom många olika områden inom det kreativa
+                Mitt namn är Elisabet Jalakas Palmén och jag är uppvuxen och
+                bosatt i Lindome, Västra Götaland. Skapandet alltid varit en
+                stor del av mitt liv. När jag växte upp så var det ett delat
+                familjeintresse såsom måla, fotografera, sy, virka, sticka och
+                uppmuntrat till det kreativa skapandet så långt jag kan minnas.
+                Jag själv är därför väldigt bred i min kompetens och har
+                färdigheter inom många olika områden inom det kreativa
                 skapandet.
               </p>
             </div>
