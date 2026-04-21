@@ -86,7 +86,9 @@ export default function CoursesGrid() {
                     className="max-h-80 w-full object-cover"
                   />
                 </div>
-                <div className="text-md m-4">{course.description}</div>
+                <div className="merriweather-long-text text-md m-4 leading-loose">
+                  {course.description}
+                </div>
                 <div className="text-md flex items-center gap-2">
                   <CalendarIcon className="size-4" />
                   {formatCourseDate(course.date)}

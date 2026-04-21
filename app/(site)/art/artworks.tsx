@@ -49,7 +49,10 @@ function AllArtworks({ artworks }: AllArtworksProps) {
   return (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
       {artworks.map((art) => (
-        <Card key={art.id} className="mt-6 w-full max-w-md bg-amber-50">
+        <Card
+          key={art.id}
+          className="outfit-uniquifier mt-6 w-full max-w-md bg-amber-50"
+        >
           <CardContent className="flex flex-col p-4">
             <CardHeader className="flex flex-col">
               <div className="relative">
@@ -67,7 +70,9 @@ function AllArtworks({ artworks }: AllArtworksProps) {
                 </div>
               </div>
               <div className="flex w-full flex-row items-center justify-between">
-                <CardTitle className="text-lg">{art.name}</CardTitle>
+                <CardTitle className="outfit-uniquifier text-lg">
+                  {art.name}
+                </CardTitle>
                 <CardDescription className="text-md">
                   {art.year}
                 </CardDescription>

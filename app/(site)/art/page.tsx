@@ -7,8 +7,10 @@ export default function Page() {
   return (
     <div className="my-20 flex flex-col p-6">
       <div className="flex flex-col items-center justify-center gap-2">
-        <h1 className="text-2xl font-medium">Konstverk</h1>
-        <p className="mt-2 text-sm">Urval av konstverk från ateljén.</p>
+        <h1 className="outfit-uniquifier text-2xl font-medium">Konstverk</h1>
+        <p className="merriweather-long-text mt-2 text-sm">
+          Urval av konstverk från ateljén.
+        </p>
         <Link
           href="/collections"
           className="text-sm text-primary hover:underline"

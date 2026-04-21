@@ -19,7 +19,7 @@ const aboutPaintImage2 = `${supabaseUrl}/storage/v1/object/public/${STORAGE_BUCK
 export default function Page() {
   return (
     <div className="my-20 flex flex-col items-center p-6">
-      <div className="mx-auto flex w-full max-w-6xl min-w-0 flex-col items-center gap-4 text-sm">
+      <div className="merriweather-long-text mx-auto flex w-full max-w-6xl min-w-0 flex-col items-center gap-4 text-sm">
         <div className="flex flex-col items-center gap-8 bg-amber-50">
           <h1
             className={cn(

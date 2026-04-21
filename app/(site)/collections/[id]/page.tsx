@@ -51,7 +51,7 @@ export default async function Page({
         <div className="flex w-1/2 flex-col gap-2">
           <h1 className="text-2xl font-medium">Kollektion {collection.name}</h1>
           <p className="text-sm text-muted-foreground">{collection.year}</p>
-          <p className="text-md">{collection.description}</p>
+          <p className="merriweather-long-text text-md">{collection.description}</p>
         </div>
       </div>
       <div className="mx-auto mt-10 w-full max-w-7xl">

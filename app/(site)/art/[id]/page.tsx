@@ -71,7 +71,7 @@ async function ArtDetail({ id }: { id: number }) {
             className="h-auto w-full object-cover"
             unoptimized
           />
-          <div className="absolute right-2 bottom-2 z-10">
+          <div className="outfit-uniquifier absolute right-2 bottom-2 z-10">
             <ForSaleBadge sold={artwork.status} />
           </div>
         </div>
@@ -79,18 +79,22 @@ async function ArtDetail({ id }: { id: number }) {
 
       <div className="flex w-full flex-col gap-3 md:w-1/2">
         <div className="flex flex-row items-baseline gap-2">
-          <h1 className="text-3xl font-semibold">{artwork.name}</h1>
-          <p className="text-lg text-muted-foreground">{artwork.year}</p>
+          <h1 className="outfit-uniquifier text-3xl font-semibold">
+            {artwork.name}
+          </h1>
+          <p className="outfit-uniquifier text-lg text-muted-foreground">
+            {artwork.year}
+          </p>
         </div>
-        <div className="flex flex-row items-baseline gap-2">
+        <div className="outfit-uniquifier flex flex-row items-baseline gap-2">
           <Badge variant={"outline"} className="text-sm">
             {artwork.price}kr
           </Badge>
         </div>
-        <p className="text-base">{artwork.description}</p>
+        <p className="merriweather-long-text text-base">{artwork.description}</p>
         {collection ? (
           <Link href={`/collections/${collection.id}`}>
-            <p className="text-md font-medium text-primary hover:underline">
+            <p className="outfit-uniquifier text-md font-medium text-primary hover:underline">
               Kollektion {collection?.name}
             </p>
           </Link>

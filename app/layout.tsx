@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import { IM_Fell_English, Merriweather } from "next/font/google"
+import { IM_Fell_English, Merriweather, Outfit } from "next/font/google"
 import { ThemeProvider } from "next-themes"
 import "./globals.css"
 import { cn } from "@/lib/utils"
@@ -13,6 +13,14 @@ const merriweather = Merriweather({
   variable: "--font-merriweather",
   weight: ["300", "400", "700", "900"],
   style: ["normal", "italic"],
+  display: "swap",
+})
+
+const outfit = Outfit({
+  subsets: ["latin"],
+  variable: "--font-outfit",
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  style: ["normal"],
   display: "swap",
 })
 
@@ -43,9 +51,14 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={cn("font-sans", merriweather.variable, imFellEnglish.variable)}
+      className={cn(
+        "font-sans",
+        merriweather.variable,
+        imFellEnglish.variable,
+        outfit.variable
+      )}
     >
-      <body className={`${merriweather.className} antialiased`}>
+      <body className="antialiased">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

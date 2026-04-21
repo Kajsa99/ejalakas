@@ -55,7 +55,9 @@ export default function CollectionGrid() {
             <div className="flex w-1/2 flex-col items-start justify-start gap-2">
               <h2 className="text-3xl font-medium">{collection.name}</h2>
               <p className="text-lg text-muted-foreground">{collection.year}</p>
-              <p className="text-md">{collection.description}</p>
+              <p className="merriweather-long-text text-md">
+                {collection.description}
+              </p>
               <Link
                 href={`/collections/${collection.id}`}
                 className="mt-2 inline-block text-sm underline-offset-4 hover:text-primary hover:underline"

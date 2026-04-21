@@ -119,7 +119,9 @@ export default function ExhibitionsGrid() {
                     day: "numeric",
                   })}
                 </p>
-                <p className="text-md">{exhibition.description}</p>
+                <p className="merriweather-long-text text-md">
+                  {exhibition.description}
+                </p>
                 <Link
                   href={`/exhibitions/${exhibition.id}`}
                   className="mt-2 inline-block text-sm underline-offset-4 hover:text-primary hover:underline"
