@@ -4,7 +4,15 @@ import { createClient } from "@/lib/supabase/client"
 import Image from "next/image"
 import { useEffect, useMemo, useState } from "react"
 import Link from "next/link"
+import { Button } from "@/components/ui/button"
 import { Label } from "@/components/ui/label"
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardContent,
+  CardFooter,
+} from "@/components/ui/card"
 import {
   Select,
   SelectContent,
@@ -12,6 +20,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+import { CalendarIcon } from "lucide-react"
 
 export default function ExhibitionsGrid() {
   interface Exhibition {
@@ -26,6 +35,21 @@ export default function ExhibitionsGrid() {
   const [exhibitions, setExhibitions] = useState<Exhibition[]>([])
   const [selectedYear, setSelectedYear] = useState<string>("all")
   const [isLoading, setIsLoading] = useState(true)
+
+  const formatExhibitionDate = (dateString: string) => {
+    const date = new Date(dateString)
+
+    if (Number.isNaN(date.getTime())) {
+      return dateString
+    }
+
+    const year = date.getFullYear()
+    const month = date.toLocaleString("sv-SE", { month: "long" })
+    const day = date.getDate()
+
+    return `${day} ${month} - ${year}`
+  }
+
   useEffect(() => {
     const fetchExhibitions = async () => {
       const supabase = await createClient()
@@ -41,7 +65,17 @@ export default function ExhibitionsGrid() {
 
   //   dropdown to select by year
   const availableYears = useMemo(() => {
+    const startOfToday = new Date()
+    startOfToday.setHours(0, 0, 0, 0)
+
     const years = exhibitions
+      .filter((exhibition) => {
+        const exhibitionDate = new Date(exhibition.date)
+        return (
+          !Number.isNaN(exhibitionDate.getTime()) &&
+          exhibitionDate < startOfToday
+        )
+      })
       .map((exhibition) => new Date(exhibition.date).getFullYear())
       .filter((year) => Number.isFinite(year))
 
@@ -49,12 +83,22 @@ export default function ExhibitionsGrid() {
   }, [exhibitions])
 
   const filteredExhibitions = useMemo(() => {
+    const startOfToday = new Date()
+    startOfToday.setHours(0, 0, 0, 0)
+
+    const pastAndCurrentExhibitions = exhibitions.filter((exhibition) => {
+      const exhibitionDate = new Date(exhibition.date)
+      return (
+        !Number.isNaN(exhibitionDate.getTime()) && exhibitionDate < startOfToday
+      )
+    })
+
     if (selectedYear === "all") {
-      return exhibitions
+      return pastAndCurrentExhibitions
     }
 
     const targetYear = Number(selectedYear)
-    return exhibitions.filter(
+    return pastAndCurrentExhibitions.filter(
       (exhibition) => new Date(exhibition.date).getFullYear() === targetYear
     )
   }, [exhibitions, selectedYear])
@@ -67,14 +111,23 @@ export default function ExhibitionsGrid() {
     )
   }
 
+  if (exhibitions.length === 0) {
+    return (
+      <div className="text-sm text-muted-foreground">
+        Inga utställningar hittades
+      </div>
+    )
+  }
+
   return (
-    <div className="mt-6 flex flex-col gap-8">
-      <div className="mx-auto flex w-full max-w-6xl items-center justify-end">
-        <Label className="flex items-center gap-2 text-sm text-muted-foreground">
-          År:
+    <div className="my-10 flex flex-col gap-8">
+      <div className="mx-auto flex w-full max-w-6xl items-center justify-between">
+        <h2 className="text-xl font-medium">Tidigare utställningar</h2>
+        <Label className="flex items-center gap-2 text-sm">
+          Filtrera efter år:
           <Select
             value={selectedYear}
-            onValueChange={(value) => setSelectedYear(value ?? "all")}
+            onValueChange={(value) => setSelectedYear(value ?? "alla")}
           >
             <SelectTrigger className="rounded-md border border-border bg-background px-3 py-1.5 text-sm text-foreground">
               <SelectValue placeholder="Välj år" />
@@ -96,42 +149,45 @@ export default function ExhibitionsGrid() {
           Inga utställningar hittades för valt år.
         </div>
       ) : (
-        filteredExhibitions.map((exhibition: Exhibition) => (
-          <div key={exhibition.id}>
-            <div className="mx-auto flex w-full max-w-6xl flex-row items-start gap-4">
-              <div className="relative w-1/2">
-                <Link href={`/exhibitions/${exhibition.id}`}>
-                  <Image
-                    src={exhibition.image}
-                    alt={exhibition.name}
-                    width={800}
-                    height={500}
-                    className="h-[360px] w-full object-cover"
-                  />
-                </Link>
-              </div>
-              <div className="flex w-1/2 flex-col items-start justify-start gap-2">
-                <h2 className="text-3xl font-medium">{exhibition.name}</h2>
-                <p className="text-lg text-muted-foreground">
-                  {new Date(exhibition.date).toLocaleDateString("sv-SE", {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                  })}
-                </p>
-                <p className="merriweather-long-text text-md">
-                  {exhibition.description}
-                </p>
-                <Link
-                  href={`/exhibitions/${exhibition.id}`}
-                  className="mt-2 inline-block text-sm underline-offset-4 hover:text-primary hover:underline"
-                >
-                  Se detaljer
-                </Link>
-              </div>
+        <div className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {filteredExhibitions.map((exhibition: Exhibition) => (
+            <div key={exhibition.id}>
+              <Card className="flex h-full max-w-md flex-col">
+                <CardHeader className="p-4">
+                  <CardTitle className="text-center text-xl font-medium">
+                    {exhibition.name}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="flex flex-1 flex-col gap-2">
+                  <div className="flex flex-col gap-2">
+                    <Image
+                      src={exhibition.image}
+                      alt={exhibition.name}
+                      width={300}
+                      height={200}
+                      className="h-64 w-full object-cover"
+                    />
+                  </div>
+                  <p className="text-md flex items-center gap-2">
+                    <CalendarIcon className="size-4" />
+                    {formatExhibitionDate(exhibition.date)}
+                  </p>
+                  <p className="merriweather-long-text text-md m-4 line-clamp-4 leading-loose">
+                    {exhibition.description}
+                  </p>
+                </CardContent>
+                <CardFooter>
+                  <Link
+                    href={`/exhibitions/${exhibition.id}`}
+                    className="w-full"
+                  >
+                    <Button className="w-full">Se detaljer</Button>
+                  </Link>
+                </CardFooter>
+              </Card>
             </div>
-          </div>
-        ))
+          ))}
+        </div>
       )}
     </div>
   )

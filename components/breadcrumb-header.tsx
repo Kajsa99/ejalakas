@@ -31,9 +31,18 @@ export default function BreadcrumbHeader() {
 
         const parentSegment = breadcrumbs[index - 1]
         const table =
-          parentSegment === "collections" ? "collection" : parentSegment
+          parentSegment === "collections"
+            ? "collection"
+            : parentSegment === "exhibitions"
+              ? "exhibition"
+              : parentSegment
 
-        if (table !== "collection" && table !== "art") {
+        // [id] pages
+        if (
+          table !== "collection" &&
+          table !== "art" &&
+          table !== "exhibition"
+        ) {
           continue
         }
 

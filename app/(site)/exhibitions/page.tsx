@@ -1,4 +1,5 @@
 import ExhibitionsGrid from "@/app/(site)/exhibitions/exhibitions-grid"
+import UpcomingExhibitions from "@/app/(site)/exhibitions/upcoming-exhibitions"
 import Newsletter from "@/components/newletter"
 
 export default function Page() {
@@ -10,6 +11,7 @@ export default function Page() {
           Kommande och avslutade utställningar.
         </p>
       </div>
+      <UpcomingExhibitions />
       <ExhibitionsGrid />
       <Newsletter />
     </div>
