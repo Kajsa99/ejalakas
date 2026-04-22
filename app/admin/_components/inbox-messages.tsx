@@ -12,6 +12,9 @@ interface InboxMessage {
   phone: string | null
   art_id: string | null
   art_name: string | null
+  course_id: string | null
+  course_name: string | null
+  course_amount: number | null
   message: string
   created_at: string
 }
@@ -105,9 +108,26 @@ export function InboxMessages() {
                 {entry.phone ? (
                   <p className="text-sm text-muted-foreground">{entry.phone}</p>
                 ) : null}
+                {entry.course_amount ? (
+                  <p className="text-sm text-muted-foreground">
+                    Antal deltagare: {entry.course_amount}
+                  </p>
+                ) : null}
                 {entry.art_id ? (
-                  <Badge variant="default" className="text-md">
+                  <Badge
+                    variant="secondary"
+                    className="text-md border-red-200 bg-red-100 text-red-800"
+                  >
                     Art id: {entry.art_id}, &quot;{entry.art_name}&quot;
+                  </Badge>
+                ) : null}
+                {entry.course_id ? (
+                  <Badge
+                    variant="secondary"
+                    className="text-md border-yellow-200 bg-yellow-100 text-yellow-800"
+                  >
+                    Kursanmälan: {entry.course_id}, &quot;{entry.course_name}
+                    &quot;
                   </Badge>
                 ) : null}
               </div>

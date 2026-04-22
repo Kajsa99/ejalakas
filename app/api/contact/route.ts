@@ -11,9 +11,14 @@ export async function POST(request: Request) {
   const phone = String(formData.get("phone") ?? "").trim()
   const message = String(formData.get("message") ?? "").trim()
   const rawArtId = String(formData.get("art_id") ?? "").trim()
+  const rawCourseId = String(formData.get("course_id") ?? "").trim()
   const artId =
     rawArtId !== "" && Number.isFinite(Number(rawArtId))
       ? Number(rawArtId)
+      : null
+  const courseId =
+    rawCourseId !== "" && Number.isFinite(Number(rawCourseId))
+      ? Number(rawCourseId)
       : null
 
   if (!name || !email ) {
@@ -26,6 +31,7 @@ export async function POST(request: Request) {
     phone,
     message,
     art_id: artId,
+    course_id: courseId,
   })
 
   if (error) {

@@ -28,7 +28,7 @@ export function AdminMenu() {
 
   return (
     <div className="flex min-h-screen w-full bg-white">
-      <aside className="w-56 shrink-0 bg-amber-100 p-10 pt-20">
+      <aside className="fixed top-0 left-0 z-20 h-screen w-56 bg-amber-100 p-10 pt-20">
         <Menubar className="flex h-full w-full flex-col items-start gap-2 rounded-lg border-none bg-transparent p-0">
           <MenubarMenu>
             <MenubarTrigger>
@@ -124,7 +124,7 @@ export function AdminMenu() {
         </Menubar>
       </aside>
 
-      <div className="w-full bg-white p-8">
+      <div className="ml-56 w-full bg-white p-8">
         <div className="max-w-3xl space-y-4">
           <h1 className="text-lg font-semibold">Admin</h1>
           {section === "add" && (

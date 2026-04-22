@@ -59,54 +59,68 @@ async function ArtDetail({ id }: { id: number }) {
         .publicUrl
 
   return (
-    <div className="mx-auto my-20 flex w-full max-w-5xl flex-col gap-6 bg-amber-50 p-6 md:flex-row">
-      <div className="relative w-full md:w-1/2">
-        <div className="relative">
-          <Image
-            src={imageSrc}
-            alt={artwork.name}
-            width={900}
-            height={900}
-            priority
-            className="h-auto w-full object-cover"
-            unoptimized
-          />
-          <div className="outfit-uniquifier absolute right-2 bottom-2 z-10">
-            <ForSaleBadge sold={artwork.status} />
+    <div className="my-20 flex flex-col p-6">
+      <div className="mx-auto my-20 flex w-full max-w-5xl flex-col gap-6 bg-amber-50 p-6 md:flex-row">
+        <div className="relative w-full md:w-1/2">
+          <div className="relative">
+            <Image
+              src={imageSrc}
+              alt={artwork.name}
+              width={900}
+              height={900}
+              priority
+              className="h-auto w-full object-cover"
+              unoptimized
+            />
+            <div className="outfit-uniquifier absolute right-2 bottom-2 z-10">
+              <ForSaleBadge sold={artwork.status} />
+            </div>
+          </div>
+        </div>
+
+        <div className="flex w-full flex-col gap-3 md:w-1/2">
+          <div className="flex flex-row items-baseline gap-2">
+            <h1 className="outfit-uniquifier text-3xl font-semibold">
+              {artwork.name}
+            </h1>
+            <p className="outfit-uniquifier text-lg text-muted-foreground">
+              {artwork.year}
+            </p>
+          </div>
+          <div className="outfit-uniquifier flex flex-row items-baseline gap-2">
+            <Badge variant={"outline"} className="text-sm">
+              {artwork.price}kr
+            </Badge>
+          </div>
+          <p className="merriweather-long-text text-base">
+            {artwork.description}
+          </p>
+          {collection ? (
+            <Link href={`/collections/${collection.id}`}>
+              <p className="outfit-uniquifier text-md font-medium text-primary hover:underline">
+                Kollektion {collection?.name}
+              </p>
+            </Link>
+          ) : null}
+          <div className="m-2 mt-auto self-end">
+            {artwork.status ? (
+              <p className="text-base text-muted-foreground">Tavlan är såld</p>
+            ) : (
+              <Link href={`/art/${id}/buy`}>
+                <Button variant={"default"} className="p-4 text-lg">
+                  Skicka förfågan
+                </Button>
+              </Link>
+            )}
           </div>
         </div>
       </div>
-
-      <div className="flex w-full flex-col gap-3 md:w-1/2">
-        <div className="flex flex-row items-baseline gap-2">
-          <h1 className="outfit-uniquifier text-3xl font-semibold">
-            {artwork.name}
-          </h1>
-          <p className="outfit-uniquifier text-lg text-muted-foreground">
-            {artwork.year}
-          </p>
-        </div>
-        <div className="outfit-uniquifier flex flex-row items-baseline gap-2">
-          <Badge variant={"outline"} className="text-sm">
-            {artwork.price}kr
-          </Badge>
-        </div>
-        <p className="merriweather-long-text text-base">{artwork.description}</p>
-        {collection ? (
-          <Link href={`/collections/${collection.id}`}>
-            <p className="outfit-uniquifier text-md font-medium text-primary hover:underline">
-              Kollektion {collection?.name}
-            </p>
-          </Link>
-        ) : null}
-      </div>
-      {artwork.status ? (
-        <p className="text-base">Tavlan är såld</p>
-      ) : (
-        <Link href={`/art/${id}/buy`}>
-          <Button variant={"default"}>Köp tavla</Button>
-        </Link>
-      )}
+      <Link
+        href="/art"
+        className="text-md mx-20 w-fit items-start text-primary hover:underline"
+      >
+        Tillbaka till konstverk
+      </Link>
     </div>
   )
 }

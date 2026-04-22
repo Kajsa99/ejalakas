@@ -17,6 +17,7 @@ import {
   HandCoinsIcon,
   UsersIcon,
 } from "lucide-react"
+import Link from "next/link"
 
 export default function CoursesGrid() {
   const [courses, setCourses] = useState<Course[]>([])
@@ -107,7 +108,9 @@ export default function CoursesGrid() {
                 </div>
               </CardContent>
               <CardFooter>
-                <Button className="w-full">Anmäl dig</Button>
+                <Link href={`/courses/${course.id}/sign-up`} className="w-full">
+                  <Button className="w-full">Anmäl dig</Button>
+                </Link>
               </CardFooter>
             </Card>
           </div>
