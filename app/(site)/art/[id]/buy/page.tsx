@@ -23,15 +23,16 @@ export default async function BuyArtPage({
   }
 
   return (
-    <div className="my-10 flex flex-col p-6">
+    <div className="my-10 p-6">
+      <div className="mx-auto flex w-full max-w-2xl flex-col">
       <Link
         href="/art"
-        className="text-md flex w-fit flex-row items-center gap-2 self-start text-primary hover:underline"
+        className="text-md mb-6 flex w-fit flex-row items-center gap-2 text-primary hover:underline"
       >
         <ArrowLeftIcon className="size-4" />
         Tillbaka
       </Link>
-      <div className="mx-auto my-20 flex w-full max-w-2xl flex-col items-center gap-6 bg-amber-50 p-6 dark:bg-zinc-900">
+      <div className="flex w-full flex-col items-center gap-6 bg-amber-50 p-6 dark:bg-zinc-900">
         <div className="mx-6 text-center">
           <h2 className="my-4 text-2xl font-bold">Köp tavla: {artwork.name}</h2>
           <div className="space-y-4 pb-4 text-center">
@@ -70,6 +71,7 @@ export default async function BuyArtPage({
           </div>
           <BuyArtForm artworkId={Number(id)} />
         </div>
+      </div>
       </div>
     </div>
   )

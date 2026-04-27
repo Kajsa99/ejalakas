@@ -60,16 +60,17 @@ async function ArtDetail({ id }: { id: number }) {
         .publicUrl
 
   return (
-    <div className="mx-auto my-20 flex min-h-screen flex-col items-center p-6">
+    <div className="my-20 p-6">
+      <div className="mx-auto flex w-full max-w-5xl flex-col">
       <Link
         href="/art"
-        className="text-md flex w-fit flex-row items-center gap-2 self-start text-primary hover:underline"
+        className="text-md mb-6 flex w-fit flex-row items-center gap-2 text-primary hover:underline"
       >
         <ArrowLeftIcon className="size-4" />
         Tillbaka
       </Link>
 
-      <article className="w-full max-w-5xl overflow-hidden bg-amber-50 dark:bg-zinc-900">
+      <article className="w-full overflow-hidden bg-amber-50 dark:bg-zinc-900">
         <div className="flex flex-col gap-4 md:flex-row">
           <div className="relative w-full md:w-2/3">
             <Image
@@ -124,6 +125,7 @@ async function ArtDetail({ id }: { id: number }) {
           </div>
         </div>
       </article>
+      </div>
     </div>
   )
 }
