@@ -52,10 +52,10 @@ export default function ContactForm() {
 
   return (
     <div className="w-full max-w-md space-y-4 text-center">
-      <Card className="bg-amber-50 p-4 dark:border-zinc-800 dark:bg-zinc-900">
+      <Card className="rounded-md p-4 dark:bg-zinc-900">
         <CardHeader>
           <CardTitle className="mt-4 text-lg font-medium">
-            Du kan även kontakta mig via formuläret
+            Du kan även ta kontakt via formuläret
           </CardTitle>
         </CardHeader>
         <CardContent>

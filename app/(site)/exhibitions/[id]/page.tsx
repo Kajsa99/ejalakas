@@ -46,7 +46,7 @@ export default async function ExhibitionIdPage({
   }
 
   return (
-    <div className="my-20 flex flex-col items-center p-6">
+    <div className="my-20 min-h-screen p-6">
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-8">
         <Link
           href="/exhibitions"

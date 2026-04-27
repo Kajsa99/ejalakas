@@ -2,22 +2,19 @@
 
 import Image from "next/image"
 import { useCallback, useEffect, useState } from "react"
-import type { ReactNode } from "react"
 import { Button } from "@/components/ui/button"
 import { SearchIcon, XIcon, ZoomInIcon, ZoomOutIcon } from "lucide-react"
 
 type ArtImageViewerProps = {
   src: string
   alt: string
-  sold: boolean
-  badge: ReactNode
 }
 
 const MIN_ZOOM = 1
 const MAX_ZOOM = 4
 const ZOOM_STEP = 0.25
 
-export function ArtImageViewer({ src, alt, sold, badge }: ArtImageViewerProps) {
+export function ArtImageViewer({ src, alt }: ArtImageViewerProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [zoom, setZoom] = useState(1)
 
@@ -82,7 +79,7 @@ export function ArtImageViewer({ src, alt, sold, badge }: ArtImageViewerProps) {
             width={900}
             height={900}
             priority
-            className="block h-[520px] w-full object-cover"
+            className="block h-auto max-h-[80vh] w-full object-contain"
             unoptimized
           />
           <span className="pointer-events-none absolute right-3 bottom-3 inline-flex items-center gap-1 rounded-md bg-black/70 px-2 py-1 text-xs text-white opacity-0 transition-opacity group-hover:opacity-100">
@@ -90,7 +87,6 @@ export function ArtImageViewer({ src, alt, sold, badge }: ArtImageViewerProps) {
             Klicka för att förstora
           </span>
         </button>
-        <div className="outfit-uniquifier absolute right-2 bottom-2 z-10">{badge}</div>
       </div>
 
       {isOpen ? (
@@ -102,10 +98,10 @@ export function ArtImageViewer({ src, alt, sold, badge }: ArtImageViewerProps) {
           onClick={closeModal}
         >
           <div
-            className="relative flex h-full max-h-screen w-full max-w-7xl flex-col gap-2 sm:gap-3"
+            className="relative mt-16 flex h-[calc(100%-4rem)] max-h-[calc(100vh-4rem)] w-full max-w-5xl flex-col gap-2 sm:mt-20 sm:h-[calc(100%-5rem)] sm:max-h-[calc(100vh-5rem)] sm:gap-3"
             onClick={(event) => event.stopPropagation()}
           >
-            <div className="mt-12 flex flex-wrap items-center justify-end gap-2 sm:mt-0">
+            <div className="flex flex-wrap items-center justify-end gap-2">
               <Button
                 type="button"
                 variant="secondary"
@@ -148,19 +144,16 @@ export function ArtImageViewer({ src, alt, sold, badge }: ArtImageViewerProps) {
                 if (event.deltaY > 0) zoomOut()
               }}
             >
-              <div
-                className="flex min-h-0 w-full items-center justify-center"
-                style={{ minHeight: "calc(100vh - 84px)" }}
-              >
+              <div className="flex min-h-0 w-full items-center justify-center">
                 <Image
                   src={src}
                   alt={alt}
                   width={2000}
                   height={2000}
-                  className="h-auto max-h-full w-auto max-w-full origin-center transition-transform duration-150"
+                  className="h-auto max-h-[70vh] w-auto max-w-[85vw] origin-center object-contain transition-transform duration-150"
                   style={{ transform: `scale(${zoom})` }}
                   unoptimized
-                  priority={!sold}
+                  priority
                 />
               </div>
             </div>

@@ -38,7 +38,7 @@ export default async function Page({
     .order("name", { ascending: true })
 
   return (
-    <div className="my-20 p-6">
+    <div className="my-20 min-h-screen p-6">
       <div className="mx-auto flex w-full max-w-7xl flex-col">
         <Link
           href="/collections"

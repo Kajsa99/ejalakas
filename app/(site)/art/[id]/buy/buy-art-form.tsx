@@ -52,7 +52,7 @@ export default function BuyArtForm({ artworkId }: { artworkId: number }) {
 
   return (
     <div className="w-full text-center">
-      <Card className="bg-amber-50 p-4 dark:border-zinc-800 dark:bg-zinc-900">
+      <Card className="rounded-lg p-4 dark:bg-zinc-900">
         <CardHeader>
           <CardTitle>Eller fyll i formuläret nedan</CardTitle>
         </CardHeader>
