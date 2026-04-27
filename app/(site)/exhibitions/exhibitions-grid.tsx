@@ -177,7 +177,7 @@ export default function ExhibitionsGrid() {
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
             {paginatedExhibitions.map((exhibition: Exhibition) => (
               <div key={exhibition.id}>
-                <Card className="flex h-full max-w-md flex-col">
+                <Card className="flex h-full max-w-md flex-col dark:bg-zinc-900 dark:border-zinc-800">
                   <CardHeader className="p-4">
                     <CardTitle className="text-center text-xl font-medium">
                       {exhibition.name}

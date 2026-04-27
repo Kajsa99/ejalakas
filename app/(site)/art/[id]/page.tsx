@@ -69,7 +69,7 @@ async function ArtDetail({ id }: { id: number }) {
         Tillbaka
       </Link>
 
-      <article className="w-full max-w-5xl overflow-hidden bg-amber-50">
+      <article className="w-full max-w-5xl overflow-hidden bg-amber-50 dark:bg-zinc-900">
         <div className="flex flex-col gap-4 md:flex-row">
           <div className="relative w-full md:w-2/3">
             <Image

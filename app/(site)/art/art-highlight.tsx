@@ -14,7 +14,7 @@ async function ArtHighlightSection() {
     .order("id", { ascending: false })
 
   return (
-    <article className="w-full max-w-4xl overflow-hidden bg-amber-50">
+    <article className="w-full max-w-4xl overflow-hidden bg-amber-50 dark:bg-zinc-900">
       <div className="flex flex-col gap-4 md:flex-row">
         <div className="relative w-full md:w-2/3">
           <Link href={`/art/${data?.[0]?.id ?? ""}`}>

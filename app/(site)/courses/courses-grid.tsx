@@ -71,7 +71,7 @@ export default function CoursesGrid() {
       <div className="mx-auto flex w-full max-w-6xl flex-wrap items-center justify-center gap-8">
         {courses.map((course) => (
           <div key={course.id}>
-            <Card className="max-w-md">
+            <Card className="max-w-md dark:bg-zinc-900 dark:border-zinc-800">
               <CardHeader className="p-4">
                 <CardTitle className="text-center text-xl font-medium">
                   {course.name}

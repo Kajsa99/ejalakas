@@ -52,7 +52,7 @@ export default function BuyArtForm({ artworkId }: { artworkId: number }) {
 
   return (
     <div className="w-full text-center">
-      <Card className="bg-amber-50 p-4">
+      <Card className="bg-amber-50 p-4 dark:bg-zinc-900 dark:border-zinc-800">
         <CardHeader>
           <CardTitle>Eller fyll i formuläret nedan</CardTitle>
         </CardHeader>
@@ -82,7 +82,9 @@ export default function BuyArtForm({ artworkId }: { artworkId: number }) {
             </div>
             {error ? <p className="text-sm text-destructive">{error}</p> : null}
             {success ? (
-              <p className="text-sm text-green-700">{success}</p>
+              <p className="text-sm text-green-700 dark:text-green-400">
+                {success}
+              </p>
             ) : null}
             <Button
               type="submit"

@@ -39,12 +39,14 @@ export default async function CourseSignUpPage({
         <ArrowLeftIcon className="size-4" />
         Tillbaka
       </Link>
-      <div className="mx-auto my-20 flex w-full max-w-2xl flex-col items-center gap-6 bg-amber-50 p-6">
+      <div className="mx-auto my-20 flex w-full max-w-2xl flex-col items-center gap-6 bg-amber-50 p-6 dark:bg-zinc-950">
         <div className="mx-6 text-center">
-          <h1 className="my-4 text-2xl font-bold">Kursanmälan: {course.name}</h1>
+          <h1 className="my-4 text-2xl font-bold">
+            Kursanmälan: {course.name}
+          </h1>
           <p className="text-sm text-muted-foreground">
-            Fyll i formuläret så skickas din anmälan direkt till administratörens
-            inbox.
+            Fyll i formuläret så skickas din anmälan direkt till
+            administratörens inbox.
           </p>
           <div className="my-6 space-y-1 text-sm">
             <p>

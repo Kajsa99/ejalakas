@@ -71,7 +71,7 @@ export default function CourseSignUpForm({ courseId }: CourseSignUpFormProps) {
 
   return (
     <div className="w-full text-center">
-      <Card className="bg-amber-50 p-4">
+      <Card className="rounded-lg border bg-amber-50 p-4 dark:border-zinc-800 dark:bg-zinc-900">
         <CardHeader>
           <CardTitle>Anmäl dig till kursen via formuläret</CardTitle>
         </CardHeader>
@@ -113,7 +113,9 @@ export default function CourseSignUpForm({ courseId }: CourseSignUpFormProps) {
             </div>
             {error ? <p className="text-sm text-destructive">{error}</p> : null}
             {success ? (
-              <p className="text-sm text-green-700">{success}</p>
+              <p className="text-sm text-green-700 dark:text-green-400">
+                {success}
+              </p>
             ) : null}
             <Button
               type="submit"

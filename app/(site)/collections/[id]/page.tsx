@@ -71,7 +71,7 @@ export default async function Page({
             {(artworks as Artwork[]).map((artwork) => (
               <article
                 key={artwork.id}
-                className="w-full overflow-hidden bg-amber-50"
+                className="w-full overflow-hidden bg-amber-50 dark:bg-zinc-900"
               >
                 <div className="relative">
                   <Link href={`/art/${artwork.id}`}>

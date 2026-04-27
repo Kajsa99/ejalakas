@@ -12,7 +12,7 @@ export default function Footer() {
   }
 
   return (
-    <footer className="sticky bottom-0 flex w-full justify-center bg-amber-200 p-14">
+    <footer className="sticky bottom-0 flex w-full justify-center bg-amber-200 p-14 dark:bg-zinc-900">
       <div className="mt-20 mb-20 flex w-full max-w-7xl flex-col gap-6 md:flex-row md:justify-between">
         <div className="mx-auto flex w-full max-w-sm flex-col gap-2 md:w-1/3">
           <h2 className="text-xl font-bold">Sociala medier</h2>

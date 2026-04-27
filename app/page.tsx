@@ -20,7 +20,7 @@ export default async function HomePage() {
   const profileImageUrl = `${supabaseUrl}/storage/v1/object/public/${STORAGE_BUCKET}/${STORAGE_IMAGE_PATHS.profile}`
 
   return (
-    <div className="flex min-h-screen w-full flex-col items-center gap-4 bg-amber-100 p-6">
+    <div className="flex min-h-screen w-full flex-col items-center gap-4 bg-amber-100 p-6 dark:bg-zinc-950">
       <div className="mt-20 flex flex-col items-center gap-4 text-sm">
         <Image
           src={profileImageUrl}

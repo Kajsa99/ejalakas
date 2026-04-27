@@ -15,7 +15,7 @@ async function ExhibitionSection() {
     .data.publicUrl
 
   return (
-    <article className="outfit-uniquifier mt-6 w-full max-w-md overflow-hidden bg-amber-50">
+    <article className="outfit-uniquifier mt-6 w-full max-w-md overflow-hidden bg-amber-50 dark:bg-zinc-900">
       <Link href="/exhibitions" className="block text-primary hover:underline">
         <Image
           src={imageSrc}

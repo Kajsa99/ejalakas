@@ -73,7 +73,7 @@ function AllArtworks({
         {artworks.map((art) => (
           <article
             key={art.id}
-            className="outfit-uniquifier mt-6 w-full max-w-md overflow-hidden bg-amber-50"
+            className="outfit-uniquifier mt-6 w-full max-w-md overflow-hidden bg-amber-50 dark:bg-zinc-900"
           >
             <div className="relative">
               <Link href={`/art/${art.id}`}>
