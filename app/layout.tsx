@@ -65,8 +65,8 @@ export default function RootLayout({
       <body className="bg-background antialiased">
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
-          enableSystem
+          defaultTheme="light"
+          enableSystem={false}
           disableTransitionOnChange
         >
           <Suspense fallback={<div>Loading...</div>}>

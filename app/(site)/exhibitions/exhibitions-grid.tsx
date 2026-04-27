@@ -177,7 +177,7 @@ export default function ExhibitionsGrid() {
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
             {paginatedExhibitions.map((exhibition: Exhibition) => (
               <div key={exhibition.id}>
-                <Card className="flex h-full max-w-md flex-col dark:bg-zinc-900 dark:border-zinc-800">
+                <Card className="flex h-full max-w-md flex-col dark:border-zinc-800 dark:bg-zinc-900">
                   <CardHeader className="p-4">
                     <CardTitle className="text-center text-xl font-medium">
                       {exhibition.name}
@@ -232,22 +232,23 @@ export default function ExhibitionsGrid() {
                   />
                 </PaginationItem>
 
-                {Array.from({ length: totalPages }, (_, index) => index + 1).map(
-                  (page) => (
-                    <PaginationItem key={page}>
-                      <PaginationLink
-                        href="#"
-                        isActive={page === currentPage}
-                        onClick={(event) => {
-                          event.preventDefault()
-                          setCurrentPage(page)
-                        }}
-                      >
-                        {page}
-                      </PaginationLink>
-                    </PaginationItem>
-                  )
-                )}
+                {Array.from(
+                  { length: totalPages },
+                  (_, index) => index + 1
+                ).map((page) => (
+                  <PaginationItem key={page}>
+                    <PaginationLink
+                      href="#"
+                      isActive={page === currentPage}
+                      onClick={(event) => {
+                        event.preventDefault()
+                        setCurrentPage(page)
+                      }}
+                    >
+                      {page}
+                    </PaginationLink>
+                  </PaginationItem>
+                ))}
 
                 <PaginationItem>
                   <PaginationNext

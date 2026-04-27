@@ -52,14 +52,17 @@ export default function ContactForm() {
 
   return (
     <div className="w-full max-w-md space-y-4 text-center">
-      <Card className="bg-amber-50 p-4 dark:bg-zinc-900 dark:border-zinc-800">
+      <Card className="bg-amber-50 p-4 dark:border-zinc-800 dark:bg-zinc-900">
         <CardHeader>
           <CardTitle className="mt-4 text-lg font-medium">
             Du kan även kontakta mig via formuläret
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <form onSubmit={onSubmit} className="mx-auto flex max-w-sm flex-col gap-4 p-4">
+          <form
+            onSubmit={onSubmit}
+            className="mx-auto flex max-w-sm flex-col gap-4 p-4"
+          >
             <div className="grid gap-2">
               <Label htmlFor="name">Namn *</Label>
               <Input id="name" name="name" type="text" required />
@@ -83,7 +86,9 @@ export default function ContactForm() {
               />
             </div>
             {error ? <p className="text-sm text-destructive">{error}</p> : null}
-            {success ? <p className="text-sm text-green-700">{success}</p> : null}
+            {success ? (
+              <p className="text-sm text-green-700">{success}</p>
+            ) : null}
             <Button type="submit" disabled={isSubmitting}>
               {isSubmitting ? "Skickar..." : "Skicka"}
             </Button>

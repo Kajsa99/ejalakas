@@ -1,5 +1,4 @@
 import { createClient } from "@/lib/supabase/server"
-import Image from "next/image"
 import { notFound } from "next/navigation"
 import { ForSaleBadge } from "@/components/for-sale-badge"
 import { STORAGE_BUCKET, STORAGE_IMAGE_PATHS } from "@/lib/storage-image-paths"
@@ -8,6 +7,7 @@ import { Suspense } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { ArrowLeftIcon } from "lucide-react"
+import { ArtImageViewer } from "./art-image-viewer"
 
 export default async function ArtIdPage({
   params,
@@ -73,18 +73,12 @@ async function ArtDetail({ id }: { id: number }) {
       <article className="w-full overflow-hidden bg-amber-50 dark:bg-zinc-900">
         <div className="flex flex-col gap-4 md:flex-row">
           <div className="relative w-full md:w-2/3">
-            <Image
+            <ArtImageViewer
               src={imageSrc}
               alt={artwork.name}
-              width={900}
-              height={900}
-              priority
-              className="block h-[520px] w-full object-cover"
-              unoptimized
+              sold={Boolean(artwork.status)}
+              badge={<ForSaleBadge sold={artwork.status} />}
             />
-            <div className="outfit-uniquifier absolute right-2 bottom-2 z-10">
-              <ForSaleBadge sold={artwork.status} />
-            </div>
           </div>
 
           <div className="flex w-full flex-col p-4 md:w-1/3">

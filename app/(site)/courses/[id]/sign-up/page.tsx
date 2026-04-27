@@ -33,34 +33,34 @@ export default async function CourseSignUpPage({
   return (
     <div className="my-10 p-6">
       <div className="mx-auto flex w-full max-w-2xl flex-col">
-      <Link
-        href="/courses"
-        className="text-md mb-6 flex w-fit flex-row items-center gap-2 text-primary hover:underline"
-      >
-        <ArrowLeftIcon className="size-4" />
-        Tillbaka
-      </Link>
-      <div className="flex w-full flex-col items-center gap-6 bg-amber-50 p-6 dark:bg-zinc-950">
-        <div className="mx-6 text-center">
-          <h1 className="my-4 text-2xl font-bold">
-            Kursanmälan: {course.name}
-          </h1>
-          <p className="text-sm text-muted-foreground">
-            Fyll i formuläret så skickas din anmälan direkt till
-            administratörens inbox.
-          </p>
-          <div className="my-6 space-y-1 text-sm">
-            <p>
-              <strong>Datum:</strong>{" "}
-              {new Date(course.date).toLocaleDateString("sv-SE")}
+        <Link
+          href="/courses"
+          className="text-md mb-6 flex w-fit flex-row items-center gap-2 text-primary hover:underline"
+        >
+          <ArrowLeftIcon className="size-4" />
+          Tillbaka
+        </Link>
+        <div className="flex w-full flex-col items-center gap-6 bg-amber-50 p-6 dark:bg-zinc-950">
+          <div className="mx-6 text-center">
+            <h1 className="my-4 text-2xl font-bold">
+              Kursanmälan: {course.name}
+            </h1>
+            <p className="text-sm text-muted-foreground">
+              Fyll i formuläret så skickas din anmälan direkt till
+              administratörens inbox.
             </p>
-            <p>
-              <strong>Plats:</strong> {course.location}
-            </p>
+            <div className="my-6 space-y-1 text-sm">
+              <p>
+                <strong>Datum:</strong>{" "}
+                {new Date(course.date).toLocaleDateString("sv-SE")}
+              </p>
+              <p>
+                <strong>Plats:</strong> {course.location}
+              </p>
+            </div>
+            <CourseSignUpForm courseId={course.id} />
           </div>
-          <CourseSignUpForm courseId={course.id} />
         </div>
-      </div>
       </div>
     </div>
   )
