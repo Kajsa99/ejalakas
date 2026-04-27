@@ -1,7 +1,6 @@
 import { createClient } from "@/lib/supabase/server"
 import Link from "next/link"
 import { Suspense } from "react"
-import { Card, CardAction, CardContent } from "@/components/ui/card"
 import Image from "next/image"
 import { STORAGE_BUCKET, STORAGE_IMAGE_PATHS } from "@/lib/storage-image-paths"
 
@@ -15,23 +14,19 @@ async function ArtworkSection() {
   const imageSrc = supabase.storage.from(STORAGE_BUCKET).getPublicUrl(imagePath)
     .data.publicUrl
   return (
-    <Card className="bg-amber-50 shadow-lg">
-      <CardContent className="text-center">
-        <Link href="/art">
-          <Image
-            src={imageSrc}
-            alt={data?.[0]?.name ?? "Laddar..."}
-            width={250}
-            height={800}
-            className="mx-auto mb-2 h-auto w-[250px]"
-            unoptimized
-          />
-          <CardAction className="text-lg text-primary">
-            Konstverk till Salu
-          </CardAction>
-        </Link>
-      </CardContent>
-    </Card>
+    <article className="outfit-uniquifier mt-6 w-full max-w-md overflow-hidden bg-amber-50">
+      <Link href="/art" className="block text-primary hover:underline">
+        <Image
+          src={imageSrc}
+          alt={data?.[0]?.name ?? "Laddar..."}
+          width={400}
+          height={400}
+          className="block h-[240px] w-full object-cover"
+          unoptimized
+        />
+        <div className="flex flex-col p-4 text-lg">Konstverk</div>
+      </Link>
+    </article>
   )
 }
 

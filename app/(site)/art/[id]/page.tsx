@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge"
 import { Suspense } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
+import { ArrowLeftIcon } from "lucide-react"
 
 export default async function ArtIdPage({
   params,
@@ -59,68 +60,70 @@ async function ArtDetail({ id }: { id: number }) {
         .publicUrl
 
   return (
-    <div className="my-20 flex flex-col p-6">
-      <div className="mx-auto my-20 flex w-full max-w-5xl flex-col gap-6 bg-amber-50 p-6 md:flex-row">
-        <div className="relative w-full md:w-1/2">
-          <div className="relative">
+    <div className="mx-auto my-20 flex min-h-screen flex-col items-center p-6">
+      <Link
+        href="/art"
+        className="text-md flex w-fit flex-row items-center gap-2 self-start text-primary hover:underline"
+      >
+        <ArrowLeftIcon className="size-4" />
+        Tillbaka
+      </Link>
+
+      <article className="w-full max-w-5xl overflow-hidden bg-amber-50">
+        <div className="flex flex-col gap-4 md:flex-row">
+          <div className="relative w-full md:w-2/3">
             <Image
               src={imageSrc}
               alt={artwork.name}
               width={900}
               height={900}
               priority
-              className="h-auto w-full object-cover"
+              className="block h-[520px] w-full object-cover"
               unoptimized
             />
             <div className="outfit-uniquifier absolute right-2 bottom-2 z-10">
               <ForSaleBadge sold={artwork.status} />
             </div>
           </div>
-        </div>
 
-        <div className="flex w-full flex-col gap-3 md:w-1/2">
-          <div className="flex flex-row items-baseline gap-2">
-            <h1 className="outfit-uniquifier text-3xl font-semibold">
-              {artwork.name}
-            </h1>
-            <p className="outfit-uniquifier text-lg text-muted-foreground">
-              {artwork.year}
-            </p>
-          </div>
-          <div className="outfit-uniquifier flex flex-row items-baseline gap-2">
-            <Badge variant={"outline"} className="text-sm">
-              {artwork.price}kr
-            </Badge>
-          </div>
-          <p className="merriweather-long-text text-base">
-            {artwork.description}
-          </p>
-          {collection ? (
-            <Link href={`/collections/${collection.id}`}>
-              <p className="outfit-uniquifier text-md font-medium text-primary hover:underline">
-                Kollektion {collection?.name}
+          <div className="flex w-full flex-col p-4 md:w-1/3">
+            <div className="flex flex-row items-center justify-between gap-2">
+              <h1 className="outfit-uniquifier text-2xl">{artwork.name}</h1>
+              <p className="outfit-uniquifier text-md text-muted-foreground">
+                {artwork.year}
               </p>
-            </Link>
-          ) : null}
-          <div className="m-2 mt-auto self-end">
-            {artwork.status ? (
-              <p className="text-base text-muted-foreground">Tavlan är såld</p>
-            ) : (
-              <Link href={`/art/${id}/buy`}>
-                <Button variant={"default"} className="p-4 text-lg">
-                  Skicka förfågan
-                </Button>
+            </div>
+            <p className="merriweather-long-text mt-4 text-sm leading-loose text-muted-foreground">
+              {artwork.description}
+            </p>
+            <div className="outfit-uniquifier mt-2 flex flex-row items-baseline gap-2">
+              <Badge variant={"outline"} className="text-sm">
+                {artwork.price}kr
+              </Badge>
+            </div>
+            {collection ? (
+              <Link href={`/collections/${collection.id}`}>
+                <p className="outfit-uniquifier text-md mt-2 font-medium text-primary hover:underline">
+                  Kollektion {collection?.name}
+                </p>
               </Link>
-            )}
+            ) : null}
+            <div className="mt-auto flex w-full justify-end pt-2">
+              {artwork.status ? (
+                <p className="text-base text-muted-foreground">
+                  Tavlan är såld
+                </p>
+              ) : (
+                <Link href={`/art/${id}/buy`}>
+                  <Button variant={"default"} className="p-4 text-lg">
+                    Skicka förfågan
+                  </Button>
+                </Link>
+              )}
+            </div>
           </div>
         </div>
-      </div>
-      <Link
-        href="/art"
-        className="text-md mx-20 w-fit items-start text-primary hover:underline"
-      >
-        Tillbaka till konstverk
-      </Link>
+      </article>
     </div>
   )
 }

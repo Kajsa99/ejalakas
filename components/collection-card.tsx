@@ -1,7 +1,6 @@
 import { Suspense } from "react"
 import { createClient } from "@/lib/supabase/server"
 import Link from "next/link"
-import { Card, CardContent, CardAction } from "@/components/ui/card"
 import Image from "next/image"
 import { STORAGE_BUCKET, STORAGE_IMAGE_PATHS } from "@/lib/storage-image-paths"
 
@@ -16,25 +15,19 @@ async function CollectionSection() {
     .data.publicUrl
 
   return (
-    <div>
-      <Card className="bg-amber-50 shadow-lg">
-        <CardContent className="text-center">
-          <Image
-            src={imageSrc}
-            alt={data?.[0]?.name ?? "Laddar..."}
-            width={250}
-            height={800}
-            className="mx-auto h-auto w-[250px]"
-            unoptimized
-          />
-          <CardAction>
-            <Link href="/collections" className="text-lg text-primary">
-              Kollektioner
-            </Link>
-          </CardAction>
-        </CardContent>
-      </Card>
-    </div>
+    <article className="outfit-uniquifier mt-6 w-full max-w-md overflow-hidden bg-amber-50">
+      <Link href="/collections" className="block text-primary hover:underline">
+        <Image
+          src={imageSrc}
+          alt={data?.[0]?.name ?? "Laddar..."}
+          width={400}
+          height={400}
+          className="block h-[240px] w-full object-cover"
+          unoptimized
+        />
+        <div className="flex flex-col p-4 text-lg">Kollektioner</div>
+      </Link>
+    </article>
   )
 }
 

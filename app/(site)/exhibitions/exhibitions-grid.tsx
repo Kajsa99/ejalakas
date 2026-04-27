@@ -7,6 +7,14 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Label } from "@/components/ui/label"
 import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination"
+import {
   Card,
   CardHeader,
   CardTitle,
@@ -34,7 +42,9 @@ export default function ExhibitionsGrid() {
   //   Exhibitions order by date descending
   const [exhibitions, setExhibitions] = useState<Exhibition[]>([])
   const [selectedYear, setSelectedYear] = useState<string>("all")
+  const [currentPage, setCurrentPage] = useState(1)
   const [isLoading, setIsLoading] = useState(true)
+  const itemsPerPage = 6
 
   const formatExhibitionDate = (dateString: string) => {
     const date = new Date(dateString)
@@ -103,6 +113,20 @@ export default function ExhibitionsGrid() {
     )
   }, [exhibitions, selectedYear])
 
+  useEffect(() => {
+    setCurrentPage(1)
+  }, [selectedYear])
+
+  const totalPages = Math.max(
+    1,
+    Math.ceil(filteredExhibitions.length / itemsPerPage)
+  )
+  const startIndex = (currentPage - 1) * itemsPerPage
+  const paginatedExhibitions = filteredExhibitions.slice(
+    startIndex,
+    startIndex + itemsPerPage
+  )
+
   if (isLoading) {
     return (
       <div className="text-sm text-muted-foreground">
@@ -149,44 +173,101 @@ export default function ExhibitionsGrid() {
           Inga utställningar hittades för valt år.
         </div>
       ) : (
-        <div className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {filteredExhibitions.map((exhibition: Exhibition) => (
-            <div key={exhibition.id}>
-              <Card className="flex h-full max-w-md flex-col">
-                <CardHeader className="p-4">
-                  <CardTitle className="text-center text-xl font-medium">
-                    {exhibition.name}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="flex flex-1 flex-col gap-2">
-                  <div className="flex flex-col gap-2">
-                    <Image
-                      src={exhibition.image}
-                      alt={exhibition.name}
-                      width={300}
-                      height={200}
-                      className="h-64 w-full object-cover"
-                    />
-                  </div>
-                  <p className="text-md flex items-center gap-2">
-                    <CalendarIcon className="size-4" />
-                    {formatExhibitionDate(exhibition.date)}
-                  </p>
-                  <p className="merriweather-long-text text-md m-4 line-clamp-4 leading-loose">
-                    {exhibition.description}
-                  </p>
-                </CardContent>
-                <CardFooter>
-                  <Link
-                    href={`/exhibitions/${exhibition.id}`}
-                    className="w-full"
-                  >
-                    <Button className="w-full">Se detaljer</Button>
-                  </Link>
-                </CardFooter>
-              </Card>
-            </div>
-          ))}
+        <div className="mx-auto flex w-full max-w-6xl flex-col gap-8">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {paginatedExhibitions.map((exhibition: Exhibition) => (
+              <div key={exhibition.id}>
+                <Card className="flex h-full max-w-md flex-col">
+                  <CardHeader className="p-4">
+                    <CardTitle className="text-center text-xl font-medium">
+                      {exhibition.name}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="flex flex-1 flex-col gap-2">
+                    <div className="flex flex-col gap-2">
+                      <Image
+                        src={exhibition.image}
+                        alt={exhibition.name}
+                        width={300}
+                        height={200}
+                        className="h-64 w-full object-cover"
+                      />
+                    </div>
+                    <p className="text-md flex items-center gap-2">
+                      <CalendarIcon className="size-4" />
+                      {formatExhibitionDate(exhibition.date)}
+                    </p>
+                    <p className="merriweather-long-text text-md m-4 line-clamp-4 leading-loose">
+                      {exhibition.description}
+                    </p>
+                  </CardContent>
+                  <CardFooter>
+                    <Link
+                      href={`/exhibitions/${exhibition.id}`}
+                      className="w-full"
+                    >
+                      <Button className="w-full">Se detaljer</Button>
+                    </Link>
+                  </CardFooter>
+                </Card>
+              </div>
+            ))}
+          </div>
+
+          {totalPages > 1 && (
+            <Pagination>
+              <PaginationContent>
+                <PaginationItem>
+                  <PaginationPrevious
+                    href="#"
+                    text="Föregående"
+                    onClick={(event) => {
+                      event.preventDefault()
+                      setCurrentPage(Math.max(1, currentPage - 1))
+                    }}
+                    aria-disabled={currentPage === 1}
+                    className={
+                      currentPage === 1 ? "pointer-events-none opacity-50" : ""
+                    }
+                  />
+                </PaginationItem>
+
+                {Array.from({ length: totalPages }, (_, index) => index + 1).map(
+                  (page) => (
+                    <PaginationItem key={page}>
+                      <PaginationLink
+                        href="#"
+                        isActive={page === currentPage}
+                        onClick={(event) => {
+                          event.preventDefault()
+                          setCurrentPage(page)
+                        }}
+                      >
+                        {page}
+                      </PaginationLink>
+                    </PaginationItem>
+                  )
+                )}
+
+                <PaginationItem>
+                  <PaginationNext
+                    href="#"
+                    text="Nästa"
+                    onClick={(event) => {
+                      event.preventDefault()
+                      setCurrentPage(Math.min(totalPages, currentPage + 1))
+                    }}
+                    aria-disabled={currentPage === totalPages}
+                    className={
+                      currentPage === totalPages
+                        ? "pointer-events-none opacity-50"
+                        : ""
+                    }
+                  />
+                </PaginationItem>
+              </PaginationContent>
+            </Pagination>
+          )}
         </div>
       )}
     </div>

@@ -62,7 +62,7 @@
   }
 
   body {
-    @apply bg-amber-100 text-foreground dark:bg-background;
+    @apply bg-white text-foreground;
   }
 
   html {
@@ -76,7 +76,7 @@
   }
 
   body {
-    @apply bg-amber-100 text-foreground dark:bg-background;
+    @apply bg-white text-foreground;
   }
 }
 

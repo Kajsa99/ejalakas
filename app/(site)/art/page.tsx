@@ -21,7 +21,7 @@ export default function Page() {
       <div className="mt-10 flex flex-col items-center justify-center gap-2">
         <ArtHighlight />
       </div>
-      <div className="mx-auto mt-10 w-full max-w-7xl">
+      <div className="mx-auto mt-10 w-full max-w-6xl">
         <Artworks />
       </div>
       <Newsletter />

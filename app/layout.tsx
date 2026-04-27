@@ -7,6 +7,7 @@ import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
 import Header from "@/components/header"
 import { Suspense } from "react"
+import loggaLiten from "./logga_liten.png"
 
 const merriweather = Merriweather({
   subsets: ["latin"],
@@ -30,8 +31,11 @@ const defaultUrl = process.env.VERCEL_URL
 
 export const metadata: Metadata = {
   metadataBase: new URL(defaultUrl),
-  title: "E. Jalakas",
+  title: "E. Jalakas konst och kurser",
   description: "Website for E. Jalakas artwork and events",
+  icons: {
+    icon: loggaLiten.src,
+  },
 }
 
 const imFellEnglish = IM_Fell_English({

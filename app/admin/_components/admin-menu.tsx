@@ -124,9 +124,8 @@ export function AdminMenu() {
         </Menubar>
       </aside>
 
-      <div className="ml-56 w-full bg-white p-8">
+      <div className="sticky top-0 ml-56 w-full bg-white">
         <div className="max-w-3xl space-y-4">
-          <h1 className="text-lg font-semibold">Admin</h1>
           {section === "add" && (
             <>
               {addOption === "art" && <ArtForm />}

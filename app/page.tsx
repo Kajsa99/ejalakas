@@ -20,8 +20,8 @@ export default async function HomePage() {
   const profileImageUrl = `${supabaseUrl}/storage/v1/object/public/${STORAGE_BUCKET}/${STORAGE_IMAGE_PATHS.profile}`
 
   return (
-    <div className="flex flex-col items-center gap-4 p-6">
-      <div className="flex flex-col items-center gap-4 text-sm">
+    <div className="flex min-h-screen w-full flex-col items-center gap-4 bg-amber-100 p-6">
+      <div className="mt-20 flex flex-col items-center gap-4 text-sm">
         <Image
           src={profileImageUrl}
           alt="E. Jalakas"
@@ -41,7 +41,7 @@ export default async function HomePage() {
         </h1>
         <p
           className={cn(
-            "text-md -mr-70 max-w-lg text-center text-primary",
+            "text-md max-w-lg text-center text-primary md:m-4 lg:-mr-70",
             imFellEnglish.className
           )}
         >
@@ -50,7 +50,7 @@ export default async function HomePage() {
           bild till en annan.&quot;
         </p>
       </div>
-      <div className="mb-20 flex flex-row items-center justify-center gap-10 p-10">
+      <div className="mb-20 flex flex-col items-center justify-center gap-10 p-10 md:flex-row">
         <ArtCard />
         <ExhibitionCard />
         <CollectionCard />

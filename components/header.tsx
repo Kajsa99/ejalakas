@@ -4,7 +4,6 @@ import Link from "next/link"
 import { IM_Fell_English } from "next/font/google"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
-import BreadcrumbHeader from "@/components/breadcrumb-header"
 
 const imFellEnglish = IM_Fell_English({
   variable: "--font-im-fell",
@@ -32,7 +31,6 @@ export default function Header() {
       >
         E. Jalakas
       </Link>
-      <BreadcrumbHeader />
     </header>
   )
 }

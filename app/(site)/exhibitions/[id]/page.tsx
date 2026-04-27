@@ -2,7 +2,7 @@ import { createClient } from "@/lib/supabase/server"
 import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
-import { CalendarIcon, MapPinIcon } from "lucide-react"
+import { ArrowLeftIcon, CalendarIcon, MapPinIcon } from "lucide-react"
 
 interface Exhibition {
   id: number
@@ -48,6 +48,13 @@ export default async function ExhibitionIdPage({
   return (
     <div className="my-20 flex flex-col items-center p-6">
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-8">
+        <Link
+          href="/exhibitions"
+          className="text-md flex w-fit flex-row items-center gap-2 self-start text-primary hover:underline"
+        >
+          <ArrowLeftIcon className="size-4" />
+          Tillbaka
+        </Link>
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
           <div className="relative">
             <Image
@@ -75,12 +82,6 @@ export default async function ExhibitionIdPage({
             </p>
           </div>
         </div>
-        <Link
-          href="/exhibitions"
-          className="text-md w-fit text-primary hover:underline"
-        >
-          Tillbaka till utställningar
-        </Link>
       </div>
     </div>
   )

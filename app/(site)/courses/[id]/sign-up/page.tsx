@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { notFound } from "next/navigation"
+import { ArrowLeftIcon } from "lucide-react"
 
 import { createClient } from "@/lib/supabase/server"
 
@@ -31,6 +32,13 @@ export default async function CourseSignUpPage({
 
   return (
     <div className="my-10 flex flex-col p-6">
+      <Link
+        href="/courses"
+        className="text-md flex w-fit flex-row items-center gap-2 self-start text-primary hover:underline"
+      >
+        <ArrowLeftIcon className="size-4" />
+        Tillbaka
+      </Link>
       <div className="mx-auto my-20 flex w-full max-w-2xl flex-col items-center gap-6 bg-amber-50 p-6">
         <div className="mx-6 text-center">
           <h1 className="my-4 text-2xl font-bold">Kursanmälan: {course.name}</h1>
@@ -50,12 +58,6 @@ export default async function CourseSignUpPage({
           <CourseSignUpForm courseId={course.id} />
         </div>
       </div>
-      <Link
-        href="/courses"
-        className="text-md mx-30 w-fit items-start text-primary hover:underline"
-      >
-        Tillbaka till kurser
-      </Link>
     </div>
   )
 }
