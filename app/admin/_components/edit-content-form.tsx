@@ -29,6 +29,7 @@ export function EditContentForm({
 }: EditContentFormProps) {
   const [isLoading, setIsLoading] = useState(true)
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isDeleting, setIsDeleting] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [success, setSuccess] = useState<string | null>(null)
   const [items, setItems] = useState<EditableItem[]>([])
@@ -36,6 +37,21 @@ export function EditContentForm({
   const [formValues, setFormValues] = useState<
     Record<string, string | boolean>
   >({})
+
+  const parseResponsePayload = async (response: Response) => {
+    const contentType = response.headers.get("content-type") ?? ""
+    if (!contentType.includes("application/json")) return {}
+
+    try {
+      const payload = (await response.json()) as {
+        error?: string
+        message?: string
+      }
+      return payload
+    } catch {
+      return {}
+    }
+  }
 
   useEffect(() => {
     const loadItems = async () => {
@@ -167,6 +183,48 @@ export function EditContentForm({
     }
   }
 
+  const onDelete = async () => {
+    if (!selectedItem) return
+
+    const shouldDelete = window.confirm("Är du säker på att du vill radera?")
+    if (!shouldDelete) return
+
+    const formData = new FormData()
+    formData.append("id", selectedItem.id)
+
+    setIsDeleting(true)
+    setError(null)
+    setSuccess(null)
+
+    try {
+      const response = await fetch(endpoint, {
+        method: "DELETE",
+        body: formData,
+      })
+
+      const payload = await parseResponsePayload(response)
+
+      if (!response.ok) {
+        throw new Error(payload.error ?? "Could not delete item")
+      }
+
+      setItems((current) => {
+        const nextItems = current.filter((item) => item.id !== selectedItem.id)
+        setSelectedId(nextItems[0]?.id ?? "")
+        return nextItems
+      })
+      setSuccess(payload.message ?? "Deleted")
+    } catch (deleteError) {
+      const message =
+        deleteError instanceof Error
+          ? deleteError.message
+          : "Could not delete item"
+      setError(message)
+    } finally {
+      setIsDeleting(false)
+    }
+  }
+
   return (
     <section className="p-4">
       <h2 className="text-lg font-semibold">{title}</h2>
@@ -287,9 +345,19 @@ export function EditContentForm({
             )
           })}
 
-          <Button type="submit" disabled={isSubmitting}>
-            {isSubmitting ? "Sparar..." : "Spara ändringar"}
-          </Button>
+          <div className="flex items-center justify-between">
+            <Button type="submit" disabled={isSubmitting || isDeleting}>
+              {isSubmitting ? "Sparar..." : "Spara ändringar"}
+            </Button>
+            <Button
+              type="button"
+              variant="destructive"
+              disabled={isSubmitting || isDeleting}
+              onClick={() => void onDelete()}
+            >
+              {isDeleting ? "Raderar..." : "Radera"}
+            </Button>
+          </div>
         </form>
       ) : null}
 

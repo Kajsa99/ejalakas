@@ -153,3 +153,42 @@ export async function PUT(request: Request) {
     },
   })
 }
+
+// Delete an existing exhibition item
+export async function DELETE(request: Request) {
+  const supabase = await createClient()
+  const auth = await requireAdmin(supabase)
+  if (!auth.ok) return auth.response
+
+  const formData = await request.formData()
+  const id = String(formData.get("id") ?? "").trim()
+
+  if (!id) {
+    return NextResponse.json({ error: "Missing item id" }, { status: 400 })
+  }
+
+  const { data: existing, error: existingError } = await supabase
+    .from("exhibition")
+    .select("image")
+    .eq("id", id)
+    .single()
+
+  if (existingError) {
+    return NextResponse.json({ error: existingError.message }, { status: 400 })
+  }
+
+  const { error } = await supabase.from("exhibition").delete().eq("id", id)
+
+  if (error) {
+    return NextResponse.json({ error: error.message }, { status: 400 })
+  }
+
+  const imageUrl = String(existing?.image ?? "")
+  const splitToken = "/storage/v1/object/public/images/"
+  const storagePath = imageUrl.includes(splitToken)
+    ? imageUrl.split(splitToken)[1]
+    : null
+  await removeAdminImage(supabase, storagePath)
+
+  return NextResponse.json({ message: "Exhibition deleted" })
+}

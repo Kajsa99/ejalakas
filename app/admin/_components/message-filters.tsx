@@ -37,7 +37,6 @@ export function MessageFiltersBar({ onChange }: MessageFiltersBarProps) {
     <div className="w-full p-3">
       <div className="flex flex-row items-center justify-end gap-4">
         <Label className="flex min-w-40 flex-col items-start gap-2 text-sm">
-          Sortera
           <Select
             value={filters.sortBy}
             onValueChange={(value) =>
