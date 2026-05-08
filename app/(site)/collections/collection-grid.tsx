@@ -58,21 +58,26 @@ export default function CollectionGrid() {
     <div className="mt-6 flex flex-col gap-8">
       {paginatedCollections.map((collection: Collection) => (
         <div key={collection.id}>
-          <div className="mx-auto flex w-full max-w-6xl flex-row items-start gap-4">
-            <div className="relative w-1/2">
-              <Link href={`/collections/${collection.id}`}>
+          <div className="mx-auto flex w-full max-w-6xl min-w-0 flex-col items-stretch gap-4 md:flex-row md:items-start md:gap-6">
+            <div className="relative w-full min-w-0 shrink-0 md:w-1/2">
+              <Link href={`/collections/${collection.id}`} className="block">
                 <Image
                   src={collection.image}
                   alt={collection.name}
                   width={800}
                   height={500}
-                  className="h-[360px] w-full object-cover"
+                  sizes="(max-width: 767px) 100vw, 672px"
+                  className="h-[220px] w-full object-cover sm:h-[280px] md:h-[360px]"
                 />
               </Link>
             </div>
-            <div className="flex w-1/2 flex-col items-start justify-start gap-2">
-              <h2 className="text-3xl font-medium">{collection.name}</h2>
-              <p className="text-lg text-muted-foreground">{collection.year}</p>
+            <div className="flex w-full min-w-0 flex-col items-start justify-start gap-2 md:w-1/2">
+              <h2 className="text-2xl font-medium md:text-3xl">
+                {collection.name}
+              </h2>
+              <p className="text-base text-muted-foreground md:text-lg">
+                {collection.year}
+              </p>
               <p className="merriweather-long-text text-md">
                 {collection.description}
               </p>

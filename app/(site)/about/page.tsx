@@ -18,30 +18,30 @@ const aboutPaintImage2 = `${supabaseUrl}/storage/v1/object/public/${STORAGE_BUCK
 
 export default function Page() {
   return (
-    <div className="my-20 flex flex-col items-center p-6">
+    <div className="my-12 flex flex-col items-center p-4 sm:my-20 sm:p-6">
       <div className="merriweather-long-text mx-auto flex w-full max-w-6xl min-w-0 flex-col items-center gap-4 text-sm">
-        <div className="flex flex-col items-center gap-8 bg-amber-50">
+        <div className="flex w-full min-w-0 flex-col items-center gap-6 bg-amber-50 sm:gap-8">
           <h1
             className={cn(
-              "mt-10 -ml-10 text-3xl font-bold text-primary",
+              "mt-6 w-full max-w-full px-2 text-center text-2xl font-bold text-primary sm:text-3xl md:mt-10 md:-ml-10 md:w-auto md:max-w-none md:self-start md:px-0 md:text-left",
               imFellEnglish.className
             )}
           >
             Jaget, naturen och människan
           </h1>
-          <div className="w-full max-w-[980px] md:grid md:grid-cols-2 md:items-center md:gap-8">
-            <div className="relative h-[500px] overflow-hidden">
+          <div className="w-full max-w-[980px] min-w-0 md:grid md:grid-cols-2 md:items-center md:gap-8">
+            <div className="relative aspect-4/5 w-full min-h-[220px] overflow-hidden sm:aspect-auto sm:h-[380px] md:h-[500px]">
               <Image
                 src={aboutProfileImage}
                 alt="profil med blommor"
                 fill
                 className="object-cover"
-                sizes="(max-width: 640px) 100vw, 500px"
+                sizes="(max-width: 768px) 100vw, 490px"
                 loading="lazy"
                 unoptimized
               />
             </div>
-            <div className="mt-4 p-8 leading-loose md:mt-0">
+            <div className="mt-4 px-2 py-4 leading-loose sm:px-4 md:mt-0 md:p-8">
               <h2
                 className={cn(
                   "mb-4 text-lg font-bold text-primary",
@@ -50,7 +50,7 @@ export default function Page() {
               >
                 Jag, E.Jalakas
               </h2>
-              <p className="p-4 text-sm leading-loose text-black">
+              <p className="px-1 py-2 text-sm leading-loose text-black sm:p-4">
                 Mitt namn är Elisabet Jalakas Palmén och jag är uppvuxen och
                 bosatt i Lindome, Västra Götaland. Skapandet alltid varit en
                 stor del av mitt liv. När jag växte upp så var det ett delat
@@ -62,8 +62,8 @@ export default function Page() {
               </p>
             </div>
           </div>
-          <div className="w-full max-w-[980px] py-4 md:grid md:grid-cols-2 md:items-center md:gap-8">
-            <div className="mt-4 p-8 leading-loose md:mt-0">
+          <div className="w-full max-w-[980px] min-w-0 py-4 md:grid md:grid-cols-2 md:items-center md:gap-8">
+            <div className="mt-4 px-2 py-4 leading-loose sm:px-4 md:mt-0 md:p-8">
               <h2
                 className={cn(
                   "mb-4 text-lg font-bold text-primary",
@@ -72,14 +72,14 @@ export default function Page() {
               >
                 Naturen
               </h2>
-              <p className="p-4 text-sm leading-loose text-black">
+              <p className="px-1 py-2 text-sm leading-loose text-black sm:p-4">
                 När jag tänker på hur jag skapar och vad mina processer är så
                 upplever jag konsten som ett uttryck av det jag ser och känner.
                 Jag återskapa vad jag ser och försöker attförmedla känslan i det
                 ögonblicket. Min konst är ett uttryck av känslor och färg och är
                 menat att synas och delas.{" "}
               </p>
-              <p className="mt-4 p-4 text-sm leading-loose text-black">
+              <p className="mt-4 px-1 py-2 text-sm leading-loose text-black sm:p-4">
                 I mina kollektioner så kan man se hur jag fokuserar på vissa
                 känslor och former för att fånga in ögonblicket. Jag testar och
                 vågar mig fram och det är inte alltid man blir nöjd med all sina
@@ -90,32 +90,32 @@ export default function Page() {
                 vart gränsen går.
               </p>
             </div>
-            <div className="relative ml-auto h-[400px] w-full max-w-[400px] overflow-hidden">
+            <div className="relative mx-auto mt-4 aspect-5/4 w-full min-h-[220px] max-w-[400px] overflow-hidden sm:aspect-auto sm:mt-0 sm:h-[340px] md:ml-auto md:h-[400px]">
               <Image
                 src={aboutPaintImage}
                 alt="målar utomhus"
                 fill
                 className="object-cover"
-                sizes="(max-width: 640px) 100vw, 500px"
+                sizes="(max-width: 768px) 100vw, 400px"
                 loading="eager"
                 priority
                 unoptimized
               />
             </div>
           </div>
-          <div className="w-full max-w-[980px] py-4 md:grid md:grid-cols-2 md:items-center md:gap-8">
-            <div className="relative h-[500px] overflow-hidden">
+          <div className="w-full max-w-[980px] min-w-0 py-4 md:grid md:grid-cols-2 md:items-center md:gap-8">
+            <div className="relative aspect-4/5 w-full min-h-[220px] overflow-hidden sm:aspect-auto sm:h-[380px] md:h-[500px]">
               <Image
                 src={aboutPaintImage2}
                 alt="måla vid havet"
                 fill
                 className="object-cover"
-                sizes="(max-width: 640px) 100vw, 500px"
+                sizes="(max-width: 768px) 100vw, 490px"
                 loading="lazy"
                 unoptimized
               />
             </div>
-            <div className="mt-4 p-8 leading-loose md:mt-0">
+            <div className="mt-4 px-2 py-4 leading-loose sm:px-4 md:mt-0 md:p-8">
               <h2
                 className={cn(
                   "mb-4 text-lg font-bold text-primary",
@@ -124,7 +124,7 @@ export default function Page() {
               >
                 Människan
               </h2>
-              <p className="p-4 text-sm leading-loose text-black">
+              <p className="px-1 py-2 text-sm leading-loose text-black sm:p-4">
                 Jag inspireras av folk och föremål i vardagen och utforskandet
                 av olika tekniker och material. Jag sitter ofta och målar av
                 personer i min omgivning, snabbt och spontant. Det blir ett mer

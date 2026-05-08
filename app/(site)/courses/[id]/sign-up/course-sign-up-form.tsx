@@ -71,7 +71,7 @@ export default function CourseSignUpForm({ courseId }: CourseSignUpFormProps) {
 
   return (
     <div className="w-full rounded-lg text-center">
-      <Card className="rounded-md p-4 dark:bg-zinc-900">
+      <Card className="rounded-md dark:bg-zinc-900">
         <CardHeader>
           <CardTitle>Anmäl dig till kursen via formuläret</CardTitle>
         </CardHeader>

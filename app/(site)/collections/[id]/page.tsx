@@ -38,26 +38,29 @@ export default async function Page({
     .order("name", { ascending: true })
 
   return (
-    <div className="my-20 min-h-screen p-6">
-      <div className="mx-auto flex w-full max-w-7xl flex-col">
+    <div className="min-h-screen px-4 pt-20 pb-12 sm:px-6">
+      <div className="mx-auto flex w-full max-w-7xl min-w-0 flex-col">
         <Link
           href="/collections"
-          className="text-md mb-6 flex w-fit flex-row items-center gap-2 text-primary hover:underline"
+          className="text-md mb-4 flex w-fit flex-row items-center gap-2 text-primary hover:underline sm:mb-6"
         >
           <ArrowLeftIcon className="size-4" />
           Tillbaka
         </Link>
-        <div className="flex w-full max-w-4xl flex-row gap-4">
-          <Image
-            src={collection.image}
-            alt={collection.name}
-            width={500}
-            height={500}
-            className="h-auto w-1/2 object-cover"
-            unoptimized
-          />
-          <div className="flex w-1/2 flex-col gap-2">
-            <h1 className="text-2xl font-medium">
+        <div className="flex w-full max-w-4xl min-w-0 flex-col gap-4 md:flex-row md:items-start md:gap-6">
+          <div className="relative w-full shrink-0 overflow-hidden md:w-1/2">
+            <Image
+              src={collection.image}
+              alt={collection.name}
+              width={500}
+              height={500}
+              sizes="(max-width: 767px) 100vw, 448px"
+              className="aspect-square w-full object-cover md:aspect-auto md:h-auto"
+              unoptimized
+            />
+          </div>
+          <div className="flex w-full min-w-0 flex-col gap-2 md:w-1/2">
+            <h1 className="text-xl font-medium sm:text-2xl">
               Kollektion {collection.name}
             </h1>
             <p className="text-sm text-muted-foreground">{collection.year}</p>
