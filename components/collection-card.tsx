@@ -16,7 +16,7 @@ async function CollectionSection() {
     .data.publicUrl
 
   return (
-    <article className="outfit-uniquifier mt-6 w-[calc(100vw-1rem)] max-w-none overflow-hidden bg-amber-50 md:w-full md:max-w-md dark:bg-zinc-900">
+    <article className="outfit-uniquifier mt-6 w-full max-w-md overflow-hidden bg-amber-50 dark:bg-zinc-900">
       <Link href="/collections" className="block text-primary hover:underline">
         <Image
           src={imageSrc}
