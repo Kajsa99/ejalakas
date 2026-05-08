@@ -33,7 +33,7 @@ export default async function HomePage() {
         />
         <h1
           className={cn(
-            "-mt-10 -ml-40 text-7xl font-bold text-primary",
+            "-mt-10 mx-auto text-center text-7xl font-bold text-primary md:mx-0 md:-ml-40 md:text-left",
             imFellEnglish.className
           )}
         >

@@ -84,6 +84,13 @@
 
   html {
     @apply font-sans;
+    font-size: 16px;
+  }
+
+  @media (max-width: 767px) {
+    html {
+      font-size: 17px;
+    }
   }
 }
 

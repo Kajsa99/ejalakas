@@ -3,6 +3,7 @@ import Link from "next/link"
 import { Suspense } from "react"
 import Image from "next/image"
 import { STORAGE_BUCKET, STORAGE_IMAGE_PATHS } from "@/lib/storage-image-paths"
+import ContentCardSkeleton from "@/components/content-card-skeleton"
 
 async function ArtworkSection() {
   const supabase = await createClient()
@@ -14,7 +15,7 @@ async function ArtworkSection() {
   const imageSrc = supabase.storage.from(STORAGE_BUCKET).getPublicUrl(imagePath)
     .data.publicUrl
   return (
-    <article className="outfit-uniquifier mt-6 w-full max-w-md overflow-hidden bg-amber-50 dark:bg-zinc-900">
+    <article className="outfit-uniquifier mt-6 w-[calc(100vw-1rem)] max-w-none overflow-hidden bg-amber-50 md:w-full md:max-w-md dark:bg-zinc-900">
       <Link href="/art" className="block text-primary hover:underline">
         <Image
           src={imageSrc}
@@ -32,9 +33,7 @@ async function ArtworkSection() {
 
 export default function ArtCard() {
   return (
-    <Suspense
-      fallback={<div className="p-3 text-sm text-gray-500">Laddar...</div>}
-    >
+    <Suspense fallback={<ContentCardSkeleton labelWidthClass="w-24" />}>
       <ArtworkSection />
     </Suspense>
   )

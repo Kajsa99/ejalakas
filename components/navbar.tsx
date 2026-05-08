@@ -4,7 +4,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useState } from "react"
 import { ThemeSwitcher } from "@/components/theme-switcher"
-import { MenuIcon } from "lucide-react"
+import { MenuIcon, XIcon } from "lucide-react"
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false)
@@ -66,14 +66,22 @@ export default function Navbar() {
         {mobileOpen && (
           <div
             id="mobile-nav-menu"
-            className="bg-background-transparent absolute top-full right-0 mt-2 flex min-w-44 flex-col items-start gap-1 rounded-md p-2 backdrop-blur"
+            className="fixed inset-0 z-50 flex h-dvh w-screen flex-col gap-3 bg-background/80 p-4 backdrop-blur-md"
           >
+            <button
+              type="button"
+              onClick={() => setMobileOpen(false)}
+              className="ml-auto rounded-md p-2 text-foreground transition-colors hover:bg-primary hover:text-primary-foreground"
+              aria-label="Close menu"
+            >
+              <XIcon className="size-6" />
+            </button>
             {links.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setMobileOpen(false)}
-                className={`rounded-md px-2 py-1 text-sm font-medium transition-colors hover:bg-primary hover:text-primary-foreground ${
+                className={`w-full rounded-md px-3 py-2 text-base font-medium transition-colors hover:bg-primary hover:text-primary-foreground ${
                   isActiveLink(link.href)
                     ? "bg-primary text-primary-foreground"
                     : ""
@@ -82,7 +90,7 @@ export default function Navbar() {
                 {link.label}
               </Link>
             ))}
-            <div className="mt-1">
+            <div className="mt-2">
               <ThemeSwitcher />
             </div>
           </div>

@@ -8,6 +8,7 @@ import Footer from "@/components/footer"
 import Header from "@/components/header"
 import { Suspense } from "react"
 import loggaLiten from "./logga_liten.png"
+import Loading from "./loading"
 
 const merriweather = Merriweather({
   subsets: ["latin"],
@@ -69,15 +70,12 @@ export default function RootLayout({
           enableSystem={false}
           disableTransitionOnChange
         >
-          <Suspense fallback={<div>Loading...</div>}>
-            <Header />
-            {children}
-            <Navbar />
-
-            <main>
-              <Footer />
-            </main>
-          </Suspense>
+          <Header />
+          <Suspense fallback={<Loading />}>{children}</Suspense>
+          <Navbar />
+          <main>
+            <Footer />
+          </main>
         </ThemeProvider>
       </body>
     </html>

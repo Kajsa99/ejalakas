@@ -19,28 +19,28 @@ export default function Footer() {
           <p className="flex flex-row gap-2">
             <Instagram className="size-4" />{" "}
             <Link
-              href="https://www.instagram.com/elisabetsjalakas/"
+              href="https://www.instagram.com/ejalakas/"
               className="text-sm hover:underline"
             >
-              @elisabetsjalakas
+              @ejalakas
             </Link>
           </p>
           <p className="flex flex-row gap-2">
             <Facebook className="size-4" />{" "}
             <Link
-              href="https://www.facebook.com/elisabetsjalakas/"
+              href="https://www.facebook.com/ejalakas/"
               className="text-sm hover:underline"
             >
-              @elisabetsjalakas
+              @ejalakas
             </Link>
           </p>
           <p className="flex flex-row gap-2">
             <Youtube className="size-4" />{" "}
             <Link
-              href="https://www.youtube.com/elisabetsjalakas/"
+              href="https://www.youtube.com/ejalakas/"
               className="text-sm hover:underline"
             >
-              @elisabetsjalakas
+              @ejalakas
             </Link>
           </p>
         </div>
@@ -58,7 +58,7 @@ export default function Footer() {
               href="mailto:elisabetsjalakas@gmail.com"
               className="text-primary hover:underline"
             >
-              elisabetsjalakas@gmail.com
+              ejalakasart@gmail.com
             </Link>{" "}
             eller telefon{" "}
             <Link
@@ -77,8 +77,11 @@ export default function Footer() {
             Om mig
           </Link>
           <p className="text-sm">
-            Konstnär baserad i Lindome, Göteborg. Spontant och lekfullt skapar
-            Elisabet med collage, akvarell, oljefärg, tryck och teckningar.{" "}
+            Konstnär baserad i Lindome, Göteborg. Skapar i olja, akvarell,
+            collage och teckning med olika tekniker och verktyg.{" "}
+            <Link href="/exhibitions" className="text-primary hover:underline">
+              Se aktuella utställningar
+            </Link>
           </p>
         </div>
       </div>
