@@ -66,7 +66,7 @@ export default function Navbar() {
         {mobileOpen && (
           <div
             id="mobile-nav-menu"
-            className="fixed inset-0 z-50 flex h-dvh w-screen flex-col gap-3 bg-background/80 p-4 backdrop-blur-md"
+            className="fixed inset-0 z-50 flex min-h-dvh flex-col gap-3 overflow-x-hidden overflow-y-auto bg-background/80 p-4 backdrop-blur-md"
           >
             <button
               type="button"
