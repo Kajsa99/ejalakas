@@ -45,7 +45,7 @@ export default function ContactForm() {
           ? submitError.message
           : "Kunde inte skicka meddelandet"
       setError(message)
-    } finally {
+      // } finally {
       setIsSubmitting(false)
     }
   }
