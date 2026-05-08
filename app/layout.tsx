@@ -70,11 +70,17 @@ export default function RootLayout({
           enableSystem={false}
           disableTransitionOnChange
         >
-          <Header />
+          <Suspense fallback={null}>
+            <Header />
+          </Suspense>
           <Suspense fallback={<Loading />}>{children}</Suspense>
-          <Navbar />
+          <Suspense fallback={null}>
+            <Navbar />
+          </Suspense>
           <main>
-            <Footer />
+            <Suspense fallback={null}>
+              <Footer />
+            </Suspense>
           </main>
         </ThemeProvider>
       </body>
