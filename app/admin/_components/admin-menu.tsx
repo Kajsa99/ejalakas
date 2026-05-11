@@ -22,7 +22,7 @@ type EditOption = "art" | "collection" | "exhibition" | "course"
 type Section = "add" | "edit" | "inbox"
 
 export function AdminMenu() {
-  const [section, setSection] = useState<Section>("add")
+  const [section, setSection] = useState<Section>("inbox")
   const [addOption, setAddOption] = useState<AddOption>("art")
   const [editOption, setEditOption] = useState<EditOption>("art")
   const [mobileOpen, setMobileOpen] = useState(false)
@@ -80,7 +80,9 @@ export function AdminMenu() {
             </button>
 
             <div className="space-y-2">
-              <p className="px-3 text-sm font-semibold text-muted-foreground">Add</p>
+              <p className="px-3 text-sm font-semibold text-muted-foreground">
+                Add
+              </p>
               <button
                 type="button"
                 onClick={() => handleAddSelect("art")}
@@ -112,7 +114,9 @@ export function AdminMenu() {
             </div>
 
             <div className="space-y-2">
-              <p className="px-3 text-sm font-semibold text-muted-foreground">Edit</p>
+              <p className="px-3 text-sm font-semibold text-muted-foreground">
+                Edit
+              </p>
               <button
                 type="button"
                 onClick={() => handleEditSelect("art")}
@@ -165,24 +169,16 @@ export function AdminMenu() {
               Add
             </MenubarTrigger>
             <MenubarContent side="right" align="start">
-              <MenubarItem
-                onClick={() => handleAddSelect("art")}
-              >
+              <MenubarItem onClick={() => handleAddSelect("art")}>
                 Tavla
               </MenubarItem>
-              <MenubarItem
-                onClick={() => handleAddSelect("collection")}
-              >
+              <MenubarItem onClick={() => handleAddSelect("collection")}>
                 Kollektion
               </MenubarItem>
-              <MenubarItem
-                onClick={() => handleAddSelect("exhibition")}
-              >
+              <MenubarItem onClick={() => handleAddSelect("exhibition")}>
                 Utställning
               </MenubarItem>
-              <MenubarItem
-                onClick={() => handleAddSelect("course")}
-              >
+              <MenubarItem onClick={() => handleAddSelect("course")}>
                 Kurs
               </MenubarItem>
             </MenubarContent>
@@ -194,24 +190,16 @@ export function AdminMenu() {
               Edit
             </MenubarTrigger>
             <MenubarContent side="right" align="start">
-              <MenubarItem
-                onClick={() => handleEditSelect("art")}
-              >
+              <MenubarItem onClick={() => handleEditSelect("art")}>
                 Tavla
               </MenubarItem>
-              <MenubarItem
-                onClick={() => handleEditSelect("collection")}
-              >
+              <MenubarItem onClick={() => handleEditSelect("collection")}>
                 Kollektion
               </MenubarItem>
-              <MenubarItem
-                onClick={() => handleEditSelect("exhibition")}
-              >
+              <MenubarItem onClick={() => handleEditSelect("exhibition")}>
                 Utställning
               </MenubarItem>
-              <MenubarItem
-                onClick={() => handleEditSelect("course")}
-              >
+              <MenubarItem onClick={() => handleEditSelect("course")}>
                 Kurs
               </MenubarItem>
             </MenubarContent>
