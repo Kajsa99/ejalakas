@@ -227,17 +227,19 @@ export function EditContentForm({
 
   return (
     <section className="p-4">
-      <h2 className="text-lg font-semibold">{title}</h2>
-      <p className="mb-4 text-sm text-muted-foreground">{description}</p>
+      <h2 className="text-2xl font-semibold">{title}</h2>
+      <p className="mb-4 text-base text-muted-foreground">{description}</p>
 
       <div className="space-y-2">
-        <Label htmlFor="selected-item">Tillgängliga objekt</Label>
+        <Label htmlFor="selected-item" className="text-base">
+          Välj objekt
+        </Label>
         <select
           id="selected-item"
           value={selectedId}
           disabled={isLoading || items.length === 0}
           onChange={(event) => setSelectedId(event.target.value)}
-          className="h-7 w-full overflow-y-auto rounded-md border border-input bg-input/20 px-2 outline-none"
+          className="h-11 w-full overflow-y-auto rounded-md border border-input bg-input/20 px-3 text-lg outline-none"
         >
           {items.length === 0 && (
             <option value="">Inga objekt tillgängliga</option>
@@ -256,7 +258,9 @@ export function EditContentForm({
             if (field.type === "textarea") {
               return (
                 <div key={field.name} className="space-y-2">
-                  <Label htmlFor={field.name}>{field.label}</Label>
+                  <Label htmlFor={field.name} className="text-base">
+                    {field.label}
+                  </Label>
                   <Textarea
                     id={field.name}
                     name={field.name}
@@ -268,7 +272,7 @@ export function EditContentForm({
                         [field.name]: event.target.value,
                       }))
                     }
-                    className="h-24 resize-y"
+                    className="h-28 resize-y text-lg md:text-lg"
                   />
                 </div>
               )
@@ -289,8 +293,11 @@ export function EditContentForm({
                         [field.name]: event.target.checked,
                       }))
                     }
+                    className="size-5"
                   />
-                  <Label htmlFor={field.name}>{field.label}</Label>
+                  <Label htmlFor={field.name} className="text-base">
+                    {field.label}
+                  </Label>
                 </div>
               )
             }
@@ -298,7 +305,9 @@ export function EditContentForm({
             if (field.type === "select") {
               return (
                 <div key={field.name} className="space-y-2">
-                  <Label htmlFor={field.name}>{field.label}</Label>
+                  <Label htmlFor={field.name} className="text-base">
+                    {field.label}
+                  </Label>
                   <select
                     id={field.name}
                     name={field.name}
@@ -310,7 +319,7 @@ export function EditContentForm({
                         [field.name]: event.target.value,
                       }))
                     }
-                    className="h-7 w-full overflow-y-auto rounded-md border border-input bg-input/20 px-2 outline-none"
+                    className="h-11 w-full overflow-y-auto rounded-md border border-input bg-input/20 px-3 text-lg outline-none"
                   >
                     {(field.options ?? []).map((option) => (
                       <option key={option.value} value={option.value}>
@@ -324,7 +333,9 @@ export function EditContentForm({
 
             return (
               <div key={field.name} className="space-y-2">
-                <Label htmlFor={field.name}>{field.label}</Label>
+                <Label htmlFor={field.name} className="text-base">
+                  {field.label}
+                </Label>
                 <Input
                   id={field.name}
                   name={field.name}
@@ -340,13 +351,18 @@ export function EditContentForm({
                       [field.name]: event.target.value,
                     }))
                   }
+                  className="h-11 text-lg md:text-lg"
                 />
               </div>
             )
           })}
 
           <div className="flex items-center justify-between">
-            <Button type="submit" disabled={isSubmitting || isDeleting}>
+            <Button
+              type="submit"
+              disabled={isSubmitting || isDeleting}
+              className="text-base"
+            >
               {isSubmitting ? "Sparar..." : "Spara ändringar"}
             </Button>
             <Button
@@ -354,6 +370,7 @@ export function EditContentForm({
               variant="destructive"
               disabled={isSubmitting || isDeleting}
               onClick={() => void onDelete()}
+              className="text-base"
             >
               {isDeleting ? "Raderar..." : "Radera"}
             </Button>
@@ -361,9 +378,9 @@ export function EditContentForm({
         </form>
       ) : null}
 
-      {error ? <p className="mt-4 text-sm text-destructive">{error}</p> : null}
+      {error ? <p className="mt-4 text-base text-destructive">{error}</p> : null}
       {success ? (
-        <p className="mt-2 text-sm text-green-700">{success}</p>
+        <p className="mt-2 text-base text-green-700">{success}</p>
       ) : null}
     </section>
   )

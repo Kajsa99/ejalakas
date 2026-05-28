@@ -12,7 +12,7 @@ export async function GET() {
 
   const { data, error } = await supabase
     .from("art")
-    .select("id, name, description, year, price, status")
+    .select("id, name, description, year, price, status, collection_id")
     .order("year", { ascending: false })
     .order("name", { ascending: true })
 
@@ -29,6 +29,7 @@ export async function GET() {
       year: item.year,
       price: item.price,
       status: item.status,
+      collection_id: item.collection_id,
     },
   }))
 
@@ -47,10 +48,16 @@ export async function POST(request: Request) {
   const year = Number(formData.get("year"))
   const price = Number(formData.get("price"))
   const status = String(formData.get("status") ?? "").trim() === "true"
+  const collectionIdRaw = String(formData.get("collection_id") ?? "").trim()
+  const collectionId =
+    collectionIdRaw === "" ? null : Number.parseInt(collectionIdRaw, 10)
   const file = formData.get("image")
 
   if (!name || !description || !Number.isFinite(year) || !Number.isFinite(price)) {
     return NextResponse.json({ error: "Missing required fields" }, { status: 400 })
+  }
+  if (collectionIdRaw !== "" && !Number.isFinite(collectionId)) {
+    return NextResponse.json({ error: "Invalid collection" }, { status: 400 })
   }
 
   if (!(file instanceof File)) {
@@ -71,6 +78,7 @@ export async function POST(request: Request) {
         year,
         price,
         status,
+        collection_id: collectionId,
         image: upload.publicUrl,
       })
       .select("id")
@@ -102,10 +110,16 @@ export async function PUT(request: Request) {
   const year = Number(formData.get("year"))
   const price = Number(formData.get("price"))
   const status = String(formData.get("status") ?? "").trim() === "true"
+  const collectionIdRaw = String(formData.get("collection_id") ?? "").trim()
+  const collectionId =
+    collectionIdRaw === "" ? null : Number.parseInt(collectionIdRaw, 10)
   const file = formData.get("image")
 
   if (!id || !name || !description || !Number.isFinite(year) || !Number.isFinite(price)) {
     return NextResponse.json({ error: "Missing required fields" }, { status: 400 })
+  }
+  if (collectionIdRaw !== "" && !Number.isFinite(collectionId)) {
+    return NextResponse.json({ error: "Invalid collection" }, { status: 400 })
   }
 
   let imageUrl: string | undefined
@@ -126,6 +140,7 @@ export async function PUT(request: Request) {
     year,
     price,
     status,
+    collection_id: collectionId,
   }
 
   if (imageUrl) {
@@ -136,7 +151,7 @@ export async function PUT(request: Request) {
     .from("art")
     .update(updates)
     .eq("id", id)
-    .select("id, name, description, year, price, status")
+    .select("id, name, description, year, price, status, collection_id")
     .single()
 
   if (error) {
@@ -154,6 +169,7 @@ export async function PUT(request: Request) {
         year: data.year,
         price: data.price,
         status: data.status,
+        collection_id: data.collection_id,
       },
     },
   })

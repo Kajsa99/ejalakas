@@ -87,19 +87,21 @@ export function ContentForm({
 
   return (
     <section className="p-4">
-      <h2 className="text-lg font-semibold">{title}</h2>
-      <p className="mb-4 text-sm text-muted-foreground">{description}</p>
+      <h2 className="text-2xl font-semibold">{title}</h2>
+      <p className="mb-4 text-base text-muted-foreground">{description}</p>
       <form onSubmit={onSubmit} className="space-y-4">
         {fields.map((field) => {
           if (field.type === "textarea") {
             return (
               <div key={field.name} className="space-y-2">
-                <Label htmlFor={field.name}>{field.label}</Label>
+                <Label htmlFor={field.name} className="text-base">
+                  {field.label}
+                </Label>
                 <Textarea
                   id={field.name}
                   name={field.name}
                   required={field.required}
-                  className="h-24 resize-y"
+                  className="h-28 resize-y text-lg md:text-lg"
                 />
               </div>
             )
@@ -113,8 +115,11 @@ export function ContentForm({
                   name={field.name}
                   type="checkbox"
                   value="true"
+                  className="size-5"
                 />
-                <Label htmlFor={field.name}>{field.label}</Label>
+                <Label htmlFor={field.name} className="text-base">
+                  {field.label}
+                </Label>
               </div>
             )
           }
@@ -122,13 +127,15 @@ export function ContentForm({
           if (field.type === "select") {
             return (
               <div key={field.name} className="space-y-2">
-                <Label htmlFor={field.name}>{field.label}</Label>
+                <Label htmlFor={field.name} className="text-base">
+                  {field.label}
+                </Label>
                 <select
                   id={field.name}
                   name={field.name}
                   required={field.required}
                   defaultValue=""
-                  className="h-7 w-full overflow-y-auto rounded-md border border-input bg-input/20 px-2 text-sm outline-none"
+                  className="h-11 w-full overflow-y-auto rounded-md border border-input bg-input/20 px-3 text-lg outline-none"
                 >
                   <option value="" disabled>
                     Välj {field.label.toLowerCase()}
@@ -145,7 +152,9 @@ export function ContentForm({
 
           return (
             <div key={field.name} className="space-y-2">
-              <Label htmlFor={field.name}>{field.label}</Label>
+              <Label htmlFor={field.name} className="text-base">
+                {field.label}
+              </Label>
               <Input
                 id={field.name}
                 name={field.name}
@@ -154,15 +163,16 @@ export function ContentForm({
                 min={field.min}
                 step={field.step}
                 accept={field.accept}
+                className="h-11 text-lg md:text-lg"
               />
             </div>
           )
         })}
 
-        {error ? <p className="text-sm text-destructive">{error}</p> : null}
-        {success ? <p className="text-sm text-green-700">{success}</p> : null}
+        {error ? <p className="text-base text-destructive">{error}</p> : null}
+        {success ? <p className="text-base text-green-700">{success}</p> : null}
 
-        <Button type="submit" disabled={isSubmitting}>
+        <Button type="submit" disabled={isSubmitting} className="text-base">
           {isSubmitting ? "Sparar..." : "Spara"}
         </Button>
       </form>

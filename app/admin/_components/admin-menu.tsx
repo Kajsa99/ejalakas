@@ -50,7 +50,7 @@ export function AdminMenu() {
         <button
           type="button"
           onClick={() => setMobileOpen((prev) => !prev)}
-          className="rounded-md bg-amber-100 p-2 text-sm font-medium transition-colors hover:bg-amber-200"
+          className="rounded-md bg-amber-100 p-2 text-base font-medium transition-colors hover:bg-amber-200"
           aria-expanded={mobileOpen}
           aria-controls="admin-mobile-menu"
         >
@@ -71,17 +71,19 @@ export function AdminMenu() {
               <XIcon className="size-6" />
             </button>
 
-            <button
-              type="button"
-              onClick={handleInboxSelect}
-              className="w-full rounded-md px-3 py-2 text-left text-base font-medium transition-colors hover:bg-primary hover:text-primary-foreground"
-            >
-              Inbox
-            </button>
+            <div className="space-y-2 rounded-lg border border-border">
+              <button
+                type="button"
+                onClick={handleInboxSelect}
+                className="w-full rounded-md px-3 py-2 text-left text-base font-medium transition-colors hover:bg-primary hover:text-primary-foreground"
+              >
+                INBOX
+              </button>
+            </div>
 
-            <div className="space-y-2">
-              <p className="px-3 text-sm font-semibold text-muted-foreground">
-                Add
+            <div className="space-y-2 rounded-lg border border-border p-3">
+              <p className="px-1 text-base font-semibold tracking-wide text-foreground uppercase">
+                ADD
               </p>
               <button
                 type="button"
@@ -113,9 +115,9 @@ export function AdminMenu() {
               </button>
             </div>
 
-            <div className="space-y-2">
-              <p className="px-3 text-sm font-semibold text-muted-foreground">
-                Edit
+            <div className="space-y-2 rounded-lg border border-border p-3">
+              <p className="px-1 text-base font-semibold tracking-wide text-foreground uppercase">
+                EDIT
               </p>
               <button
                 type="button"
@@ -147,66 +149,92 @@ export function AdminMenu() {
               </button>
             </div>
 
-            <div className="px-3 pt-2">
+            <div className="px-3 pt-2 [&>button]:h-12 [&>button]:px-6 [&>button]:text-base">
               <LogoutButton />
             </div>
           </div>
         )}
       </nav>
 
-      <aside className="fixed top-0 left-0 z-20 hidden h-screen w-56 bg-amber-100 p-10 pt-20 md:block">
-        <Menubar className="flex h-full w-full flex-col items-start gap-2 rounded-lg border-none bg-transparent p-0">
+      <aside className="fixed top-0 left-0 z-20 hidden h-screen w-56 bg-amber-100 p-10 pt-20 text-lg md:block">
+        <Menubar className="flex h-full w-full flex-col items-start gap-3 rounded-lg border-none bg-transparent p-0">
           <MenubarMenu>
-            <MenubarTrigger onClick={handleInboxSelect}>
+            <MenubarTrigger onClick={handleInboxSelect} className="text-lg">
               <InboxIcon className="mr-2 size-4" />
               Inbox
             </MenubarTrigger>
           </MenubarMenu>
 
           <MenubarMenu>
-            <MenubarTrigger>
+            <MenubarTrigger className="text-lg">
               <PlusIcon className="mr-2 size-4" />
               Add
             </MenubarTrigger>
             <MenubarContent side="right" align="start">
-              <MenubarItem onClick={() => handleAddSelect("art")}>
+              <MenubarItem
+                onClick={() => handleAddSelect("art")}
+                className="text-lg"
+              >
                 Tavla
               </MenubarItem>
-              <MenubarItem onClick={() => handleAddSelect("collection")}>
+              <MenubarItem
+                onClick={() => handleAddSelect("collection")}
+                className="text-lg"
+              >
                 Kollektion
               </MenubarItem>
-              <MenubarItem onClick={() => handleAddSelect("exhibition")}>
+              <MenubarItem
+                onClick={() => handleAddSelect("exhibition")}
+                className="text-lg"
+              >
                 Utställning
               </MenubarItem>
-              <MenubarItem onClick={() => handleAddSelect("course")}>
+              <MenubarItem
+                onClick={() => handleAddSelect("course")}
+                className="text-lg"
+              >
                 Kurs
               </MenubarItem>
             </MenubarContent>
           </MenubarMenu>
 
           <MenubarMenu>
-            <MenubarTrigger>
+            <MenubarTrigger className="text-lg">
               <PencilIcon className="mr-2 size-4" />
               Edit
             </MenubarTrigger>
             <MenubarContent side="right" align="start">
-              <MenubarItem onClick={() => handleEditSelect("art")}>
+              <MenubarItem
+                onClick={() => handleEditSelect("art")}
+                className="text-lg"
+              >
                 Tavla
               </MenubarItem>
-              <MenubarItem onClick={() => handleEditSelect("collection")}>
+              <MenubarItem
+                onClick={() => handleEditSelect("collection")}
+                className="text-lg"
+              >
                 Kollektion
               </MenubarItem>
-              <MenubarItem onClick={() => handleEditSelect("exhibition")}>
+              <MenubarItem
+                onClick={() => handleEditSelect("exhibition")}
+                className="text-lg"
+              >
                 Utställning
               </MenubarItem>
-              <MenubarItem onClick={() => handleEditSelect("course")}>
+              <MenubarItem
+                onClick={() => handleEditSelect("course")}
+                className="text-lg"
+              >
                 Kurs
               </MenubarItem>
             </MenubarContent>
           </MenubarMenu>
 
           <MenubarMenu>
-            <LogoutButton />
+            <div className="[&>button]:h-12 [&>button]:px-6 [&>button]:text-base">
+              <LogoutButton />
+            </div>
           </MenubarMenu>
         </Menubar>
       </aside>
