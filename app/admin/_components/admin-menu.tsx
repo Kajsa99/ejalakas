@@ -239,7 +239,7 @@ export function AdminMenu() {
         </Menubar>
       </aside>
 
-      <div className="sticky top-0 w-full bg-white pt-16 md:ml-56 md:pt-0">
+      <div className="sticky top-0 w-full bg-white pt-16 text-left md:ml-56 md:pt-0">
         <div className="max-w-3xl space-y-4">
           {section === "add" && (
             <>

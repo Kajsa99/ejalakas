@@ -1,10 +1,25 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { MessageFiltersBar, type MessageFilters } from "./message-filters"
 import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
+
+type MessageCategory = "köpförfrågan" | "kursanmälan" | "frågor"
+
+const MESSAGE_CATEGORIES: { id: MessageCategory; label: string }[] = [
+  { id: "köpförfrågan", label: "Köpförfrågan" },
+  { id: "kursanmälan", label: "Kursanmälan" },
+  { id: "frågor", label: "Frågor" },
+]
+
+function getMessageCategory(message: InboxMessage): MessageCategory {
+  if (message.art_id) return "köpförfrågan"
+  if (message.course_id) return "kursanmälan"
+  return "frågor"
+}
 
 interface InboxMessage {
   id: string
@@ -25,9 +40,9 @@ export function InboxMessages() {
   const [error, setError] = useState<string | null>(null)
   const [messages, setMessages] = useState<InboxMessage[]>([])
   const [searchQuery, setSearchQuery] = useState("")
+  const [category, setCategory] = useState<MessageCategory>("köpförfrågan")
   const [filters, setFilters] = useState<MessageFilters>({
     sortBy: "newest",
-    onlyWithArtId: false,
   })
 
   useEffect(() => {
@@ -63,32 +78,51 @@ export function InboxMessages() {
 
   const normalizedSearchQuery = searchQuery.trim().toLocaleLowerCase("sv")
 
-  const displayedMessages = messages
-    .filter((message) => {
-      if (filters.onlyWithArtId && !message.art_id) return false
+  const searchFilteredMessages = useMemo(
+    () =>
+      messages.filter((message) => {
+        if (!normalizedSearchQuery) return true
 
-      if (!normalizedSearchQuery) return true
+        const searchableValues = [
+          message.name,
+          message.email,
+          message.phone,
+          message.art_id,
+          message.art_name,
+          message.course_id,
+          message.course_name,
+          message.course_amount,
+          message.message,
+        ]
+          .filter(
+            (value) => value !== null && value !== undefined && value !== ""
+          )
+          .map((value) => String(value).toLocaleLowerCase("sv"))
 
-      const searchableValues = [
-        message.name,
-        message.email,
-        message.phone,
-        message.art_id,
-        message.art_name,
-        message.course_id,
-        message.course_name,
-        message.course_amount,
-        message.message,
-      ]
-        .filter(
-          (value) => value !== null && value !== undefined && value !== ""
+        return searchableValues.some((value) =>
+          value.includes(normalizedSearchQuery)
         )
-        .map((value) => String(value).toLocaleLowerCase("sv"))
+      }),
+    [messages, normalizedSearchQuery]
+  )
 
-      return searchableValues.some((value) =>
-        value.includes(normalizedSearchQuery)
-      )
-    })
+  const categoryCounts = useMemo(() => {
+    const counts: Record<MessageCategory, number> = {
+      köpförfrågan: 0,
+      kursanmälan: 0,
+      frågor: 0,
+    }
+
+    for (const message of searchFilteredMessages) {
+      counts[getMessageCategory(message)] += 1
+    }
+
+    return counts
+  }, [searchFilteredMessages])
+
+  const displayedMessages = searchFilteredMessages
+    .filter((message) => getMessageCategory(message) === category)
+
     .sort((a, b) => {
       if (filters.sortBy === "name") {
         return a.name.localeCompare(b.name, "sv")
@@ -118,6 +152,27 @@ export function InboxMessages() {
           />
           <MessageFiltersBar onChange={setFilters} />
         </div>
+        <Tabs
+          value={category}
+          onValueChange={(value) => {
+            if (value) setCategory(value as MessageCategory)
+          }}
+        >
+          <TabsList className="h-auto w-full flex-wrap justify-start gap-1 p-1">
+            {MESSAGE_CATEGORIES.map((entry) => (
+              <TabsTrigger
+                key={entry.id}
+                value={entry.id}
+                className="px-3 py-1.5 text-sm"
+              >
+                {entry.label}
+                <span className="text-muted-foreground">
+                  ({categoryCounts[entry.id]})
+                </span>
+              </TabsTrigger>
+            ))}
+          </TabsList>
+        </Tabs>
       </div>
 
       {isLoading ? (
@@ -133,7 +188,12 @@ export function InboxMessages() {
       messages.length > 0 &&
       displayedMessages.length === 0 ? (
         <p className="text-sm text-muted-foreground">
-          Inga meddelanden matchar din sökning.
+          {searchFilteredMessages.length === 0
+            ? "Inga meddelanden matchar din sökning."
+            : `Inga meddelanden i kategorin ${
+                MESSAGE_CATEGORIES.find((entry) => entry.id === category)
+                  ?.label ?? category
+              }.`}
         </p>
       ) : null}
 

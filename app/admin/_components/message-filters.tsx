@@ -2,7 +2,6 @@
 
 import { useState } from "react"
 
-import { Checkbox } from "@/components/ui/checkbox"
 import { Label } from "@/components/ui/label"
 import {
   Select,
@@ -14,7 +13,6 @@ import {
 
 export interface MessageFilters {
   sortBy: "newest" | "oldest" | "name"
-  onlyWithArtId: boolean
 }
 
 interface MessageFiltersBarProps {
@@ -24,7 +22,6 @@ interface MessageFiltersBarProps {
 export function MessageFiltersBar({ onChange }: MessageFiltersBarProps) {
   const [filters, setFilters] = useState<MessageFilters>({
     sortBy: "newest",
-    onlyWithArtId: false,
   })
 
   const updateFilters = (next: Partial<MessageFilters>) => {
@@ -52,16 +49,6 @@ export function MessageFiltersBar({ onChange }: MessageFiltersBarProps) {
               <SelectItem value="name">Namn (A-Ö)</SelectItem>
             </SelectContent>
           </Select>
-        </Label>
-
-        <Label className="flex items-center gap-2 text-sm">
-          <Checkbox
-            checked={filters.onlyWithArtId}
-            onCheckedChange={(checked) =>
-              updateFilters({ onlyWithArtId: Boolean(checked) })
-            }
-          />
-          Endast köp
         </Label>
       </div>
     </div>
