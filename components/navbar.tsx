@@ -32,9 +32,14 @@ export default function Navbar() {
     return pathname === href || pathname.startsWith(`${href}/`)
   }
 
+  const frostedBar =
+    "rounded-xl bg-background/25 backdrop-blur-xl backdrop-saturate-150 supports-backdrop-filter:backdrop-blur-xl"
+
   return (
     <>
-      <nav className="bg-background-transparent fixed top-0 right-4 z-50 hidden h-16 items-center gap-1 rounded-md p-2 md:flex">
+      <nav
+        className={`fixed top-0 right-4 z-50 hidden h-16 items-center gap-1 p-2 md:flex ${frostedBar}`}
+      >
         <div className="flex flex-row flex-wrap items-center gap-1">
           {links.map((link) => (
             <Link
@@ -57,7 +62,7 @@ export default function Navbar() {
         <button
           type="button"
           onClick={() => setMobileOpen((prev) => !prev)}
-          className="bg-background-transparent rounded-md p-2 text-sm font-medium backdrop-blur transition-colors hover:bg-primary hover:text-primary-foreground"
+          className={`p-2 text-sm font-medium transition-colors hover:bg-primary hover:text-primary-foreground ${frostedBar}`}
           aria-expanded={mobileOpen}
           aria-controls="mobile-nav-menu"
         >

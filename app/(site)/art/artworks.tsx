@@ -1,10 +1,11 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import { createClient } from "@/lib/supabase/client"
 import Image from "next/image"
 import Link from "next/link"
 import { ForSaleBadge } from "@/components/for-sale-badge"
+import { Label } from "@/components/ui/label"
 import {
   Pagination,
   PaginationContent,
@@ -13,6 +14,13 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 
 interface Artwork {
   id: number
@@ -24,12 +32,54 @@ interface Artwork {
   year: number
 }
 
+type ArtSortOption =
+  | "newest"
+  | "oldest"
+  | "name-asc"
+  | "name-desc"
+  | "for-sale-first"
+  | "sold-first"
+
+const ART_SORT_LABELS: Record<ArtSortOption, string> = {
+  newest: "Nyast först",
+  oldest: "Äldst först",
+  "name-asc": "Namn (A–Ö)",
+  "name-desc": "Namn (Ö–A)",
+  "for-sale-first": "Till salu först",
+  "sold-first": "Sålda först",
+}
+
+const ART_SORT_OPTIONS = Object.entries(ART_SORT_LABELS) as [
+  ArtSortOption,
+  string,
+][]
+
+function sortArtworks(artworks: Artwork[], sort: ArtSortOption): Artwork[] {
+  const sorted = [...artworks]
+
+  switch (sort) {
+    case "newest":
+      return sorted.sort((a, b) => b.id - a.id)
+    case "oldest":
+      return sorted.sort((a, b) => a.id - b.id)
+    case "name-asc":
+      return sorted.sort((a, b) => a.name.localeCompare(b.name, "sv-SE"))
+    case "name-desc":
+      return sorted.sort((a, b) => b.name.localeCompare(a.name, "sv-SE"))
+    case "for-sale-first":
+      return sorted.sort((a, b) => Number(a.status) - Number(b.status))
+    case "sold-first":
+      return sorted.sort((a, b) => Number(b.status) - Number(a.status))
+  }
+}
+
 interface AllArtworksProps {
   artworks: Artwork[]
 }
 
 export default function Artworks() {
   const [artworks, setArtworks] = useState<Artwork[]>([])
+  const [sortOption, setSortOption] = useState<ArtSortOption>("newest")
   const [currentPage, setCurrentPage] = useState(1)
   const itemsPerPage = 8
 
@@ -41,13 +91,28 @@ export default function Artworks() {
     }
     fetchArtworks()
   }, [])
-  const totalPages = Math.max(1, Math.ceil(artworks.length / itemsPerPage))
+
+  const sortedArtworks = useMemo(
+    () => sortArtworks(artworks, sortOption),
+    [artworks, sortOption]
+  )
+
+  useEffect(() => {
+    setCurrentPage(1)
+  }, [sortOption])
+
+  const totalPages = Math.max(1, Math.ceil(sortedArtworks.length / itemsPerPage))
   const startIndex = (currentPage - 1) * itemsPerPage
-  const paginatedArtworks = artworks.slice(startIndex, startIndex + itemsPerPage)
+  const paginatedArtworks = sortedArtworks.slice(
+    startIndex,
+    startIndex + itemsPerPage
+  )
 
   return artworks.length > 0 ? (
     <AllArtworks
       artworks={paginatedArtworks}
+      sortOption={sortOption}
+      onSortChange={setSortOption}
       currentPage={currentPage}
       totalPages={totalPages}
       onPageChange={setCurrentPage}
@@ -59,16 +124,50 @@ export default function Artworks() {
 
 function AllArtworks({
   artworks,
+  sortOption,
+  onSortChange,
   currentPage,
   totalPages,
   onPageChange,
 }: AllArtworksProps & {
+  sortOption: ArtSortOption
+  onSortChange: (sort: ArtSortOption) => void
   currentPage: number
   totalPages: number
   onPageChange: (page: number) => void
 }) {
   return (
     <div className="flex flex-col gap-8">
+      <div className="flex w-full items-center justify-end">
+        <Label className="flex items-center gap-2 text-base">
+          Sortera:
+          <Select
+            value={sortOption}
+            onValueChange={(value) => {
+              if (value) {
+                onSortChange(value as ArtSortOption)
+              }
+            }}
+          >
+            <SelectTrigger className="h-10 min-w-48 rounded-md border border-border bg-background px-3 py-2 text-base text-foreground">
+              <SelectValue className="text-base">
+                {ART_SORT_LABELS[sortOption]}
+              </SelectValue>
+            </SelectTrigger>
+            <SelectContent className="text-base">
+              {ART_SORT_OPTIONS.map(([value, label]) => (
+                <SelectItem
+                  key={value}
+                  value={value}
+                  className="min-h-10 py-2 text-base"
+                >
+                  {label}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </Label>
+      </div>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {artworks.map((art) => (
           <article
