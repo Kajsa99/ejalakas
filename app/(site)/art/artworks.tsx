@@ -2,9 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react"
 import { createClient } from "@/lib/supabase/client"
-import Image from "next/image"
-import Link from "next/link"
-import { ForSaleBadge } from "@/components/for-sale-badge"
+import ArtworkCard from "@/components/artwork-card"
 import { Label } from "@/components/ui/label"
 import {
   Pagination,
@@ -170,39 +168,14 @@ function AllArtworks({
       </div>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {artworks.map((art) => (
-          <article
+          <ArtworkCard
             key={art.id}
-            className="outfit-uniquifier mt-6 w-full max-w-md overflow-hidden bg-amber-50 dark:bg-zinc-900"
-          >
-            <div className="relative">
-              <Link href={`/art/${art.id}`}>
-                <Image
-                  src={art.image}
-                  alt={art.name}
-                  width={400}
-                  height={400}
-                  className="block h-[240px] w-full object-cover"
-                />
-              </Link>
-              <div className="absolute right-2 bottom-2 z-10">
-                <ForSaleBadge sold={art.status} />
-              </div>
-            </div>
-            <div className="flex flex-col p-4">
-              <div className="flex w-full flex-row items-center justify-between">
-                <h2 className="outfit-uniquifier text-lg">{art.name}</h2>
-                <p className="text-md text-muted-foreground">{art.year}</p>
-              </div>
-              <div className="flex w-full justify-end">
-                <Link
-                  href={`/art/${art.id}`}
-                  className="mt-2 inline-block text-sm underline-offset-4 hover:text-primary hover:underline"
-                >
-                  Se detaljer
-                </Link>
-              </div>
-            </div>
-          </article>
+            id={art.id}
+            name={art.name}
+            image={art.image}
+            year={art.year}
+            status={art.status}
+          />
         ))}
       </div>
 

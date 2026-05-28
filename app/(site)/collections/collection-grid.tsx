@@ -41,7 +41,7 @@ export default function CollectionGrid() {
 
   if (!collections || collections.length === 0) {
     return (
-      <div className="text-sm text-muted-foreground">
+      <div className="mx-auto w-full max-w-2xl min-w-80 text-center text-sm text-muted-foreground">
         Laddar kollektioner...
       </div>
     )
@@ -55,23 +55,23 @@ export default function CollectionGrid() {
   )
 
   return (
-    <div className="mt-6 flex flex-col gap-8">
+    <div className="mx-auto mt-6 flex w-full max-w-2xl min-w-lg flex-col gap-8">
       {paginatedCollections.map((collection: Collection) => (
         <div key={collection.id}>
-          <div className="mx-auto flex w-full max-w-6xl min-w-0 flex-col items-stretch gap-4 md:flex-row md:items-start md:gap-6">
-            <div className="relative w-full min-w-0 shrink-0 md:w-1/2">
+          <div className="flex w-full flex-col items-center gap-4 md:flex-row md:items-start md:justify-center md:gap-6">
+            <div className="relative w-full max-w-[180px] shrink-0 sm:max-w-[220px]">
               <Link href={`/collections/${collection.id}`} className="block">
                 <Image
                   src={collection.image}
                   alt={collection.name}
-                  width={800}
-                  height={500}
-                  sizes="(max-width: 767px) 100vw, 672px"
-                  className="h-[220px] w-full object-cover sm:h-[280px] md:h-[360px]"
+                  width={400}
+                  height={400}
+                  sizes="(max-width: 767px) 180px, 220px"
+                  className="aspect-square w-full object-cover"
                 />
               </Link>
             </div>
-            <div className="flex w-full min-w-0 flex-col items-start justify-start gap-2 md:w-1/2">
+            <div className="flex min-w-0 flex-col items-center justify-start gap-2 text-center md:items-start md:text-left">
               <h2 className="text-2xl font-medium md:text-3xl">
                 {collection.name}
               </h2>
@@ -93,7 +93,7 @@ export default function CollectionGrid() {
       ))}
 
       {totalPages > 1 && (
-        <Pagination>
+        <Pagination className="mx-auto w-fit">
           <PaginationContent>
             <PaginationItem>
               <PaginationPrevious
@@ -104,7 +104,9 @@ export default function CollectionGrid() {
                   setCurrentPage(Math.max(1, currentPage - 1))
                 }}
                 aria-disabled={currentPage === 1}
-                className={currentPage === 1 ? "pointer-events-none opacity-50" : ""}
+                className={
+                  currentPage === 1 ? "pointer-events-none opacity-50" : ""
+                }
               />
             </PaginationItem>
 
@@ -135,7 +137,9 @@ export default function CollectionGrid() {
                 }}
                 aria-disabled={currentPage === totalPages}
                 className={
-                  currentPage === totalPages ? "pointer-events-none opacity-50" : ""
+                  currentPage === totalPages
+                    ? "pointer-events-none opacity-50"
+                    : ""
                 }
               />
             </PaginationItem>

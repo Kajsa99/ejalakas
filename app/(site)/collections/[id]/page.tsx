@@ -1,8 +1,7 @@
 import { createClient } from "@/lib/supabase/server"
 import { notFound } from "next/navigation"
-import Image from "next/image"
 import Link from "next/link"
-import { ForSaleBadge } from "@/components/for-sale-badge"
+import ArtworkCard from "@/components/artwork-card"
 import { ArrowLeftIcon } from "lucide-react"
 
 interface Artwork {
@@ -48,18 +47,7 @@ export default async function Page({
           Tillbaka
         </Link>
         <div className="flex w-full max-w-4xl min-w-0 flex-col gap-4 md:flex-row md:items-start md:gap-6">
-          <div className="relative w-full shrink-0 overflow-hidden md:w-1/2">
-            <Image
-              src={collection.image}
-              alt={collection.name}
-              width={500}
-              height={500}
-              sizes="(max-width: 767px) 100vw, 448px"
-              className="aspect-square w-full object-cover md:aspect-auto md:h-auto"
-              unoptimized
-            />
-          </div>
-          <div className="flex w-full min-w-0 flex-col gap-2 md:w-1/2">
+          <div className="flex w-full min-w-0 flex-col gap-2">
             <h1 className="text-xl font-medium sm:text-2xl">
               Kollektion {collection.name}
             </h1>
@@ -69,47 +57,24 @@ export default async function Page({
             </p>
           </div>
         </div>
+
         <div className="mt-10 w-full">
+          <p className="text-xl">Alla verk i kollektionen</p>
           {!artworks || artworks.length === 0 ? (
             <p className="text-sm text-muted-foreground">
               Inga verk hittades i den här kollektionen.
             </p>
           ) : (
-            <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {(artworks as Artwork[]).map((artwork) => (
-                <article
+                <ArtworkCard
                   key={artwork.id}
-                  className="w-full overflow-hidden bg-amber-50 dark:bg-zinc-900"
-                >
-                  <div className="relative">
-                    <Link href={`/art/${artwork.id}`}>
-                      <Image
-                        src={artwork.image}
-                        alt={artwork.name}
-                        width={400}
-                        height={300}
-                        className="block h-[220px] w-full object-cover"
-                      />
-                    </Link>
-                    <div className="absolute right-2 bottom-2 z-10">
-                      <ForSaleBadge sold={artwork.status} />
-                    </div>
-                  </div>
-                  <div className="p-4">
-                    <div className="mt-3 flex items-center justify-between">
-                      <h2 className="text-base">{artwork.name}</h2>
-                      <p className="text-sm text-muted-foreground">
-                        {artwork.year}
-                      </p>
-                    </div>
-                    <Link
-                      href={`/art/${artwork.id}`}
-                      className="mt-2 inline-block text-sm text-primary underline-offset-4 hover:underline"
-                    >
-                      Se detaljer
-                    </Link>
-                  </div>
-                </article>
+                  id={artwork.id}
+                  name={artwork.name}
+                  image={artwork.image}
+                  year={artwork.year}
+                  status={artwork.status}
+                />
               ))}
             </div>
           )}
