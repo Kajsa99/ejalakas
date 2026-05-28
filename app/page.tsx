@@ -20,8 +20,8 @@ export default async function HomePage() {
   const profileImageUrl = `${supabaseUrl}/storage/v1/object/public/${STORAGE_BUCKET}/${STORAGE_IMAGE_PATHS.profile}`
 
   return (
-    <div className="flex min-h-screen w-full min-w-0 max-w-full flex-col items-center gap-4 overflow-x-hidden bg-amber-100 p-6 dark:bg-zinc-950">
-      <div className="mt-20 flex w-full min-w-0 max-w-full flex-col items-center gap-4 px-1 text-sm sm:px-0">
+    <div className="flex min-h-screen w-full max-w-full min-w-0 flex-col items-center gap-4 overflow-x-hidden bg-white p-6 dark:bg-zinc-950">
+      <div className="mt-20 flex w-full max-w-full min-w-0 flex-col items-center gap-4 px-1 text-sm sm:px-0">
         <Image
           src={profileImageUrl}
           alt="E. Jalakas"
@@ -33,7 +33,7 @@ export default async function HomePage() {
         />
         <h1
           className={cn(
-            "-mt-10 mx-auto max-w-full text-center text-5xl leading-tight font-bold text-primary sm:text-6xl md:mx-0 md:-ml-40 md:text-left md:text-7xl",
+            "mx-auto max-w-full text-center text-5xl leading-tight font-bold text-primary sm:text-6xl md:mx-0 md:-ml-40 md:text-left md:text-7xl",
             imFellEnglish.className
           )}
         >
@@ -41,16 +41,16 @@ export default async function HomePage() {
         </h1>
         <p
           className={cn(
-            "text-md max-w-lg px-1 text-center text-primary sm:px-0 md:m-4 lg:-mr-70",
+            "text-md mx-auto max-w-lg px-1 text-center text-primary",
             imFellEnglish.className
           )}
         >
-          &quot;Målar med energi och färg för att ge liv i mina tolkningar av
+          Målar med energi och färg för att ge liv i mina tolkningar av
           omvärlden. Jag visar er hur jag ser den och hur färg kan förvandla en
-          bild till en annan.&quot;
+          bild till en annan.
         </p>
       </div>
-      <div className="mb-20 flex w-full min-w-0 max-w-full flex-col items-center justify-center gap-10 px-4 py-10 md:flex-row md:px-10">
+      <div className="mb-20 flex w-full max-w-full min-w-0 flex-col items-center justify-center gap-10 px-4 py-10 md:flex-row md:px-10">
         <ArtCard />
         <ExhibitionCard />
         <CollectionCard />

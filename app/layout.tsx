@@ -63,7 +63,7 @@ export default function RootLayout({
         outfit.variable
       )}
     >
-      <body className="bg-background antialiased">
+      <body className="bg-white antialiased">
         <ThemeProvider
           attribute="class"
           defaultTheme="light"

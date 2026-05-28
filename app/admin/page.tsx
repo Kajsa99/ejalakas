@@ -24,7 +24,7 @@ export default async function AdminPage() {
   }
 
   return (
-    <div className="w-full bg-white">
+    <div className="w-full bg-white text-center">
       <AdminMenu />
     </div>
   )
