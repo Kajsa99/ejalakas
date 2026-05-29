@@ -3,7 +3,10 @@
 import { useEffect, useMemo, useState } from "react"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { MessageFiltersBar, type MessageFilters } from "./message-filters"
-import { Badge } from "@/components/ui/badge"
+import {
+  InboxMessageCard,
+  type InboxMessage,
+} from "./inbox-message-card"
 import { Input } from "@/components/ui/input"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
@@ -19,20 +22,6 @@ function getMessageCategory(message: InboxMessage): MessageCategory {
   if (message.art_id) return "köpförfrågan"
   if (message.course_id) return "kursanmälan"
   return "frågor"
-}
-
-interface InboxMessage {
-  id: string
-  name: string
-  email: string
-  phone: string | null
-  art_id: string | null
-  art_name: string | null
-  course_id: string | null
-  course_name: string | null
-  course_amount: number | null
-  message: string
-  created_at: string
 }
 
 export function InboxMessages() {
@@ -91,7 +80,6 @@ export function InboxMessages() {
           message.art_name,
           message.course_id,
           message.course_name,
-          message.course_amount,
           message.message,
         ]
           .filter(
@@ -198,47 +186,12 @@ export function InboxMessages() {
       ) : null}
 
       <div className="min-h-0 flex-1">
-        <ScrollArea className="h-full">
-          {displayedMessages.map((entry) => (
-            <article
-              key={entry.id}
-              className="mb-2 flex flex-col gap-2 rounded-md border bg-white p-3"
-            >
-              {entry.art_id ? (
-                <Badge
-                  variant="secondary"
-                  className="text-md border-red-200 bg-red-100 text-red-800"
-                >
-                  Art id: {entry.art_id}, &quot;{entry.art_name}&quot;
-                </Badge>
-              ) : null}
-              {entry.course_id ? (
-                <Badge
-                  variant="secondary"
-                  className="text-md border-yellow-200 bg-yellow-100 text-yellow-800"
-                >
-                  Kursanmälan: {entry.course_id}, &quot;{entry.course_name}
-                  &quot;
-                </Badge>
-              ) : null}
-              <div className="flex flex-row items-center gap-2">
-                <p className="text-sm font-medium">{entry.name}</p>
-                <p className="text-sm text-muted-foreground">{entry.email}</p>
-                {entry.phone ? (
-                  <p className="text-sm text-muted-foreground">{entry.phone}</p>
-                ) : null}
-                {entry.course_amount ? (
-                  <p className="text-sm text-muted-foreground">
-                    Antal deltagare: {entry.course_amount}
-                  </p>
-                ) : null}
-              </div>
-              <p className="text-sm whitespace-pre-wrap">{entry.message}</p>
-              <p className="text-xs text-muted-foreground">
-                {new Date(entry.created_at).toLocaleString("sv-SE")}
-              </p>
-            </article>
-          ))}
+        <ScrollArea className="h-full pr-3">
+          <div className="space-y-4 pb-4">
+            {displayedMessages.map((message) => (
+              <InboxMessageCard key={message.id} message={message} />
+            ))}
+          </div>
         </ScrollArea>
       </div>
     </section>

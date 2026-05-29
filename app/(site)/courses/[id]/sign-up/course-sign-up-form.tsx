@@ -22,17 +22,6 @@ export default function CourseSignUpForm({ courseId }: CourseSignUpFormProps) {
     event.preventDefault()
     const form = event.currentTarget
     const formData = new FormData(form)
-    const userMessage = String(formData.get("message") ?? "").trim()
-    const rawAmount = String(formData.get("course_amount") ?? "1").trim()
-    const participantAmount =
-      rawAmount !== "" && Number.isFinite(Number(rawAmount))
-        ? Math.max(1, Number(rawAmount))
-        : 1
-
-    formData.set(
-      "message",
-      `Kursanmälan\nAntal deltagare: ${participantAmount}\n\nMeddelande från deltagare:\n${userMessage || "-"}`
-    )
 
     setIsSubmitting(true)
     setError(null)

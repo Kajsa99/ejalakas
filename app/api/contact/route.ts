@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server"
 
+import { formatCourseSignUpMessage } from "@/lib/course-sign-up-message"
 import { createClient } from "@/lib/supabase/server"
-
 export async function POST(request: Request) {
   const supabase = await createClient()
   const formData = await request.formData()
@@ -10,6 +10,7 @@ export async function POST(request: Request) {
   const email = String(formData.get("email") ?? "").trim()
   const phone = String(formData.get("phone") ?? "").trim()
   const message = String(formData.get("message") ?? "").trim()
+  const rawCourseAmount = String(formData.get("course_amount") ?? "").trim()
   const rawArtId = String(formData.get("art_id") ?? "").trim()
   const rawCourseId = String(formData.get("course_id") ?? "").trim()
   const artId =
@@ -20,16 +21,27 @@ export async function POST(request: Request) {
     rawCourseId !== "" && Number.isFinite(Number(rawCourseId))
       ? Number(rawCourseId)
       : null
+  const participantCount =
+    courseId !== null &&
+    rawCourseAmount !== "" &&
+    Number.isFinite(Number(rawCourseAmount))
+      ? Math.max(1, Math.floor(Number(rawCourseAmount)))
+      : 1
 
   if (!name || !email ) {
     return NextResponse.json({ error: "Fyll i alla obligatoriska fält" }, { status: 400 })
   }
 
+  const storedMessage =
+    courseId !== null
+      ? formatCourseSignUpMessage(participantCount, message)
+      : message
+
   const { error } = await supabase.from("contact_message").insert({
     name,
     email,
     phone,
-    message,
+    message: storedMessage,
     art_id: artId,
     course_id: courseId,
   })
