@@ -1,4 +1,5 @@
-import CoursesGrid from "./courses-grid"
+import UpcomingCourses from "./upcoming-courses"
+import PreviousCourses from "./previous-courses"
 import Newsletter from "@/components/newletter"
 
 export default function Page() {
@@ -13,7 +14,8 @@ export default function Page() {
           våga göra nya saker.
         </p>
       </div>
-      <CoursesGrid />
+      <UpcomingCourses />
+      <PreviousCourses />
       <Newsletter />
     </div>
   )

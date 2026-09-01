@@ -13,15 +13,11 @@ export default function Page() {
         <div>
           <p className="text-md">Kontakta mig på</p>
           <Link
-            href="mailto:elisabetsjalakas@gmail.com"
+            href="mailto:jalakasart@gmail.com"
             className="text-primary hover:underline"
           >
-            elisabetsjalakas@gmail.com
+            jalakasart@gmail.com
           </Link>{" "}
-          eller telefon{" "}
-          <Link href="tel:0707297220" className="text-primary hover:underline">
-            070-729 72 20
-          </Link>
         </div>
       </div>
       <ContactForm />

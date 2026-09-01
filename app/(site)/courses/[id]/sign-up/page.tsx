@@ -4,6 +4,7 @@ import { ArrowLeftIcon } from "lucide-react"
 
 import { createClient } from "@/lib/supabase/server"
 
+import { isUpcomingCourse } from "../../course-utils"
 import CourseSignUpForm from "./course-sign-up-form"
 
 export default async function CourseSignUpPage({
@@ -27,6 +28,10 @@ export default async function CourseSignUpPage({
     .single()
 
   if (!course) {
+    notFound()
+  }
+
+  if (!isUpcomingCourse(course.date)) {
     notFound()
   }
 
