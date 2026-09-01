@@ -19,10 +19,10 @@ export default function Footer() {
           <p className="flex flex-row gap-2">
             <Instagram className="size-4" />{" "}
             <Link
-              href="https://www.instagram.com/ejalakas/"
+              href="https://www.instagram.com/bettliz/"
               className="text-sm hover:underline"
             >
-              @ejalakas
+              @bettliz
             </Link>
           </p>
           <p className="flex flex-row gap-2">
