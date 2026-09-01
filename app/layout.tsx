@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import { IM_Fell_English, Merriweather, Outfit } from "next/font/google"
 import { ThemeProvider } from "next-themes"
+import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
 import { cn } from "@/lib/utils"
 import Navbar from "@/components/navbar"
@@ -82,6 +83,7 @@ export default function RootLayout({
               <Footer />
             </Suspense>
           </main>
+          <Analytics />
         </ThemeProvider>
       </body>
     </html>
