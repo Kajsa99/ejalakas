@@ -55,18 +55,11 @@ export default function Footer() {
             Vid frågor kring min konst, samarbeten eller förfrågningar, kontakta
             mig på{" "}
             <Link
-              href="mailto:elisabetsjalakas@gmail.com"
+              href="mailto:jalakasart@gmail.com"
               className="text-primary hover:underline"
             >
-              ejalakasart@gmail.com
+              jalakasart@gmail.com
             </Link>{" "}
-            eller telefon{" "}
-            <Link
-              href="tel:0707297220"
-              className="text-primary hover:underline"
-            >
-              070-729 72 20
-            </Link>
           </p>
         </div>
         <div className="flex w-full flex-col gap-2 md:w-1/3">
@@ -77,8 +70,8 @@ export default function Footer() {
             Om mig
           </Link>
           <p className="text-sm">
-            Konstnär baserad i Lindome, Göteborg. Skapar i olja, akvarell,
-            collage och teckning med olika tekniker och verktyg.{" "}
+            Konstnär baserad i Göteborg. Skapar i olja, akvarell, collage och
+            teckning med olika tekniker och verktyg.{" "}
             <Link href="/exhibitions" className="text-primary hover:underline">
               Se aktuella utställningar
             </Link>
