@@ -33,19 +33,19 @@ export default function Navbar() {
   }
 
   const frostedBar =
-    "rounded-xl bg-background/25 backdrop-blur-xl backdrop-saturate-150 supports-backdrop-filter:backdrop-blur-xl"
+    "bg-background/25 backdrop-blur-xl backdrop-saturate-150 supports-backdrop-filter:backdrop-blur-xl"
 
   return (
     <>
       <nav
-        className={`fixed top-0 right-4 z-50 hidden h-16 items-center gap-1 p-2 md:flex ${frostedBar}`}
+        className={`fixed inset-x-0 top-0 z-50 hidden h-16 items-center justify-end gap-1 p-2 md:flex ${frostedBar}`}
       >
         <div className="flex flex-row flex-wrap items-center gap-1">
           {links.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className={`rounded-md px-2 py-1 text-sm font-medium transition-colors hover:bg-primary hover:text-primary-foreground ${
+              className={`px-2 py-1 text-sm font-medium transition-colors hover:bg-primary hover:text-primary-foreground ${
                 isActiveLink(link.href)
                   ? "bg-primary text-primary-foreground"
                   : ""
@@ -76,7 +76,7 @@ export default function Navbar() {
             <button
               type="button"
               onClick={() => setMobileOpen(false)}
-              className="ml-auto rounded-md p-2 text-foreground transition-colors hover:bg-primary hover:text-primary-foreground"
+              className="ml-auto p-2 text-foreground transition-colors hover:bg-primary hover:text-primary-foreground"
               aria-label="Close menu"
             >
               <XIcon className="size-6" />
@@ -86,7 +86,7 @@ export default function Navbar() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setMobileOpen(false)}
-                className={`w-full rounded-md px-3 py-2 text-base font-medium transition-colors hover:bg-primary hover:text-primary-foreground ${
+                className={`w-full px-3 py-2 text-base font-medium transition-colors hover:bg-primary hover:text-primary-foreground ${
                   isActiveLink(link.href)
                     ? "bg-primary text-primary-foreground"
                     : ""
