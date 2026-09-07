@@ -14,7 +14,7 @@ export default function Page() {
           <p className="text-md">Kontakta mig på</p>
           <Link
             href="mailto:jalakasart@gmail.com"
-            className="text-primary hover:underline"
+            className="text-foreground/80 hover:underline"
           >
             jalakasart@gmail.com
           </Link>{" "}

@@ -41,7 +41,7 @@ export default async function Page({
       <div className="mx-auto flex w-full max-w-7xl min-w-0 flex-col">
         <Link
           href="/collections"
-          className="text-md mb-4 flex w-fit flex-row items-center gap-2 text-primary hover:underline sm:mb-6"
+          className="text-md mb-4 flex w-fit flex-row items-center gap-2 text-foreground/80 hover:underline sm:mb-6"
         >
           <ArrowLeftIcon className="size-4" />
           Tillbaka

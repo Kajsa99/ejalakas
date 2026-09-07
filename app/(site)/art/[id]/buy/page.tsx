@@ -27,7 +27,7 @@ export default async function BuyArtPage({
       <div className="mx-auto flex w-full max-w-2xl flex-col">
         <Link
           href="/art"
-          className="text-md mb-6 flex w-fit flex-row items-center gap-2 text-primary hover:underline"
+          className="text-md mb-6 flex w-fit flex-row items-center gap-2 text-foreground/80 hover:underline"
         >
           <ArrowLeftIcon className="size-4" />
           Tillbaka
@@ -59,14 +59,14 @@ export default async function BuyArtPage({
               <p className="text-md">Kontakta mig på</p>
               <Link
                 href="mailto:elisabetsjalakas@gmail.com"
-                className="text-primary hover:underline"
+                className="text-foreground/80 hover:underline"
               >
                 elisabetsjalakas@gmail.com
               </Link>{" "}
               eller telefon{" "}
               <Link
                 href="tel:0707297220"
-                className="text-primary hover:underline"
+                className="text-foreground/80 hover:underline"
               >
                 070-729 72 20
               </Link>

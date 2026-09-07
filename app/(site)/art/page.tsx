@@ -5,20 +5,21 @@ import Newsletter from "@/components/newletter"
 
 export default function Page() {
   return (
-    <div className="my-20 flex flex-col p-6">
-      <div className="flex flex-col items-center justify-center gap-2">
-        <h1 className="outfit-uniquifier text-2xl font-medium">Konstverk</h1>
-        <p className="merriweather-long-text mt-2 text-sm">
-          Urval av konstverk från ateljén.
-        </p>
+    <div className="site-page">
+      <div className="site-intro">
+        <div>
+          <p className="eyebrow mb-4 text-foreground">E. Jalakas / Galleri</p>
+          <h1 className="page-heading">Konstverk</h1>
+        </div>
+        <p className="site-intro-copy">Urval av konstverk från ateljén.</p>
         <Link
           href="/collections"
-          className="text-sm text-primary hover:underline"
+          className="eyebrow text-foreground hover:underline md:col-start-2"
         >
           Se alla kollektioner
         </Link>
       </div>
-      <div className="mt-10 flex flex-col items-center justify-center gap-2">
+      <div className="mt-12 flex flex-col items-center justify-center gap-2">
         <ArtHighlight />
       </div>
       <div className="mx-auto mt-6 w-full max-w-6xl">

@@ -3,15 +3,20 @@ import Newsletter from "@/components/newletter"
 
 export default function Page() {
   return (
-    <div className="my-20 flex flex-col items-center p-6">
-      <div className="mx-auto flex w-full max-w-6xl min-w-0 flex-col items-center gap-4 text-sm">
-        <h1 className="text-2xl font-medium">Kollektioner</h1>
-        <p className="text-md max-w-2xl text-muted-foreground">
+    <div className="site-page">
+      <div className="site-intro">
+        <div>
+          <p className="eyebrow mb-4 text-foreground">E. Jalakas / Samlingar</p>
+          <h1 className="page-heading">Kollektioner</h1>
+        </div>
+        <p className="site-intro-copy">
           Här en alla samlade kollektioner från E. Jalakas, upptäck de som
           inspirerar dig. Jag målar i kollektioner då jag blir nyfiken och
           inspierad så att jag vill fånga det på flera olika sätt. Jag byter
           medium, färger och vinklar tills jag fångat det jag såg.
         </p>
+      </div>
+      <div className="w-full pt-12">
         <CollectionGrid />
       </div>
       <Newsletter />

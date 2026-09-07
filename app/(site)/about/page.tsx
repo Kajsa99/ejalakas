@@ -18,19 +18,19 @@ const aboutPaintImage2 = `${supabaseUrl}/storage/v1/object/public/${STORAGE_BUCK
 
 export default function Page() {
   return (
-    <div className="my-12 flex flex-col items-center p-4 sm:my-20 sm:p-6">
-      <div className="merriweather-long-text mx-auto flex w-full max-w-6xl min-w-0 flex-col items-center gap-4 text-sm">
-        <div className="flex w-full min-w-0 flex-col items-center gap-6 bg-amber-50 sm:gap-8">
+    <div className="site-page">
+      <div className="merriweather-long-text mx-auto flex w-full min-w-0 flex-col items-center gap-4 text-sm">
+        <div className="flex w-full min-w-0 flex-col items-center gap-6 border-t-8 border-foreground/10 bg-secondary/50 px-4 sm:gap-8 sm:px-8">
           <h1
             className={cn(
-              "mt-6 w-full max-w-full px-2 text-center text-2xl font-bold text-primary sm:text-3xl md:mt-10 md:-ml-10 md:w-auto md:max-w-none md:self-start md:px-0 md:text-left",
+              "mt-8 w-full max-w-full px-2 text-center font-heading text-4xl font-bold text-foreground sm:text-5xl md:mt-12 md:-ml-10 md:w-auto md:max-w-none md:self-start md:px-0 md:text-left",
               imFellEnglish.className
             )}
           >
             Jaget, naturen och människan
           </h1>
           <div className="w-full max-w-[980px] min-w-0 md:grid md:grid-cols-2 md:items-center md:gap-8">
-            <div className="relative aspect-4/5 w-full min-h-[220px] overflow-hidden sm:aspect-auto sm:h-[380px] md:h-[500px]">
+            <div className="relative aspect-4/5 min-h-[220px] w-full overflow-hidden sm:aspect-auto sm:h-[380px] md:h-[500px]">
               <Image
                 src={aboutProfileImage}
                 alt="profil med blommor"
@@ -44,7 +44,7 @@ export default function Page() {
             <div className="mt-4 px-2 py-4 leading-loose sm:px-4 md:mt-0 md:p-8">
               <h2
                 className={cn(
-                  "mb-4 text-lg font-bold text-primary",
+                  "mb-4 text-lg font-bold text-foreground",
                   imFellEnglish.className
                 )}
               >
@@ -66,7 +66,7 @@ export default function Page() {
             <div className="mt-4 px-2 py-4 leading-loose sm:px-4 md:mt-0 md:p-8">
               <h2
                 className={cn(
-                  "mb-4 text-lg font-bold text-primary",
+                  "mb-4 text-lg font-bold text-foreground",
                   imFellEnglish.className
                 )}
               >
@@ -90,7 +90,7 @@ export default function Page() {
                 vart gränsen går.
               </p>
             </div>
-            <div className="relative mx-auto mt-4 aspect-5/4 w-full min-h-[220px] max-w-[400px] overflow-hidden sm:aspect-auto sm:mt-0 sm:h-[340px] md:ml-auto md:h-[400px]">
+            <div className="relative mx-auto mt-4 aspect-5/4 min-h-[220px] w-full max-w-[400px] overflow-hidden sm:mt-0 sm:aspect-auto sm:h-[340px] md:ml-auto md:h-[400px]">
               <Image
                 src={aboutPaintImage}
                 alt="målar utomhus"
@@ -104,7 +104,7 @@ export default function Page() {
             </div>
           </div>
           <div className="w-full max-w-[980px] min-w-0 py-4 md:grid md:grid-cols-2 md:items-center md:gap-8">
-            <div className="relative aspect-4/5 w-full min-h-[220px] overflow-hidden sm:aspect-auto sm:h-[380px] md:h-[500px]">
+            <div className="relative aspect-4/5 min-h-[220px] w-full overflow-hidden sm:aspect-auto sm:h-[380px] md:h-[500px]">
               <Image
                 src={aboutPaintImage2}
                 alt="måla vid havet"
@@ -118,7 +118,7 @@ export default function Page() {
             <div className="mt-4 px-2 py-4 leading-loose sm:px-4 md:mt-0 md:p-8">
               <h2
                 className={cn(
-                  "mb-4 text-lg font-bold text-primary",
+                  "mb-4 text-lg font-bold text-foreground",
                   imFellEnglish.className
                 )}
               >

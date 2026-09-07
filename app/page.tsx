@@ -20,20 +20,20 @@ export default async function HomePage() {
   const profileImageUrl = `${supabaseUrl}/storage/v1/object/public/${STORAGE_BUCKET}/${STORAGE_IMAGE_PATHS.profile}`
 
   return (
-    <div className="flex min-h-screen w-full max-w-full min-w-0 flex-col items-center gap-4 overflow-x-hidden bg-white p-6 dark:bg-zinc-950">
-      <div className="mt-20 flex w-full max-w-full min-w-0 flex-col items-center gap-4 px-1 text-sm sm:px-0">
+    <div className="animate-page-in flex min-h-screen w-full max-w-full min-w-0 flex-col items-center gap-4 overflow-x-hidden px-4 pt-20 sm:px-8">
+      <div className="mt-8 flex w-full max-w-6xl min-w-0 flex-col items-center gap-5 px-1 text-sm sm:px-0">
         <Image
           src={profileImageUrl}
           alt="E. Jalakas"
           width={300}
           height={800}
-          className="h-auto w-full max-w-[300px]"
+          className="animate-float-in h-auto w-full max-w-[360px] object-contain mix-blend-multiply dark:mix-blend-normal"
           priority
           unoptimized
         />
         <h1
           className={cn(
-            "mx-auto max-w-full text-center text-5xl leading-tight font-bold text-primary sm:text-6xl md:mx-0 md:-ml-40 md:text-left md:text-7xl",
+            "page-heading mx-auto max-w-full text-center font-bold text-primary sm:text-6xl md:mx-0 md:-ml-48 md:text-left",
             imFellEnglish.className
           )}
         >
@@ -41,7 +41,7 @@ export default async function HomePage() {
         </h1>
         <p
           className={cn(
-            "text-md mx-auto max-w-lg px-1 text-center text-primary",
+            "max-w-lg px-1 text-center font-serif text-base leading-relaxed text-foreground/75 md:text-left",
             imFellEnglish.className
           )}
         >
@@ -50,10 +50,16 @@ export default async function HomePage() {
           bild till en annan.
         </p>
       </div>
-      <div className="mb-20 flex w-full max-w-full min-w-0 flex-col items-center justify-center gap-10 px-4 py-10 md:flex-row md:px-10">
-        <ArtCard />
-        <ExhibitionCard />
-        <CollectionCard />
+      <div className="mb-16 grid w-full max-w-6xl min-w-0 grid-cols-1 gap-4 px-0 py-12 md:grid-cols-3 md:gap-6">
+        <div className="reveal-card reveal-delay-1">
+          <ArtCard />
+        </div>
+        <div className="reveal-card reveal-delay-2">
+          <ExhibitionCard />
+        </div>
+        <div className="reveal-card reveal-delay-3">
+          <CollectionCard />
+        </div>
       </div>
       <Newsletter />
     </div>

@@ -12,10 +12,10 @@ export default function Footer() {
   }
 
   return (
-    <footer className="sticky bottom-0 flex w-full justify-center bg-amber-200 p-14 dark:bg-zinc-900">
-      <div className="mt-20 mb-20 flex w-full max-w-7xl flex-col gap-6 md:flex-row md:justify-between">
+    <footer className="flex w-full justify-center border-t border-foreground/15 bg-foreground px-6 py-14 text-background">
+      <div className="flex w-full max-w-7xl flex-col gap-10 md:flex-row md:justify-between">
         <div className="mx-auto flex w-full max-w-sm flex-col gap-2 md:w-1/3">
-          <h2 className="text-xl font-bold">Sociala medier</h2>
+          <h2 className="eyebrow">Sociala medier</h2>
           <p className="flex flex-row gap-2">
             <Instagram className="size-4" />{" "}
             <Link
@@ -45,10 +45,7 @@ export default function Footer() {
           </p>
         </div>
         <div className="flex w-full flex-col gap-2 md:w-1/3">
-          <Link
-            href="/contact"
-            className="text-xl font-bold hover:text-primary hover:underline"
-          >
+          <Link href="/contact" className="eyebrow hover:underline">
             Kontakt
           </Link>
           <p className="text-sm">
@@ -56,23 +53,23 @@ export default function Footer() {
             mig på{" "}
             <Link
               href="mailto:jalakasart@gmail.com"
-              className="text-primary hover:underline"
+              className="text-background underline-offset-4 hover:underline"
             >
               jalakasart@gmail.com
             </Link>{" "}
           </p>
         </div>
         <div className="flex w-full flex-col gap-2 md:w-1/3">
-          <Link
-            href="/about"
-            className="text-xl font-bold hover:text-primary hover:underline"
-          >
+          <Link href="/about" className="eyebrow hover:underline">
             Om mig
           </Link>
           <p className="text-sm">
             Konstnär baserad i Göteborg. Skapar i olja, akvarell, collage och
             teckning med olika tekniker och verktyg.{" "}
-            <Link href="/exhibitions" className="text-primary hover:underline">
+            <Link
+              href="/exhibitions"
+              className="underline-offset-4 hover:underline"
+            >
               Se aktuella utställningar
             </Link>
           </p>

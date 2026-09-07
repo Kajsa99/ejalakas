@@ -72,13 +72,13 @@ export default function BreadcrumbHeader() {
         <BreadcrumbItem>
           <BreadcrumbLink
             href={href}
-            className="text-md text-primary uppercase hover:text-primary/80"
+            className="text-md text-foreground/80 uppercase hover:underline"
           >
             {label}
           </BreadcrumbLink>
         </BreadcrumbItem>
         {index < breadcrumbs.length - 1 && (
-          <BreadcrumbSeparator className="text-primary" />
+          <BreadcrumbSeparator className="text-foreground/50" />
         )}
       </div>
     )

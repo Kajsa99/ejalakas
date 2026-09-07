@@ -33,19 +33,22 @@ export default function Navbar() {
   }
 
   const frostedBar =
-    "bg-background/25 backdrop-blur-xl backdrop-saturate-150 supports-backdrop-filter:backdrop-blur-xl"
+    "border-b border-foreground/10 bg-background/90 backdrop-blur-xl supports-backdrop-filter:backdrop-blur-xl"
 
   return (
     <>
       <nav
-        className={`fixed inset-x-0 top-0 z-50 hidden h-16 items-center justify-end gap-1 p-2 md:flex ${frostedBar}`}
+        className={`fixed inset-x-0 top-0 z-50 hidden h-16 items-center justify-between gap-4 px-6 md:flex ${frostedBar}`}
       >
+        <Link href="/" className="font-heading text-2xl text-primary">
+          E. Jalakas
+        </Link>
         <div className="flex flex-row flex-wrap items-center gap-1">
           {links.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className={`px-2 py-1 text-sm font-medium transition-colors hover:bg-primary hover:text-primary-foreground ${
+              className={`px-3 py-2 text-[11px] font-semibold tracking-[0.12em] uppercase transition-colors hover:bg-primary hover:text-primary-foreground ${
                 isActiveLink(link.href)
                   ? "bg-primary text-primary-foreground"
                   : ""

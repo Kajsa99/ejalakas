@@ -64,7 +64,7 @@ async function ArtDetail({ id }: { id: number }) {
       <div className="mx-auto flex w-full max-w-5xl flex-col">
         <Link
           href="/art"
-          className="text-md mb-6 flex w-fit flex-row items-center gap-2 text-primary hover:underline"
+          className="text-md mb-6 flex w-fit flex-row items-center gap-2 text-foreground/80 hover:underline"
         >
           <ArrowLeftIcon className="size-4" />
           Tillbaka
@@ -99,7 +99,7 @@ async function ArtDetail({ id }: { id: number }) {
                 {collection ? (
                   <div className="pt-1">
                     <Link href={`/collections/${collection.id}`}>
-                      <p className="outfit-uniquifier text-md font-medium text-primary hover:underline">
+                      <p className="outfit-uniquifier text-md font-medium text-foreground/80 hover:underline">
                         Kollektion {collection?.name}
                       </p>
                     </Link>

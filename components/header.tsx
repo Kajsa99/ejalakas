@@ -21,11 +21,11 @@ export default function Header() {
   }
 
   return (
-    <header className="justify-left fixed top-0 right-0 left-0 z-50 flex gap-4 p-4 max-md:bg-background/80 max-md:backdrop-blur-md">
+    <header className="fixed top-0 right-0 left-0 z-40 flex gap-4 border-b border-foreground/10 bg-background/90 p-4 backdrop-blur-md md:hidden">
       <Link
         href="/"
         className={cn(
-          "rounded-md p-2 text-2xl font-bold text-primary",
+          "p-2 font-heading text-2xl text-primary",
           imFellEnglish.className
         )}
       >

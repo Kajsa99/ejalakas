@@ -40,7 +40,7 @@ export default async function CourseSignUpPage({
       <div className="mx-auto w-full max-w-2xl px-4 sm:px-0">
         <Link
           href="/courses"
-          className="text-md mb-6 flex w-fit flex-row items-center gap-2 text-primary hover:underline"
+          className="text-md mb-6 flex w-fit flex-row items-center gap-2 text-foreground/80 hover:underline"
         >
           <ArrowLeftIcon className="size-4" />
           Tillbaka

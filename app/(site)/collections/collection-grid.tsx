@@ -47,7 +47,7 @@ export default function CollectionGrid() {
 
   if (!collections || collections.length === 0) {
     return (
-      <div className="mx-auto w-full min-w-0 max-w-2xl text-center text-sm text-muted-foreground">
+      <div className="mx-auto w-full max-w-2xl min-w-0 text-center text-sm text-muted-foreground">
         Laddar kollektioner...
       </div>
     )
@@ -61,7 +61,7 @@ export default function CollectionGrid() {
   )
 
   return (
-    <div className="mx-auto mt-6 flex w-full min-w-0 max-w-2xl flex-col gap-10 md:max-w-4xl md:gap-8 lg:max-w-5xl">
+    <div className="mx-auto mt-6 flex w-full max-w-2xl min-w-0 flex-col gap-10 md:max-w-4xl md:gap-8 lg:max-w-5xl">
       {paginatedCollections.map((collection: Collection) => (
         <article
           key={collection.id}
@@ -92,7 +92,7 @@ export default function CollectionGrid() {
             </p>
             <Link
               href={`/collections/${collection.id}`}
-              className="mt-2 inline-block text-sm underline-offset-4 hover:text-primary hover:underline"
+              className="mt-2 inline-block text-sm underline-offset-4 hover:underline"
             >
               Se detaljer
             </Link>

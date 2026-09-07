@@ -50,7 +50,7 @@ export default async function ExhibitionIdPage({
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-8">
         <Link
           href="/exhibitions"
-          className="text-md flex w-fit flex-row items-center gap-2 self-start text-primary hover:underline"
+          className="text-md flex w-fit flex-row items-center gap-2 self-start text-foreground/80 hover:underline"
         >
           <ArrowLeftIcon className="size-4" />
           Tillbaka

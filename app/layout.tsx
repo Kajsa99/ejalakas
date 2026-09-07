@@ -55,7 +55,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang="sv"
       suppressHydrationWarning
       className={cn(
         "font-sans",
@@ -64,7 +64,7 @@ export default function RootLayout({
         outfit.variable
       )}
     >
-      <body className="bg-white antialiased">
+      <body className="antialiased">
         <ThemeProvider
           attribute="class"
           defaultTheme="light"

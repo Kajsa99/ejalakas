@@ -4,15 +4,18 @@ import Newsletter from "@/components/newletter"
 
 export default function Page() {
   return (
-    <div className="my-20 flex flex-col items-center p-6">
-      <div className="mx-auto flex w-full max-w-6xl min-w-0 flex-col items-center gap-4 text-sm">
-        <h1 className="text-2xl font-medium">Utställningar</h1>
-        <p className="text-md max-w-2xl text-muted-foreground">
-          Kommande och avslutade utställningar.
-        </p>
+    <div className="site-page">
+      <div className="site-intro">
+        <div>
+          <p className="eyebrow mb-4 text-foreground">E. Jalakas / På gång</p>
+          <h1 className="page-heading">Utställningar</h1>
+        </div>
+        <p className="site-intro-copy">Kommande och avslutade utställningar.</p>
       </div>
-      <UpcomingExhibitions />
-      <ExhibitionsGrid />
+      <div className="w-full pt-12">
+        <UpcomingExhibitions />
+        <ExhibitionsGrid />
+      </div>
       <Newsletter />
     </div>
   )
