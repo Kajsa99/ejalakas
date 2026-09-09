@@ -63,41 +63,38 @@ export default function CollectionGrid() {
   return (
     <div className="mx-auto mt-6 flex w-full max-w-2xl min-w-0 flex-col gap-10 md:max-w-4xl md:gap-8 lg:max-w-5xl">
       {paginatedCollections.map((collection: Collection) => (
-        <article
+        <Link
           key={collection.id}
-          className="flex w-full min-w-0 flex-col gap-4 border-b border-border pb-10 last:border-b-0 last:pb-0 md:flex-row md:items-start md:gap-6 md:border-0 md:pb-0"
+          href={`/collections/${collection.id}`}
+          className="group block w-full pb-10 last:pb-0 md:pb-0"
         >
-          <Link
-            href={`/collections/${collection.id}`}
-            className="relative mx-auto block w-full max-w-xs shrink-0 sm:max-w-sm md:mx-0 md:max-w-[220px]"
-          >
-            <Image
-              src={collection.image}
-              alt={collection.name}
-              width={400}
-              height={400}
-              sizes="(max-width: 767px) 100vw, 220px"
-              className="aspect-square w-full object-cover"
-            />
-          </Link>
-          <div className="flex min-w-0 flex-1 flex-col items-center gap-2 text-center md:items-start md:text-left">
-            <h2 className="text-xl font-medium sm:text-2xl md:text-3xl">
-              {collection.name}
-            </h2>
-            <p className="text-sm text-muted-foreground sm:text-base md:text-lg">
-              {collection.year}
-            </p>
-            <p className="merriweather-long-text text-md line-clamp-5 md:line-clamp-none">
-              {collection.description}
-            </p>
-            <Link
-              href={`/collections/${collection.id}`}
-              className="mt-2 inline-block text-sm underline-offset-4 hover:underline"
-            >
-              Se detaljer
-            </Link>
-          </div>
-        </article>
+          <article className="flex w-full min-w-0 flex-col gap-5 md:flex-row md:items-stretch md:gap-8">
+            <div className="relative overflow-hidden md:w-1/2 md:shrink-0">
+              <Image
+                src={collection.image}
+                alt={collection.name}
+                width={600}
+                height={450}
+                sizes="(max-width: 767px) 100vw, 50vw"
+                className="aspect-4/3 w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+              />
+            </div>
+            <div className="flex min-w-0 flex-1 flex-col items-center gap-3 px-1 pt-4 text-center md:items-start md:px-6 md:pt-1 md:text-left">
+              <h2 className="font-heading text-3xl leading-tight transition-transform duration-300 group-hover:translate-x-1 sm:text-4xl">
+                {collection.name}
+              </h2>
+              <p className="text-xs font-semibold tracking-[0.18em] uppercase">
+                {collection.year}
+              </p>
+              <p className="merriweather-long-text line-clamp-5 text-base leading-relaxed md:line-clamp-none md:text-lg">
+                {collection.description}
+              </p>
+              <span className="artwork-details-link mt-auto translate-y-2 py-2 text-base opacity-0 transition-all duration-500 ease-out group-focus-within:translate-y-0 group-focus-within:opacity-100 group-hover:translate-y-0 group-hover:opacity-100">
+                Se detaljer
+              </span>
+            </div>
+          </article>
+        </Link>
       ))}
 
       {totalPages > 1 && (

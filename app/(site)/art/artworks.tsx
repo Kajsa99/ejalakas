@@ -79,7 +79,7 @@ export default function Artworks() {
   const [artworks, setArtworks] = useState<Artwork[]>([])
   const [sortOption, setSortOption] = useState<ArtSortOption>("newest")
   const [currentPage, setCurrentPage] = useState(1)
-  const itemsPerPage = 8
+  const itemsPerPage = 9
 
   useEffect(() => {
     const fetchArtworks = async () => {
@@ -99,7 +99,10 @@ export default function Artworks() {
     setCurrentPage(1)
   }, [sortOption])
 
-  const totalPages = Math.max(1, Math.ceil(sortedArtworks.length / itemsPerPage))
+  const totalPages = Math.max(
+    1,
+    Math.ceil(sortedArtworks.length / itemsPerPage)
+  )
   const startIndex = (currentPage - 1) * itemsPerPage
   const paginatedArtworks = sortedArtworks.slice(
     startIndex,
@@ -166,7 +169,7 @@ function AllArtworks({
           </Select>
         </Label>
       </div>
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {artworks.map((art) => (
           <ArtworkCard
             key={art.id}
@@ -191,7 +194,9 @@ function AllArtworks({
                   onPageChange(Math.max(1, currentPage - 1))
                 }}
                 aria-disabled={currentPage === 1}
-                className={currentPage === 1 ? "pointer-events-none opacity-50" : ""}
+                className={
+                  currentPage === 1 ? "pointer-events-none opacity-50" : ""
+                }
               />
             </PaginationItem>
 
@@ -222,7 +227,9 @@ function AllArtworks({
                 }}
                 aria-disabled={currentPage === totalPages}
                 className={
-                  currentPage === totalPages ? "pointer-events-none opacity-50" : ""
+                  currentPage === totalPages
+                    ? "pointer-events-none opacity-50"
+                    : ""
                 }
               />
             </PaginationItem>
