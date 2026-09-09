@@ -182,7 +182,9 @@
   }
 
   .group:hover .artwork-details-link::after,
-  .group:focus-within .artwork-details-link::after {
+  .group:focus-within .artwork-details-link::after,
+  .artwork-details-link:hover::after,
+  .artwork-details-link:focus-visible::after {
     transform: scaleX(1);
   }
 

@@ -1,15 +1,5 @@
 import Image from "next/image"
 import { STORAGE_BUCKET, STORAGE_IMAGE_PATHS } from "@/lib/storage-image-paths"
-import { cn } from "@/lib/utils"
-import { IM_Fell_English } from "next/font/google"
-
-const imFellEnglish = IM_Fell_English({
-  variable: "--font-im-fell",
-  weight: "400",
-  style: ["normal", "italic"],
-  subsets: ["latin"],
-  display: "swap",
-})
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL ?? ""
 const aboutProfileImage = `${supabaseUrl}/storage/v1/object/public/${STORAGE_BUCKET}/${STORAGE_IMAGE_PATHS.aboutProfile}`
@@ -19,18 +9,16 @@ const aboutPaintImage2 = `${supabaseUrl}/storage/v1/object/public/${STORAGE_BUCK
 export default function Page() {
   return (
     <div className="site-page">
-      <div className="merriweather-long-text mx-auto flex w-full min-w-0 flex-col items-center gap-4 text-sm">
-        <div className="flex w-full min-w-0 flex-col items-center gap-6 border-t-8 border-foreground/10 bg-secondary/50 px-4 sm:gap-8 sm:px-8">
-          <h1
-            className={cn(
-              "mt-8 w-full max-w-full px-2 text-center font-heading text-4xl font-bold text-foreground sm:text-5xl md:mt-12 md:-ml-10 md:w-auto md:max-w-none md:self-start md:px-0 md:text-left",
-              imFellEnglish.className
-            )}
-          >
-            Jaget, naturen och människan
-          </h1>
-          <div className="w-full max-w-[980px] min-w-0 md:grid md:grid-cols-2 md:items-center md:gap-8">
-            <div className="relative aspect-4/5 min-h-[220px] w-full overflow-hidden sm:aspect-auto sm:h-[380px] md:h-[500px]">
+      <div className="site-intro">
+        <div className="max-w-3xl">
+          <p className="eyebrow mb-4 text-foreground">E. Jalakas / Om</p>
+          <h1 className="page-heading">Jaget, naturen och människan</h1>
+        </div>
+      </div>
+      <div className="merriweather-long-text w-full pt-12 text-sm">
+        <div className="flex w-full min-w-0 flex-col gap-16">
+          <div className="w-full max-w-245 min-w-0 md:grid md:grid-cols-2 md:items-center md:gap-8">
+            <div className="relative aspect-4/5 min-h-55 w-full overflow-hidden sm:aspect-auto sm:h-95 md:h-125">
               <Image
                 src={aboutProfileImage}
                 alt="profil med blommor"
@@ -42,15 +30,10 @@ export default function Page() {
               />
             </div>
             <div className="mt-4 px-2 py-4 leading-loose sm:px-4 md:mt-0 md:p-8">
-              <h2
-                className={cn(
-                  "mb-4 text-lg font-bold text-foreground",
-                  imFellEnglish.className
-                )}
-              >
-                Jag, E.Jalakas
+              <h2 className="mb-4 font-heading text-3xl leading-tight text-foreground">
+                Jag, E. Jalakas
               </h2>
-              <p className="px-1 py-2 text-sm leading-loose text-black sm:p-4">
+              <p className="px-1 py-2 text-sm leading-loose text-foreground/75 sm:p-4">
                 Mitt namn är Elisabet Jalakas Palmén och jag är uppvuxen och
                 bosatt i Lindome, Västra Götaland. Skapandet alltid varit en
                 stor del av mitt liv. När jag växte upp så var det ett delat
@@ -62,24 +45,19 @@ export default function Page() {
               </p>
             </div>
           </div>
-          <div className="w-full max-w-[980px] min-w-0 py-4 md:grid md:grid-cols-2 md:items-center md:gap-8">
+          <div className="w-full max-w-245 min-w-0 py-4 md:grid md:grid-cols-2 md:items-center md:gap-8">
             <div className="mt-4 px-2 py-4 leading-loose sm:px-4 md:mt-0 md:p-8">
-              <h2
-                className={cn(
-                  "mb-4 text-lg font-bold text-foreground",
-                  imFellEnglish.className
-                )}
-              >
+              <h2 className="mb-4 font-heading text-3xl leading-tight text-foreground">
                 Naturen
               </h2>
-              <p className="px-1 py-2 text-sm leading-loose text-black sm:p-4">
+              <p className="px-1 py-2 text-sm leading-loose text-foreground/75 sm:p-4">
                 När jag tänker på hur jag skapar och vad mina processer är så
                 upplever jag konsten som ett uttryck av det jag ser och känner.
                 Jag återskapa vad jag ser och försöker attförmedla känslan i det
                 ögonblicket. Min konst är ett uttryck av känslor och färg och är
                 menat att synas och delas.{" "}
               </p>
-              <p className="mt-4 px-1 py-2 text-sm leading-loose text-black sm:p-4">
+              <p className="mt-4 px-1 py-2 text-sm leading-loose text-foreground/75 sm:p-4">
                 I mina kollektioner så kan man se hur jag fokuserar på vissa
                 känslor och former för att fånga in ögonblicket. Jag testar och
                 vågar mig fram och det är inte alltid man blir nöjd med all sina
@@ -90,7 +68,7 @@ export default function Page() {
                 vart gränsen går.
               </p>
             </div>
-            <div className="relative mx-auto mt-4 aspect-5/4 min-h-[220px] w-full max-w-[400px] overflow-hidden sm:mt-0 sm:aspect-auto sm:h-[340px] md:ml-auto md:h-[400px]">
+            <div className="relative mx-auto mt-4 aspect-5/4 min-h-55 w-full max-w-100 overflow-hidden sm:mt-0 sm:aspect-auto sm:h-85 md:ml-auto md:h-100">
               <Image
                 src={aboutPaintImage}
                 alt="målar utomhus"
@@ -103,8 +81,8 @@ export default function Page() {
               />
             </div>
           </div>
-          <div className="w-full max-w-[980px] min-w-0 py-4 md:grid md:grid-cols-2 md:items-center md:gap-8">
-            <div className="relative aspect-4/5 min-h-[220px] w-full overflow-hidden sm:aspect-auto sm:h-[380px] md:h-[500px]">
+          <div className="w-full max-w-245 min-w-0 py-4 md:grid md:grid-cols-2 md:items-center md:gap-8">
+            <div className="relative aspect-4/5 min-h-55 w-full overflow-hidden sm:aspect-auto sm:h-95 md:h-125">
               <Image
                 src={aboutPaintImage2}
                 alt="måla vid havet"
@@ -116,15 +94,10 @@ export default function Page() {
               />
             </div>
             <div className="mt-4 px-2 py-4 leading-loose sm:px-4 md:mt-0 md:p-8">
-              <h2
-                className={cn(
-                  "mb-4 text-lg font-bold text-foreground",
-                  imFellEnglish.className
-                )}
-              >
+              <h2 className="mb-4 font-heading text-3xl leading-tight text-foreground">
                 Människan
               </h2>
-              <p className="px-1 py-2 text-sm leading-loose text-black sm:p-4">
+              <p className="px-1 py-2 text-sm leading-loose text-foreground/75 sm:p-4">
                 Jag inspireras av folk och föremål i vardagen och utforskandet
                 av olika tekniker och material. Jag sitter ofta och målar av
                 personer i min omgivning, snabbt och spontant. Det blir ett mer

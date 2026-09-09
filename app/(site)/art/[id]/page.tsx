@@ -60,70 +60,70 @@ async function ArtDetail({ id }: { id: number }) {
         .publicUrl
 
   return (
-    <div className="my-20 min-h-screen p-6">
-      <div className="mx-auto flex w-full max-w-5xl flex-col">
+    <div className="site-page">
+      <div className="mb-10">
         <Link
           href="/art"
-          className="text-md mb-6 flex w-fit flex-row items-center gap-2 text-foreground/80 hover:underline"
+          className="eyebrow inline-flex w-fit items-center gap-2 text-foreground hover:underline"
         >
           <ArrowLeftIcon className="size-4" />
           Tillbaka
         </Link>
+      </div>
 
-        <article className="w-full">
-          <div className="flex flex-col gap-4 md:flex-row md:items-start">
-            <div className="relative w-full md:w-2/3">
-              <ArtImageViewer src={imageSrc} alt={artwork.name} />
+      <article className="w-full">
+        <div className="mb-20 grid gap-10 md:grid-cols-[minmax(0,1.4fr)_minmax(280px,0.6fr)] md:items-start md:gap-20">
+          <div className="relative w-full">
+            <ArtImageViewer src={imageSrc} alt={artwork.name} />
+          </div>
+
+          <div className="flex w-full flex-col border-t border-foreground/20 pt-6 md:border-t-0 md:border-l md:pt-0 md:pl-8">
+            <p className="eyebrow text-foreground">E. Jalakas / Galleri</p>
+            <div className="mt-4 flex items-start justify-between gap-4">
+              <h1 className="font-heading text-4xl leading-none md:text-5xl">
+                {artwork.name}
+              </h1>
+              <p className="shrink-0 text-xs font-semibold tracking-[0.18em] text-muted-foreground uppercase">
+                {artwork.year}
+              </p>
             </div>
 
-            <div className="flex w-full flex-col gap-5 rounded-md p-4 md:w-[460px] md:shrink-0 dark:bg-zinc-900">
-              <div className="flex flex-row items-center justify-between gap-2">
-                <h1 className="outfit-uniquifier text-2xl">{artwork.name}</h1>
-                <p className="outfit-uniquifier text-md text-muted-foreground">
-                  {artwork.year}
+            <p className="merriweather-long-text mt-8 text-base leading-relaxed text-muted-foreground">
+              {artwork.description}
+            </p>
+
+            <div className="mt-8 flex flex-wrap items-center gap-2 border-t border-foreground/15 pt-5">
+              <Badge variant="outline" className="text-sm">
+                {artwork.price}kr
+              </Badge>
+              <ArtStatusBadge sold={artwork.status} />
+            </div>
+
+            {collection ? (
+              <Link
+                href={`/collections/${collection.id}`}
+                className="mt-6 text-base text-foreground/80 hover:underline"
+              >
+                Kollektion {collection.name}
+              </Link>
+            ) : null}
+
+            <div className="mt-10 flex w-full justify-start">
+              {artwork.status ? (
+                <p className="text-base text-muted-foreground">
+                  Tavlan är såld
                 </p>
-              </div>
-
-              <div className="space-y-4 bg-amber-50 p-4 pr-1">
-                <p className="merriweather-long-text text-sm leading-loose text-muted-foreground">
-                  {artwork.description}
-                </p>
-
-                <div className="outfit-uniquifier flex flex-row items-center gap-2 pt-1">
-                  <Badge variant={"outline"} className="text-sm">
-                    {artwork.price}kr
-                  </Badge>
-                  <ArtStatusBadge sold={artwork.status} />
-                </div>
-
-                {collection ? (
-                  <div className="pt-1">
-                    <Link href={`/collections/${collection.id}`}>
-                      <p className="outfit-uniquifier text-md font-medium text-foreground/80 hover:underline">
-                        Kollektion {collection?.name}
-                      </p>
-                    </Link>
-                  </div>
-                ) : null}
-              </div>
-
-              <div className="flex w-full justify-end pt-1">
-                {artwork.status ? (
-                  <p className="text-base text-muted-foreground">
-                    Tavlan är såld
-                  </p>
-                ) : (
-                  <Link href={`/art/${id}/buy`}>
-                    <Button variant={"default"} className="p-4 text-lg">
-                      Skicka förfågan
-                    </Button>
-                  </Link>
-                )}
-              </div>
+              ) : (
+                <Link href={`/art/${id}/buy`}>
+                  <Button variant="default" className="px-5 py-4 text-base">
+                    Skicka förfrågan
+                  </Button>
+                </Link>
+              )}
             </div>
           </div>
-        </article>
-      </div>
+        </div>
+      </article>
     </div>
   )
 }

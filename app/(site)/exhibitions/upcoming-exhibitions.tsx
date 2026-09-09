@@ -1,14 +1,6 @@
 "use client"
 
 import { createClient } from "@/lib/supabase/client"
-import { Button } from "@/components/ui/button"
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
 import { CalendarIcon } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
@@ -85,38 +77,47 @@ export default function UpcomingExhibitions() {
   }
 
   return (
-    <section className="my-10 flex w-full max-w-6xl flex-col gap-6">
-      <h2 className="text-xl font-medium">Kommande utställningar</h2>
-      <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+    <section className="flex w-full flex-col gap-8">
+      <div className="border-b border-foreground/20 pb-4">
+        <p className="eyebrow text-foreground">På gång</p>
+        <h2 className="mt-3 font-heading text-4xl leading-none md:text-5xl">
+          Kommande utställningar
+        </h2>
+      </div>
+      <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
         {upcomingExhibitions.map((exhibition) => (
-          <Card key={exhibition.id} className="flex h-full max-w-md flex-col">
-            <CardHeader className="p-4">
-              <CardTitle className="text-center text-xl font-medium">
-                {exhibition.name}
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="flex flex-1 flex-col gap-2">
+          <article
+            key={exhibition.id}
+            className="group flex h-full flex-col border-b border-foreground/20 pb-8"
+          >
+            <div className="relative overflow-hidden">
               <Image
                 src={exhibition.image}
                 alt={exhibition.name}
-                width={300}
-                height={200}
-                className="h-64 w-full object-cover"
+                width={600}
+                height={400}
+                className="aspect-4/3 w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
               />
-              <p className="text-md flex items-center gap-2">
+            </div>
+            <div className="flex flex-1 flex-col gap-4 pt-5">
+              <h3 className="font-heading text-3xl leading-tight">
+                {exhibition.name}
+              </h3>
+              <p className="flex items-center gap-2 text-sm text-muted-foreground">
                 <CalendarIcon className="size-4" />
                 {formatExhibitionDate(exhibition.date)}
               </p>
-              <p className="merriweather-long-text text-md m-4 line-clamp-4 leading-loose">
+              <p className="merriweather-long-text line-clamp-4 text-base leading-relaxed text-muted-foreground">
                 {exhibition.description}
               </p>
-            </CardContent>
-            <CardFooter>
-              <Link href={`/exhibitions/${exhibition.id}`} className="w-full">
-                <Button className="w-full">Se detaljer</Button>
+              <Link
+                href={`/exhibitions/${exhibition.id}`}
+                className="artwork-details-link mt-auto pt-4 text-base"
+              >
+                Se detaljer
               </Link>
-            </CardFooter>
-          </Card>
+            </div>
+          </article>
         ))}
       </div>
     </section>

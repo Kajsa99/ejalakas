@@ -4,7 +4,6 @@ import { createClient } from "@/lib/supabase/client"
 import Image from "next/image"
 import { useEffect, useMemo, useState } from "react"
 import Link from "next/link"
-import { Button } from "@/components/ui/button"
 import { Label } from "@/components/ui/label"
 import {
   Pagination,
@@ -14,13 +13,6 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination"
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardContent,
-  CardFooter,
-} from "@/components/ui/card"
 import {
   Select,
   SelectContent,
@@ -144,9 +136,14 @@ export default function ExhibitionsGrid() {
   }
 
   return (
-    <div className="my-10 flex flex-col gap-8">
-      <div className="mx-auto flex w-full max-w-6xl items-center justify-between">
-        <h2 className="text-xl font-medium">Tidigare utställningar</h2>
+    <section className="mt-20 flex w-full flex-col gap-8">
+      <div className="flex flex-col gap-5 border-b border-foreground/20 pb-4 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <p className="eyebrow text-foreground">Arkiv</p>
+          <h2 className="mt-3 font-heading text-4xl leading-none md:text-5xl">
+            Tidigare utställningar
+          </h2>
+        </div>
         <Label className="flex items-center gap-2 text-sm">
           Filtrera efter år:
           <Select
@@ -173,44 +170,49 @@ export default function ExhibitionsGrid() {
           Inga utställningar hittades för valt år.
         </div>
       ) : (
-        <div className="mx-auto flex w-full max-w-6xl flex-col gap-8">
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div className="flex w-full flex-col gap-8">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
             {paginatedExhibitions.map((exhibition: Exhibition) => (
-              <div key={exhibition.id}>
-                <Card className="flex h-full max-w-md flex-col dark:border-zinc-800 dark:bg-zinc-900">
-                  <CardHeader className="p-4">
-                    <CardTitle className="text-center text-xl font-medium">
+              <article
+                key={exhibition.id}
+                className="group flex h-full flex-col"
+              >
+                <Link
+                  href={`/exhibitions/${exhibition.id}`}
+                  className="relative block overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset"
+                >
+                  <Image
+                    src={exhibition.image}
+                    alt={exhibition.name}
+                    width={600}
+                    height={400}
+                    className="aspect-4/3 w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  />
+                </Link>
+                <div className="flex flex-1 flex-col gap-4 pt-5">
+                  <Link
+                    href={`/exhibitions/${exhibition.id}`}
+                    className="relative block overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset"
+                  >
+                    <h3 className="font-heading text-3xl leading-tight">
                       {exhibition.name}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="flex flex-1 flex-col gap-2">
-                    <div className="flex flex-col gap-2">
-                      <Image
-                        src={exhibition.image}
-                        alt={exhibition.name}
-                        width={300}
-                        height={200}
-                        className="h-64 w-full object-cover"
-                      />
-                    </div>
-                    <p className="text-md flex items-center gap-2">
-                      <CalendarIcon className="size-4" />
-                      {formatExhibitionDate(exhibition.date)}
-                    </p>
-                    <p className="merriweather-long-text text-md m-4 line-clamp-4 leading-loose">
-                      {exhibition.description}
-                    </p>
-                  </CardContent>
-                  <CardFooter>
-                    <Link
-                      href={`/exhibitions/${exhibition.id}`}
-                      className="w-full"
-                    >
-                      <Button className="w-full">Se detaljer</Button>
-                    </Link>
-                  </CardFooter>
-                </Card>
-              </div>
+                    </h3>
+                  </Link>
+                  <p className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <CalendarIcon className="size-4" />
+                    {formatExhibitionDate(exhibition.date)}
+                  </p>
+                  <p className="merriweather-long-text line-clamp-4 text-base leading-relaxed text-muted-foreground">
+                    {exhibition.description}
+                  </p>
+                  <Link
+                    href={`/exhibitions/${exhibition.id}`}
+                    className="artwork-details-link mt-auto pt-4 text-base"
+                  >
+                    Se detaljer
+                  </Link>
+                </div>
+              </article>
             ))}
           </div>
 
@@ -271,6 +273,6 @@ export default function ExhibitionsGrid() {
           )}
         </div>
       )}
-    </div>
+    </section>
   )
 }

@@ -10,14 +10,6 @@ import {
 } from "lucide-react"
 
 import { createClient } from "@/lib/supabase/client"
-import { Button } from "@/components/ui/button"
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
 
 import { Course, formatCourseDate, isPreviousCourse } from "./course-utils"
 
@@ -57,53 +49,60 @@ export default function PreviousCourses() {
   }
 
   return (
-    <section className="my-10 flex w-full max-w-6xl flex-col gap-6">
-      <h2 className="text-xl font-medium">Tidigare kurser</h2>
-      <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+    <section className="mt-20 flex w-full flex-col gap-8">
+      <div className="border-b border-foreground/20 pb-4">
+        <p className="eyebrow text-foreground">Arkiv</p>
+        <h2 className="mt-3 font-heading text-4xl leading-none md:text-5xl">
+          Tidigare kurser
+        </h2>
+      </div>
+      <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
         {previousCourses.map((course) => (
-          <Card
-            key={course.id}
-            className="flex h-full max-w-md flex-col dark:border-zinc-800 dark:bg-zinc-900"
-          >
-            <CardHeader className="p-4">
-              <CardTitle className="text-center text-xl font-medium">
-                {course.name}
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="flex flex-1 flex-col gap-2">
+          <article key={course.id} className="group flex h-full flex-col pb-8">
+            <div className="relative overflow-hidden">
               <Image
                 src={course.image}
                 alt={course.name}
-                width={300}
-                height={200}
-                className="max-h-80 w-full object-cover"
+                width={600}
+                height={400}
+                className="aspect-4/3 w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
               />
-              <div className="merriweather-long-text text-md m-4 leading-loose">
+            </div>
+            <div className="flex flex-1 flex-col gap-4 pt-5">
+              <div className="flex items-start justify-between gap-4">
+                <h3 className="font-heading text-3xl leading-tight">
+                  {course.name}
+                </h3>
+                <span className="eyebrow shrink-0 text-muted-foreground">
+                  Arkiv
+                </span>
+              </div>
+              <p className="merriweather-long-text text-base leading-relaxed text-muted-foreground">
                 {course.description}
+              </p>
+              <div className="grid gap-2 text-sm text-muted-foreground sm:grid-cols-2">
+                <div className="flex items-center gap-2">
+                  <CalendarIcon className="size-4" />
+                  {formatCourseDate(course.date)}
+                </div>
+                <div className="flex items-center gap-2">
+                  <MapPinIcon className="size-4" />
+                  {course.location}
+                </div>
+                <div className="flex items-center gap-2">
+                  <HandCoinsIcon className="size-4" />
+                  {course.price}kr per person
+                </div>
+                <div className="flex items-center gap-2">
+                  <UsersIcon className="size-4" />
+                  {course.people} platser totalt
+                </div>
               </div>
-              <div className="text-md flex items-center gap-2">
-                <CalendarIcon className="size-4" />
-                {formatCourseDate(course.date)}
-              </div>
-              <div className="text-md flex items-center gap-2">
-                <MapPinIcon className="size-4" />
-                {course.location}
-              </div>
-              <div className="text-md flex items-center gap-2">
-                <HandCoinsIcon className="size-4" />
-                {course.price}kr per person
-              </div>
-              <div className="text-md flex items-center gap-2">
-                <UsersIcon className="size-4" />
-                {course.people} platser totalt
-              </div>
-            </CardContent>
-            <CardFooter>
-              <Button className="w-full" disabled>
+              <span className="mt-auto pt-4 text-base text-muted-foreground">
                 Anmälan stängd
-              </Button>
-            </CardFooter>
-          </Card>
+              </span>
+            </div>
+          </article>
         ))}
       </div>
     </section>

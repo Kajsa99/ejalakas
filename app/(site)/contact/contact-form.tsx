@@ -6,7 +6,6 @@ import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
 
 export default function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -51,50 +50,43 @@ export default function ContactForm() {
   }
 
   return (
-    <div className="w-full max-w-md space-y-4 text-center">
-      <Card className="rounded-md p-4 dark:bg-zinc-900">
-        <CardHeader>
-          <CardTitle className="mt-4 text-lg font-medium">
-            Du kan även ta kontakt via formuläret
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <form
-            onSubmit={onSubmit}
-            className="mx-auto flex max-w-sm flex-col gap-4 p-4"
-          >
-            <div className="grid gap-2">
-              <Label htmlFor="name">Namn *</Label>
-              <Input id="name" name="name" type="text" required />
-            </div>
-            <div className="grid gap-2">
-              <Label htmlFor="email">Email *</Label>
-              <Input id="email" name="email" type="email" required />
-            </div>
-            <div className="grid gap-2">
-              <Label htmlFor="phone">Telefon</Label>
-            </div>
-            <Input id="phone" name="phone" type="tel" />
-            <div className="grid gap-2">
-              <Label htmlFor="message">Meddelande</Label>
-              <Textarea
-                id="message"
-                name="message"
-                required
-                rows={5}
-                className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm placeholder:text-muted-foreground"
-              />
-            </div>
-            {error ? <p className="text-sm text-destructive">{error}</p> : null}
-            {success ? (
-              <p className="text-sm text-green-700">{success}</p>
-            ) : null}
-            <Button type="submit" disabled={isSubmitting}>
-              {isSubmitting ? "Skickar..." : "Skicka"}
-            </Button>
-          </form>
-        </CardContent>
-      </Card>
+    <div className="w-full max-w-2xl pt-8">
+      <p className="eyebrow mb-6 text-foreground">
+        Du kan även ta kontakt via formuläret
+      </p>
+      <form onSubmit={onSubmit} className="grid gap-6 md:grid-cols-2">
+        <div className="grid gap-2">
+          <Label htmlFor="name">Namn *</Label>
+          <Input id="name" name="name" type="text" required />
+        </div>
+        <div className="grid gap-2">
+          <Label htmlFor="email">Email *</Label>
+          <Input id="email" name="email" type="email" required />
+        </div>
+        <div className="grid gap-2">
+          <Label htmlFor="phone">Telefon</Label>
+          <Input id="phone" name="phone" type="tel" />
+        </div>
+        <div className="grid gap-2 md:col-span-2">
+          <Label htmlFor="message">Meddelande</Label>
+          <Textarea
+            id="message"
+            name="message"
+            required
+            rows={5}
+            className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm placeholder:text-muted-foreground"
+          />
+        </div>
+        {error ? <p className="text-sm text-destructive">{error}</p> : null}
+        {success ? <p className="text-sm text-green-700">{success}</p> : null}
+        <Button
+          type="submit"
+          disabled={isSubmitting}
+          className="md:col-span-2 md:w-fit"
+        >
+          {isSubmitting ? "Skickar..." : "Skicka"}
+        </Button>
+      </form>
     </div>
   )
 }

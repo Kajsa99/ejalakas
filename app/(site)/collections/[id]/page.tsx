@@ -29,7 +29,7 @@ export default async function Page({
     notFound()
   }
 
-  //   Artworks order by name ascending
+  // Artworks order by name ascending
   const { data: artworks } = await supabase
     .from("art")
     .select("*")
@@ -37,49 +37,57 @@ export default async function Page({
     .order("name", { ascending: true })
 
   return (
-    <div className="min-h-screen px-4 pt-20 pb-12 sm:px-6">
-      <div className="mx-auto flex w-full max-w-7xl min-w-0 flex-col">
-        <Link
-          href="/collections"
-          className="text-md mb-4 flex w-fit flex-row items-center gap-2 text-foreground/80 hover:underline sm:mb-6"
-        >
-          <ArrowLeftIcon className="size-4" />
-          Tillbaka
-        </Link>
-        <div className="flex w-full max-w-4xl min-w-0 flex-col gap-4 md:flex-row md:items-start md:gap-6">
-          <div className="flex w-full min-w-0 flex-col gap-2">
-            <h1 className="text-xl font-medium sm:text-2xl">
-              Kollektion {collection.name}
-            </h1>
-            <p className="text-sm text-muted-foreground">{collection.year}</p>
-            <p className="merriweather-long-text text-md">
-              {collection.description}
-            </p>
-          </div>
-        </div>
-
-        <div className="mt-10 w-full">
-          <p className="text-xl">Alla verk i kollektionen</p>
-          {!artworks || artworks.length === 0 ? (
-            <p className="text-sm text-muted-foreground">
-              Inga verk hittades i den här kollektionen.
-            </p>
-          ) : (
-            <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              {(artworks as Artwork[]).map((artwork) => (
-                <ArtworkCard
-                  key={artwork.id}
-                  id={artwork.id}
-                  name={artwork.name}
-                  image={artwork.image}
-                  year={artwork.year}
-                  status={artwork.status}
-                />
-              ))}
-            </div>
-          )}
+    <div className="site-page">
+      <div className="site-intro">
+        <div className="max-w-3xl">
+          <Link
+            href="/collections"
+            className="eyebrow mb-8 inline-flex w-fit items-center gap-2 text-foreground hover:underline"
+          >
+            <ArrowLeftIcon className="size-4" />
+            Tillbaka
+          </Link>
+          <p className="eyebrow mb-4 text-foreground">E. Jalakas / Samling</p>
+          <h1 className="page-heading">{collection.name}</h1>
+          <p className="mt-5 text-xs font-semibold tracking-[0.18em] text-muted-foreground uppercase">
+            {collection.year}
+          </p>
+          <p className="site-intro-copy mt-6 max-w-2xl">
+            {collection.description}
+          </p>
         </div>
       </div>
+
+      <section className="w-full border-foreground/20 pt-8">
+        <div className="mb-8">
+          <h2 className="mt-3 font-heading text-4xl leading-none md:text-5xl">
+            Alla verk
+          </h2>
+        </div>
+        <div className="mb-8">
+          <p className="text-sm text-muted-foreground">
+            Här hittar du alla konstverk i den här kollektionen.
+          </p>
+        </div>
+        {!artworks || artworks.length === 0 ? (
+          <p className="text-sm text-muted-foreground">
+            Inga verk hittades i den här kollektionen.
+          </p>
+        ) : (
+          <div className="mb-20 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {(artworks as Artwork[]).map((artwork) => (
+              <ArtworkCard
+                key={artwork.id}
+                id={artwork.id}
+                name={artwork.name}
+                image={artwork.image}
+                year={artwork.year}
+                status={artwork.status}
+              />
+            ))}
+          </div>
+        )}
+      </section>
     </div>
   )
 }
